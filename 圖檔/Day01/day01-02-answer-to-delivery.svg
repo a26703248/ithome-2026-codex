@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+  <title id="title">從回答到可交付所需條件</title>
+  <desc id="desc">一份看似完整的回答，仍需補足專案上下文、修改、測試與審查等條件</desc>
+  <rect width="1200" height="675" fill="#0f172a"/>
+  <text x="70" y="90" fill="#f8fafc" font-size="46" font-family="Inter, Noto Sans TC, Microsoft JhengHei, sans-serif" font-weight="800">從「回答」到「交付」之間，還有工程工作</text>
+  <g font-family="Inter, Noto Sans TC, Microsoft JhengHei, sans-serif">
+    <rect x="70" y="170" width="250" height="315" rx="28" fill="#132238" stroke="#22d3ee" stroke-width="3"/>
+    <text x="195" y="235" text-anchor="middle" fill="#67e8f9" font-size="31" font-weight="700">對話回答</text>
+    <text x="195" y="300" text-anchor="middle" fill="#cbd5e1" font-size="23">可能原因</text>
+    <text x="195" y="345" text-anchor="middle" fill="#cbd5e1" font-size="23">建議做法</text>
+    <text x="195" y="390" text-anchor="middle" fill="#cbd5e1" font-size="23">範例程式碼</text>
+    <text x="195" y="447" text-anchor="middle" fill="#94a3b8" font-size="20">看起來合理</text>
+    <path d="M342 328h110" stroke="#f59e0b" stroke-width="5" stroke-dasharray="10 10"/>
+    <path d="m438 312 22 16-22 16" fill="none" stroke="#f59e0b" stroke-width="5"/>
+    <text x="400" y="288" text-anchor="middle" fill="#fbbf24" font-size="22">落差</text>
+    <rect x="480" y="150" width="650" height="355" rx="28" fill="#111827" stroke="#334155" stroke-width="3"/>
+    <text x="805" y="210" text-anchor="middle" fill="#f8fafc" font-size="31" font-weight="700">可交付所需條件</text>
+    <g fill="#1e293b" stroke="#475569">
+      <rect x="535" y="260" width="240" height="80" rx="18"/><rect x="835" y="260" width="240" height="80" rx="18"/>
+      <rect x="535" y="380" width="240" height="80" rx="18"/><rect x="835" y="380" width="240" height="80" rx="18"/>
+    </g>
+    <g fill="#e2e8f0" font-size="28" text-anchor="middle">
+      <text x="655" y="309">專案上下文</text><text x="955" y="309">可審查的差異</text>
+      <text x="655" y="429">測試與重現</text><text x="955" y="429">人工最終判斷</text>
+    </g>
+    <text x="600" y="575" text-anchor="middle" fill="#94a3b8" font-size="29">速度有價值，但「完成」必須有證據。</text>
+  </g>
+</svg>
