@@ -259,6 +259,8 @@ ISO、CNS 是受著作權保護的私權文件（購買通常只取得「閱讀�
 ironman-2026-chatgpt-codex/
 ├── AGENTS.md                # 本檔案
 ├── DayNN-大綱.md             # 依大綱命名，day01–day30
+├── 審核/DAYNN-verify.md      # 每篇文章內需要作者驗證的事項清單，day01–day30
+├── 程式碼/DAYNN/             # 每篇文章內案例程式碼，day01–day30
 ├── 條文/                     # 第一層（ISO/CNS）正本文件，見第 12 節清單
 ├── prompts/                 # 可複用的 prompt 範例庫
 └── 圖檔/DayNN/               # 每篇用到的截圖、圖表，並且依照天數放置對應目錄day01–day30
