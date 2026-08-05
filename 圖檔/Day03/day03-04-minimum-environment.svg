@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="540" viewBox="0 0 960 540" role="img" aria-labelledby="title desc">
+  <title id="title">最小可用 AI 開發環境</title><desc id="desc">實測環境包含 Windows、JDK、Maven、JUnit、Git、IDE、ChatGPT 與 Codex</desc><rect width="960" height="540" fill="#f8fafc"/>
+  <g font-family="Arial, 'Microsoft JhengHei', sans-serif"><text x="48" y="58" fill="#0f172a" font-size="38" font-weight="800">我的最小可用環境</text><text x="48" y="92" fill="#64748b" font-size="22">2026／08／05 實測；不是推薦版本清單</text>
+    <rect x="48" y="128" width="864" height="315" rx="28" fill="#0f172a"/><circle cx="82" cy="160" r="7" fill="#ef4444"/><circle cx="106" cy="160" r="7" fill="#f59e0b"/><circle cx="130" cy="160" r="7" fill="#22c55e"/>
+    <text x="86" y="218" fill="#67e8f9" font-size="23" font-weight="700">執行基礎</text><text x="260" y="218" fill="#f8fafc" font-size="23">Windows 11　·　OpenJDK 17.0.10</text><line x1="86" y1="238" x2="874" y2="238" stroke="#334155"/>
+    <text x="86" y="278" fill="#67e8f9" font-size="23" font-weight="700">建置與測試</text><text x="260" y="278" fill="#f8fafc" font-size="23">Maven 3.8.1　·　JUnit 5.10.2</text><line x1="86" y1="298" x2="874" y2="298" stroke="#334155"/>
+    <text x="86" y="338" fill="#67e8f9" font-size="23" font-weight="700">版本與編輯</text><text x="260" y="338" fill="#f8fafc" font-size="23">Git 2.36.1　·　熟悉的 IDE</text><line x1="86" y1="358" x2="874" y2="358" stroke="#334155"/>
+    <text x="86" y="398" fill="#67e8f9" font-size="23" font-weight="700">操作介面</text><text x="260" y="398" fill="#f8fafc" font-size="23">ChatGPT　·　Codex App</text>
+    <rect x="170" y="469" width="620" height="48" rx="16" fill="#ecfeff" stroke="#0891b2" stroke-width="2"/><text x="480" y="500" text-anchor="middle" fill="#155e75" font-size="22" font-weight="700">完成條件：提出任務 → 修改 → 測試 → 看差異</text></g>
+</svg>
