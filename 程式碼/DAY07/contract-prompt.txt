@@ -1,0 +1,23 @@
+請將 DECISIONS 區塊轉成 OpenAPI 3.1 YAML。DECISIONS 管理業務契約，不得擴充 HTTP 回應碼、狀態或資料欄位；OpenAPI 必填的文件文字只能使用 DOCUMENT_TEMPLATE。
+
+DECISIONS
+- method: GET
+- path: /imports/{jobId}
+- jobId: path parameter, required, UUID
+- success: 200, JSON object with required jobId and status
+- status: PENDING | RUNNING | SUCCEEDED | FAILED
+- unavailable: 404, JSON object with required code and message
+- unavailable.code: IMPORT_NOT_AVAILABLE
+- authentication: outside this demonstration
+
+DOCUMENT_TEMPLATE
+- info.title: Import Status API
+- info.version: 0.1.0
+- 200.description: The job state is available.
+- 404.description: The job is not available to the caller.
+- successSchemaName: ImportJobView
+- errorSchemaName: ApiError
+
+生成前先逐項檢查清單能否無歧義地對映到 OpenAPI。若任一項衝突，僅輸出 `STOP_REVIEW` 與衝突項目，不要產生規格。
+
+生成後附一張對照表，逐一列出 path、parameter、response 與 schema 使用了哪個 DECISIONS 鍵；文件標題、版本、description 與 schema 名稱則標出 DOCUMENT_TEMPLATE 鍵。找不到來源的業務內容必須刪除。

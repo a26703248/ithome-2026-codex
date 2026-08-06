@@ -1,0 +1,48 @@
+openapi: 3.1.0
+info:
+  title: Import Status API
+  version: 0.1.0
+paths:
+  /imports/{jobId}:
+    get:
+      parameters:
+        - name: jobId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: The job state is available.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImportJobView'
+        '404':
+          description: The job is not available to the caller.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+components:
+  schemas:
+    ImportJobView:
+      type: object
+      required: [jobId, status]
+      properties:
+        jobId:
+          type: string
+          format: uuid
+        status:
+          type: string
+          enum: [PENDING, RUNNING, SUCCEEDED, FAILED]
+    ApiError:
+      type: object
+      required: [code, message]
+      properties:
+        code:
+          type: string
+          enum: [IMPORT_NOT_AVAILABLE]
+        message:
+          type: string
