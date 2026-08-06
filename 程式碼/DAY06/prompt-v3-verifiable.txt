@@ -1,0 +1,38 @@
+你正在修改一個 Java 17／Maven 專案。請將兩種來源資料正規化成同一個 WorkspaceDocument。
+
+## 背景
+
+本案例延續「資料工作區空間」需求。v0 需求只確認有自行爬文與企業內部託管兩種來源，沒有定義欄位對齊規則。以下欄位與預設值都是本篇示範規則，不得寫成 v0 已確認的業務事實。
+
+## 輸入與目標
+
+- CrawlerRecord(title, description, tags, createTime, updateTime)
+- HostedRecord(title, description, tags, createAt, updateAt)
+- WorkspaceDocument(title, content, tags, createdAt, updatedAt)
+- title 對應 title。
+- description 對應 content。
+- createTime／createAt 對應 createdAt。
+- updateTime／updateAt 對應 updatedAt。
+
+## 本篇示範規則
+
+- null 字串轉成空字串。
+- null tags 轉成空清單；非 null 清單須複製，輸出不可受來源清單後續修改影響。
+- tags 清單內不得包含 null 元素；遇到時拒絕處理。
+- null Instant 轉成 Instant.EPOCH。
+- null 來源物件須拒絕處理。
+
+## 限制
+
+- 只能修改 com.ithome.day06.normalizer 套件。
+- 不新增第三方依賴。
+- 不更動三個 record 的公開欄位。
+- 不加入與任務無關的重構。
+
+## 輸出與驗收
+
+1. 先列出仍缺少的決策；若資訊足夠，再實作最小差異。
+2. 提供 DataNormalizer 與 JUnit 5 測試。
+3. 測試至少涵蓋兩種來源、空值預設、標籤清單不可變、標籤內 null 元素及 null 來源。
+4. 執行 mvn test。
+5. 回報修改檔案、測試命令、測試結果，以及尚未驗證的業務假設。
