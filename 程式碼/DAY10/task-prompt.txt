@@ -1,0 +1,12 @@
+請修正 CsvBatchPlanner 多算空批次的問題。
+
+已知規則：每批最多匯入 500 筆；資料剛好裝滿整批時，不得再建立空批次，0 筆資料應為 0 批。
+重現方式：在本目錄執行 mvn clean test。
+目前現象：0 筆與 1,000 筆資料都比預期多算一批。
+
+限制：
+1. 只能修改 src/main/java/com/ithome/day10/batch/CsvBatchPlanner.java。
+2. 不得修改測試或 pom.xml。
+3. 採最小修改，不做無關重構。
+4. 修改後執行 mvn clean test。
+5. 回報讀取的檔案、修改內容、測試摘要與尚未驗證的風險。
