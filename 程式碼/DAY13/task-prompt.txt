@@ -1,0 +1,16 @@
+請處理 DAY13 Java 專案的單日報表問題。先讀 `AGENTS.md`、`pom.xml`、現有測試與 `ReportRangeService.java`，再決定修改位置。
+
+客服操作是把起日與迄日都設為 2026-08-19。目前呼叫
+`countInclusiveDays(LocalDate.of(2026, 8, 19), LocalDate.of(2026, 8, 19))`
+會拋出 `IllegalArgumentException: endDate must not be before startDate`；正確結果應是 `1`。多日範圍、迄日早於起日及 null 輸入的行為要維持不變。
+
+請依下列順序留下證據：
+
+1. 只新增一項 JUnit 5 測試，執行 `mvn -Dtest=ReportRangeServiceTest test`，確認它能重現客服操作。
+2. 檢查失敗堆疊與日期判斷，再對 `ReportRangeService.java` 做最小修改。
+3. 執行 `mvn clean test`，確認新增測試與四項既有測試全部通過。
+4. 查看最後差異，排除無關格式化或重構。
+
+不要改 `pom.xml`、`AGENTS.md`、既有測試、相依套件，或 `countInclusiveDays(LocalDate, LocalDate)` 的名稱、參數與回傳型別。
+
+完成時請回答五個問題：哪裡判錯、改了哪裡、跑了什麼、哪些檢查沒跑、還需要人工確認什麼。
