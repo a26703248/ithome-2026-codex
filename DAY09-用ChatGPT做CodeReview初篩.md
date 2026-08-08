@@ -36,7 +36,7 @@ return true;
 
 ## 把兩項建議寫成紅燈測試
 
-我補了四項 JUnit 5 測試。[修正前測試夾具](https://github.com/a26703248/ithome-2026-codex/tree/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY09/before-review) 只多一個讓測試能換入自訂集合的建構子，業務方法仍與待審 diff 相同。`CyclicBarrier` 會在測試用的 `BarrierSet.add` 攔住兩個呼叫，等到齊再放行到實際集合。修正前結果是 `Tests run: 4, Failures: 3`：null 例外錯誤、兩次啟動都回傳成功，還有模擬初篩刻意漏掉的第三項——`tryStart` 存入正規化鍵，`finish` 卻用原字串移除，工作完成後仍無法再次啟動。
+我補了四項 JUnit 5 測試。[修正前測試夾具](./%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY09/before-review) 只多一個讓測試能換入自訂集合的建構子，業務方法仍與待審 diff 相同。`CyclicBarrier` 會在測試用的 `BarrierSet.add` 攔住兩個呼叫，等到齊再放行到實際集合。修正前結果是 `Tests run: 4, Failures: 3`：null 例外錯誤、兩次啟動都回傳成功，還有模擬初篩刻意漏掉的第三項——`tryStart` 存入正規化鍵，`finish` 卻用原字串移除，工作完成後仍無法再次啟動。
 
 最小修正沒有替整個方法加鎖，而是使用 `ConcurrentHashMap.newKeySet()` 所提供集合的單次 `add` 完成「檢查並登記」，再用回傳值判斷是否啟動；開始與完成也共用同一個 `normalize`：
 
@@ -50,7 +50,7 @@ public void finish(String workspaceId) {
 }
 ```
 
-重跑 `mvn clean test` 後，四項測試全部通過。[完整程式、測試與驗證紀錄](https://github.com/a26703248/ithome-2026-codex/tree/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY09) 也保留了修正前後的結果。
+重跑 `mvn clean test` 後，四項測試全部通過。[完整程式、測試與驗證紀錄](./%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY09) 也保留了修正前後的結果。
 
 ![JUnit 5 測試從三項失敗到四項通過](./%E5%9C%96%E6%AA%94/Day09/day09-04-red-green.png)
 
