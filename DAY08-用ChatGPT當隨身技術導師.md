@@ -1,6 +1,6 @@
 # Day 08｜用 ChatGPT 當隨身技術導師：每天九點，是哪個九點？
 
-![Day 08 封面：每天九點，是哪個九點](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E5%9C%96%E6%AA%94/Day08/day08-01-cover.png)
+![Day 08 封面：每天九點，是哪個九點](./%E5%9C%96%E6%AA%94/Day08/day08-01-cover.png)
 
 Day 07 整理出匯入任務查詢契約後，我接著處理需求書的「每日日報定時匯入」。需求沒有指定時間與時區，我不急著請 ChatGPT 生成 `@Scheduled`，而是先問自己：台北與東京的「每天上午九點」，下一次執行會是同一個時刻嗎？
 
@@ -8,7 +8,7 @@ Day 07 整理出匯入任務查詢契約後，我接著處理需求書的「每�
 
 OpenAI 官方的「Learn a new concept」範例強調縮小學習目標，並留下成果、限制與待解問題。我把它改成「預測表」：先填答案，再請 ChatGPT 只提反例，最後才寫 Java 驗證。
 
-![先預測、再挑戰、最後驗證](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E5%9C%96%E6%AA%94/Day08/day08-02-prediction-challenge.png)
+![先預測、再挑戰、最後驗證](./%E5%9C%96%E6%AA%94/Day08/day08-02-prediction-challenge.png)
 
 | 我先回答的問題 | ChatGPT 負責挑戰 | 最後驗收 |
 |---|---|---|
@@ -26,7 +26,7 @@ Spring cron 使用六個以空白分隔的欄位，順序是秒、分、時、�
 
 我沒有只用眼睛數空白。第一項測試傳入五欄字串，確認解析器拒絕；這比把「Spring 多一個秒欄」抄進筆記更有用。未來若更換排程工具，測試也會提醒我不能直接套用同一種 cron 格式。
 
-![Spring cron 六個欄位的順序](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E5%9C%96%E6%AA%94/Day08/day08-03-cron-fields.png)
+![Spring cron 六個欄位的順序](./%E5%9C%96%E6%AA%94/Day08/day08-03-cron-fields.png)
 
 我把時間計算包成可單獨測試的 `DailyImportSchedule`，輸入 cron、時區與現在時刻，輸出下一個執行時刻：
 
@@ -44,13 +44,13 @@ return localNext.toInstant();
 
 我把現在時間固定為 `2026-08-18T23:30:00Z`；尾端的 `Z` 代表協調世界時（Coordinated Universal Time，UTC）。在台北是隔天上午七點半，下一次九點對應 `01:00Z`；在東京已是上午八點半，下一次九點對應 `00:00Z`。cron 沒變，實際觸發時刻卻相差一小時。
 
-![台北與東京的下一次九點](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E5%9C%96%E6%AA%94/Day08/day08-04-timezones.png)
+![台北與東京的下一次九點](./%E5%9C%96%E6%AA%94/Day08/day08-04-timezones.png)
 
 [排程入口](https://github.com/a26703248/ithome-2026-codex/blob/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY08/src/main/java/com/ithome/day08/tutor/DailyReportScheduler.java) 以 placeholder 宣告 cron 與 `zone` 可由外部設定，預設值只用於範例。四項 JUnit 5 測試已通過：一項拒絕五欄格式，兩項核對台北與東京的下一次時刻，一項用 Java 反射讀取註解，檢查 `@EnableScheduling`、cron 與 `zone` 字串。最後一項沒有啟動 Spring 上下文，也沒有真正等到排程觸發，這是本篇證據的邊界。
 
 `Asia/Taipei` 這種區域型識別字比單寫 `UTC+8` 更能表達業務語意。不過時區能否由客戶設定、如何儲存，仍是待確認項目。保留 `zone` 設定位置，不代表產品決策已完成。
 
-![ChatGPT 反例、Java 計算、JUnit 測試與官方文件](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E5%9C%96%E6%AA%94/Day08/day08-05-evidence.png)
+![ChatGPT 反例、Java 計算、JUnit 測試與官方文件](./%E5%9C%96%E6%AA%94/Day08/day08-05-evidence.png)
 
 ## 小結：把「我懂了」換成可重現的預測
 
