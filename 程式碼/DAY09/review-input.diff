@@ -1,0 +1,32 @@
+diff --git a/DailyImportGate.java b/DailyImportGate.java
+new file mode 100644
+--- /dev/null
++++ b/DailyImportGate.java
+@@ -0,0 +1,27 @@
++package com.ithome.day09.review;
++
++import java.util.Locale;
++import java.util.Set;
++import java.util.concurrent.ConcurrentHashMap;
++
++public final class DailyImportGate {
++
++    private final Set<String> runningWorkspaces =
++            ConcurrentHashMap.newKeySet();
++
++    public boolean tryStart(String workspaceId) {
++        if (workspaceId.isBlank()) {
++            throw new IllegalArgumentException("workspaceId must not be blank");
++        }
++        String key = workspaceId.strip().toLowerCase(Locale.ROOT);
++        if (runningWorkspaces.contains(key)) {
++            return false;
++        }
++        runningWorkspaces.add(key);
++        return true;
++    }
++
++    public void finish(String workspaceId) {
++        runningWorkspaces.remove(workspaceId);
++    }
++}

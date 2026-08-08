@@ -1,0 +1,21 @@
+你是 Java 程式碼審查者。請只審查下方 diff，不要重寫整個類別。
+
+背景：
+- 每日匯入排程可能由兩個執行緒幾乎同時觸發。
+- 同一個 workspaceId 同一時間只能有一批匯入。
+- workspaceId 前後空白與英文大小寫不影響識別。
+- 無效 workspaceId 應得到 IllegalArgumentException，不應洩漏其他例外。
+- Java 17；runningWorkspaces 由 ConcurrentHashMap.newKeySet() 建立。
+
+請依正確性、並行安全、測試缺口與可維護性檢查，將每項觀察寫成一張「驗證卡」：
+- 判定：`BLOCK` 或 `VERIFY`。
+- 程式依據：指出 diff 中相關敘述。
+- 反例：給一組輸入，或列出兩個執行緒的交錯順序。
+- 可執行確認：說明要加哪個測試、跑哪個工具或查哪份 API 文件。
+- 修改範圍：只描述最小變更位置，不提供整個類別的重寫版。
+
+無法提出反例的觀察一律標成 `VERIFY`。不要替人工審查者下合併結論。
+
+待審查 diff：
+
+[貼上 review-input.diff]
