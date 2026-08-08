@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <rect width="1600" height="900" fill="#f8fafc"/>
+  <text x="100" y="120" fill="#0f172a" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="54" font-weight="800">入口不同，工作發生的位置不同</text>
+  <text x="100" y="175" fill="#64748b" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="28">選擇標準不是功能多寡，而是工作現場與證據成本</text>
+  <g transform="translate(100 250)">
+    <rect width="430" height="470" rx="28" fill="#ecfeff" stroke="#14b8a6" stroke-width="4"/>
+    <circle cx="70" cy="75" r="38" fill="#14b8a6"/><text x="55" y="88" fill="white" font-family="Consolas" font-size="35" font-weight="700">&gt;_</text>
+    <text x="125" y="88" fill="#134e4a" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="40" font-weight="800">CLI</text>
+    <text x="45" y="165" fill="#0f172a" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="29" font-weight="700">上下文</text><text x="45" y="205" fill="#475569" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="27">本機目錄與終端機</text>
+    <text x="45" y="275" fill="#0f172a" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="29" font-weight="700">執行</text><text x="45" y="315" fill="#475569" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="27">本機沙箱與既有工具</text>
+    <text x="45" y="385" fill="#0f172a" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="29" font-weight="700">證據</text><text x="45" y="425" fill="#475569" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="27">命令、退出碼、diff</text>
+  </g>
+  <g transform="translate(585 250)">
+    <rect width="430" height="470" rx="28" fill="#eff6ff" stroke="#3b82f6" stroke-width="4"/>
+    <rect x="35" y="38" width="72" height="72" rx="14" fill="#3b82f6"/><path d="M55 58h32v9H55zm0 18h32v9H55zm0 18h22v9H55z" fill="white"/>
+    <text x="125" y="88" fill="#1e3a8a" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="40" font-weight="800">IDE 擴充</text>
+    <text x="45" y="165" fill="#0f172a" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="29" font-weight="700">上下文</text><text x="45" y="205" fill="#475569" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="27">開啟檔案與選取範圍</text>
+    <text x="45" y="275" fill="#0f172a" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="29" font-weight="700">執行</text><text x="45" y="315" fill="#475569" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="27">本機專案工作區</text>
+    <text x="45" y="385" fill="#0f172a" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="29" font-weight="700">證據</text><text x="45" y="425" fill="#475569" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="27">摘要、差異、後續對話</text>
+  </g>
+  <g transform="translate(1070 250)">
+    <rect width="430" height="470" rx="28" fill="#f5f3ff" stroke="#8b5cf6" stroke-width="4"/>
+    <path d="M52 98h54c24 0 30-35 7-44-7-30-49-31-58-5-29-4-39 36-3 49z" fill="#8b5cf6"/>
+    <text x="125" y="88" fill="#4c1d95" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="37" font-weight="800">Codex cloud</text>
+    <text x="45" y="165" fill="#0f172a" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="29" font-weight="700">上下文</text><text x="45" y="205" fill="#475569" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="27">授權的 GitHub 儲存庫</text>
+    <text x="45" y="275" fill="#0f172a" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="29" font-weight="700">執行</text><text x="45" y="315" fill="#475569" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="27">隔離的雲端環境</text>
+    <text x="45" y="385" fill="#0f172a" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="29" font-weight="700">證據</text><text x="45" y="425" fill="#475569" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="25">紀錄、diff、拉取請求</text>
+  </g>
+  <rect x="100" y="780" width="1400" height="70" rx="20" fill="#0f172a"/>
+  <text x="800" y="827" text-anchor="middle" fill="#f8fafc" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="30" font-weight="700">介面可以切換，驗收標準不能跟著放寬</text>
+</svg>

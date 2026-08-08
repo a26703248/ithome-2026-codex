@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <rect width="1600" height="900" fill="#f1f5f9"/>
+  <text x="100" y="105" fill="#0f172a" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="52" font-weight="800">第一個任務：先讀、可核對、可停止</text>
+  <g transform="translate(100 175)">
+    <rect width="620" height="565" rx="28" fill="#0f172a"/>
+    <circle cx="42" cy="42" r="9" fill="#ef4444"/><circle cx="72" cy="42" r="9" fill="#f59e0b"/><circle cx="102" cy="42" r="9" fill="#22c55e"/>
+    <text x="42" y="110" fill="#5eead4" font-family="Consolas, Noto Sans TC, monospace" font-size="26">實際提示摘要</text>
+    <text x="42" y="165" fill="#f8fafc" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="30">先不要變更工作區</text>
+    <text x="70" y="220" fill="#cbd5e1" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="27">• 檢查 pom.xml 與 src</text><text x="70" y="270" fill="#cbd5e1" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="27">• 判斷 Java 與測試方式</text><text x="70" y="320" fill="#cbd5e1" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="27">• 結論附上檔案路徑</text><text x="70" y="370" fill="#cbd5e1" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="27">• 證據不足就停止</text>
+    <rect x="42" y="420" width="536" height="92" rx="16" fill="#1e293b" stroke="#f59e0b" stroke-width="2"/>
+    <text x="310" y="477" text-anchor="middle" fill="#fde68a" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="29" font-weight="700">先定位，再決定下一步</text>
+  </g>
+  <path d="M760 455h110" stroke="#64748b" stroke-width="8"/><path d="m855 430 40 25-40 25" fill="#64748b"/>
+  <g transform="translate(900 175)" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif">
+    <rect width="600" height="565" rx="28" fill="white" stroke="#cbd5e1" stroke-width="3"/>
+    <text x="45" y="75" fill="#0f172a" font-size="35" font-weight="800">驗收證據</text>
+    <g transform="translate(45 125)"><circle cx="24" cy="24" r="24" fill="#14b8a6"/><path d="m12 24 8 9 17-19" fill="none" stroke="white" stroke-width="6"/><text x="70" y="34" fill="#334155" font-size="28">工作目錄是 DAY10</text></g>
+    <g transform="translate(45 210)"><circle cx="24" cy="24" r="24" fill="#14b8a6"/><path d="m12 24 8 9 17-19" fill="none" stroke="white" stroke-width="6"/><text x="70" y="34" fill="#334155" font-size="27">pom.xml：Java 17、JUnit 5</text></g>
+    <g transform="translate(45 295)"><circle cx="24" cy="24" r="24" fill="#14b8a6"/><path d="m12 24 8 9 17-19" fill="none" stroke="white" stroke-width="6"/><text x="70" y="34" fill="#334155" font-size="27">測試入口對到 src/test/java</text></g>
+    <g transform="translate(45 380)"><circle cx="24" cy="24" r="24" fill="#14b8a6"/><path d="m12 24 8 9 17-19" fill="none" stroke="white" stroke-width="6"/><text x="70" y="34" fill="#334155" font-size="28">任務後沒有非預期差異</text></g>
+    <rect x="45" y="475" width="510" height="55" rx="14" fill="#ecfeff"/><text x="300" y="512" text-anchor="middle" fill="#0f766e" font-size="25" font-weight="700">DAY10 範圍內沒有 Git 差異</text>
+  </g>
+  <text x="800" y="825" text-anchor="middle" fill="#475569" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="27">需要技術性限制時，使用 read-only，並一起核對沙箱與核准政策</text>
+</svg>

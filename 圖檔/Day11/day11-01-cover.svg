@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#071426"/><stop offset="1" stop-color="#16324f"/></linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#2dd4bf"/><stop offset="1" stop-color="#60a5fa"/></linearGradient>
+    <filter id="shadow"><feDropShadow dx="0" dy="16" stdDeviation="24" flood-opacity=".28"/></filter>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <circle cx="1390" cy="100" r="250" fill="#2dd4bf" opacity=".07"/><circle cx="90" cy="850" r="300" fill="#60a5fa" opacity=".08"/>
+  <text x="110" y="145" fill="#94a3b8" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="34" font-weight="700" letter-spacing="4">2026 iTHOME 鐵人賽 · DAY 11</text>
+  <text x="110" y="260" fill="#f8fafc" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="76" font-weight="800">安裝與設定 Codex</text>
+  <text x="112" y="335" fill="#cbd5e1" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="38">先選入口，再完成最小驗收</text>
+  <g transform="translate(110 430)" filter="url(#shadow)">
+    <rect width="400" height="245" rx="28" fill="#0f2138" stroke="#2dd4bf" stroke-width="3"/>
+    <text x="42" y="70" fill="#5eead4" font-family="Consolas, monospace" font-size="36" font-weight="700">&gt;_ CLI</text>
+    <text x="42" y="125" fill="#e2e8f0" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="30">本機終端機</text>
+    <text x="42" y="175" fill="#94a3b8" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="25">命令 · 退出碼 · diff</text>
+  </g>
+  <g transform="translate(600 430)" filter="url(#shadow)">
+    <rect width="400" height="245" rx="28" fill="#0f2138" stroke="#60a5fa" stroke-width="3"/>
+    <text x="42" y="70" fill="#93c5fd" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="36" font-weight="700">IDE 擴充</text>
+    <text x="42" y="125" fill="#e2e8f0" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="30">貼近編輯器上下文</text>
+    <text x="42" y="175" fill="#94a3b8" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="25">開啟檔案 · 選取範圍</text>
+  </g>
+  <g transform="translate(1090 430)" filter="url(#shadow)">
+    <rect width="400" height="245" rx="28" fill="#0f2138" stroke="#a78bfa" stroke-width="3"/>
+    <text x="42" y="70" fill="#c4b5fd" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="36" font-weight="700">Codex cloud</text>
+    <text x="42" y="125" fill="#e2e8f0" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="30">隔離的雲端環境</text>
+    <text x="42" y="175" fill="#94a3b8" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="25">背景任務 · 平行執行</text>
+  </g>
+  <rect x="110" y="770" width="1380" height="8" rx="4" fill="url(#accent)"/>
+  <text x="110" y="835" fill="#e2e8f0" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="28">完成條件：入口可用 · 帳號正確 · 專案正確 · 權限可控 · 證據可查</text>
+</svg>

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <rect width="1600" height="900" fill="#071426"/>
+  <text x="100" y="120" fill="#f8fafc" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="54" font-weight="800">我把「安裝完成」拆成四個關卡</text>
+  <text x="100" y="178" fill="#94a3b8" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="29">看得到執行檔，不等於已經能使用</text>
+  <path d="M230 420H1370" stroke="#334155" stroke-width="14" stroke-linecap="round"/>
+  <g font-family="Noto Sans TC, Microsoft JhengHei, sans-serif">
+    <g transform="translate(230 420)"><circle r="94" fill="#0f766e"/><text y="-8" text-anchor="middle" fill="white" font-size="52" font-weight="800">01</text><text y="42" text-anchor="middle" fill="#ccfbf1" font-size="24">來源</text><text y="145" text-anchor="middle" fill="#e2e8f0" font-size="29" font-weight="700">官方安裝來源</text><text y="185" text-anchor="middle" fill="#94a3b8" font-size="24">路徑與版本可核對</text></g>
+    <g transform="translate(610 420)"><circle r="94" fill="#1d4ed8"/><text y="-8" text-anchor="middle" fill="white" font-size="52" font-weight="800">02</text><text y="42" text-anchor="middle" fill="#dbeafe" font-size="24">啟動</text><text y="145" text-anchor="middle" fill="#e2e8f0" font-size="29" font-weight="700">命令能執行</text><text y="185" text-anchor="middle" fill="#94a3b8" font-size="22">未再出現 Access is denied</text></g>
+    <g transform="translate(990 420)"><circle r="94" fill="#7c3aed"/><text y="-8" text-anchor="middle" fill="white" font-size="52" font-weight="800">03</text><text y="42" text-anchor="middle" fill="#ede9fe" font-size="24">登入</text><text y="145" text-anchor="middle" fill="#e2e8f0" font-size="29" font-weight="700">帳號與政策正確</text><text y="185" text-anchor="middle" fill="#94a3b8" font-size="22">不暴露存取權杖與組織資訊</text></g>
+    <g transform="translate(1370 420)"><circle r="94" fill="#b45309"/><text y="-8" text-anchor="middle" fill="white" font-size="52" font-weight="800">04</text><text y="42" text-anchor="middle" fill="#fef3c7" font-size="24">專案</text><text y="145" text-anchor="middle" fill="#e2e8f0" font-size="29" font-weight="700">目錄與權限正確</text><text y="185" text-anchor="middle" fill="#94a3b8" font-size="24">先從低風險任務開始</text></g>
+  </g>
+  <rect x="150" y="730" width="1300" height="86" rx="24" fill="#10243d" stroke="#ef4444" stroke-width="2"/>
+  <text x="800" y="785" text-anchor="middle" fill="#fecaca" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="31" font-weight="700">任何一關失敗，都先停在那一層排查</text>
+</svg>

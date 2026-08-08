@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <rect width="1600" height="900" fill="#fff7ed"/>
+  <text x="100" y="110" fill="#431407" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="54" font-weight="800">紅字先分類，再動手修</text>
+  <text x="100" y="168" fill="#9a3412" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="29">一次只確認一層，避免把安裝問題誤判成程式問題</text>
+  <g font-family="Noto Sans TC, Microsoft JhengHei, sans-serif">
+    <g transform="translate(100 250)"><rect width="260" height="360" rx="24" fill="#7f1d1d"/><text x="130" y="68" text-anchor="middle" fill="#fecaca" font-size="24">01</text><text x="130" y="120" text-anchor="middle" fill="white" font-size="34" font-weight="800">啟動</text><text x="130" y="195" text-anchor="middle" fill="#fee2e2" font-size="25">執行檔來源</text><text x="130" y="238" text-anchor="middle" fill="#fee2e2" font-size="23">PATH 環境變數</text><rect x="28" y="285" width="204" height="45" rx="12" fill="#450a0a"/><text x="130" y="315" text-anchor="middle" fill="#fecaca" font-size="20">Access is denied</text></g>
+    <path d="M380 430h70" stroke="#c2410c" stroke-width="7"/><path d="m435 408 35 22-35 22" fill="#c2410c"/>
+    <g transform="translate(470 250)"><rect width="260" height="360" rx="24" fill="#9a3412"/><text x="130" y="68" text-anchor="middle" fill="#fed7aa" font-size="24">02</text><text x="130" y="120" text-anchor="middle" fill="white" font-size="34" font-weight="800">身分</text><text x="130" y="195" text-anchor="middle" fill="#ffedd5" font-size="25">登入狀態</text><text x="130" y="238" text-anchor="middle" fill="#ffedd5" font-size="25">方案與組織政策</text></g>
+    <path d="M750 430h70" stroke="#c2410c" stroke-width="7"/><path d="m805 408 35 22-35 22" fill="#c2410c"/>
+    <g transform="translate(840 250)"><rect width="260" height="360" rx="24" fill="#c2410c"/><text x="130" y="68" text-anchor="middle" fill="#ffedd5" font-size="24">03</text><text x="130" y="120" text-anchor="middle" fill="white" font-size="34" font-weight="800">工作區</text><text x="130" y="195" text-anchor="middle" fill="#fff7ed" font-size="25">專案路徑</text><text x="130" y="238" text-anchor="middle" fill="#fff7ed" font-size="25">沙箱與寫入範圍</text></g>
+    <path d="M1120 430h70" stroke="#c2410c" stroke-width="7"/><path d="m1175 408 35 22-35 22" fill="#c2410c"/>
+    <g transform="translate(1210 250)"><rect width="290" height="360" rx="24" fill="#ea580c"/><text x="145" y="68" text-anchor="middle" fill="#ffedd5" font-size="24">04</text><text x="145" y="120" text-anchor="middle" fill="white" font-size="34" font-weight="800">工具與網路</text><text x="145" y="195" text-anchor="middle" fill="#fff7ed" font-size="25">Java、Maven、外掛</text><text x="145" y="238" text-anchor="middle" fill="#fff7ed" font-size="25">下載來源與連線</text><rect x="38" y="285" width="214" height="45" rx="12" fill="#9a3412"/><text x="145" y="315" text-anchor="middle" fill="#ffedd5" font-size="20">JUnit 還沒開始？</text></g>
+  </g>
+  <rect x="100" y="690" width="1400" height="100" rx="24" fill="#431407"/>
+  <text x="800" y="752" text-anchor="middle" fill="#ffedd5" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="31" font-weight="700">先證明是哪一層失敗，再決定要改設定、開權限或修程式</text>
+</svg>
