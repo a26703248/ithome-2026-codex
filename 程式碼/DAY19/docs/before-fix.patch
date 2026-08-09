@@ -1,0 +1,8 @@
+--- a/src/main/java/com/ithome/day19/report/ReportProductionWindow.java
++++ b/src/main/java/com/ithome/day19/report/ReportProductionWindow.java
+@@ -22,3 +22,4 @@
+-        LocalTime currentMinute = ZonedDateTime.now(clock)
++        LocalTime currentMinute = ZonedDateTime.now(clock)
++                .withZoneSameInstant(reportZone)
+                 .toLocalTime()
+                 .truncatedTo(ChronoUnit.MINUTES);
