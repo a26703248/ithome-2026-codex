@@ -1,0 +1,15 @@
+@PostMapping
+public void create(
+        @PathVariable String customerId,
+        @RequestBody Map<String, String> request,
+        Principal principal) {
+    log.info(
+            "report user={} customer={} recipient={}",
+            principal.getName(),
+            customerId,
+            request.get("recipientEmail"));
+    reportService.create(
+            customerId,
+            request.get("format"),
+            request.get("recipientEmail"));
+}
