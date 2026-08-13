@@ -2,7 +2,7 @@
 
 ![Day 12 封面：讓 Codex 先讀懂專案規則](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E5%9C%96%E6%AA%94/Day12/day12-01-cover.png)
 
-Day 11 的讀取型任務明確指定要讀 `pom.xml`、查看 `src`、附上路徑，證據不足就停止；每次重寫這些要求卻很容易漏掉。回頭看 Day 10 的 Java 專案，`pom.xml` 能告訴 Codex 使用 Java 17，卻不會說「不能為了修軟體缺陷（bug）改測試」或「Maven 下載失敗時不能宣稱測試通過」。規則只留在提示詞或腦中，Codex 就只能猜。
+Day 11 的批次任務明確指定要讀 `pom.xml`、查看 `src`、附上路徑，證據不足就停止；每次重寫這些要求卻很容易漏掉。回頭看 Day 11 的 Java 專案，`pom.xml` 能告訴 Codex 使用 Java 17，卻不會說「不能為了修軟體缺陷（bug）改測試」或「Maven 下載失敗時不能宣稱測試通過」。規則只留在提示詞或腦中，Codex 就只能猜。
 
 ![能讀到檔案，不等於知道團隊規則](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E5%9C%96%E6%AA%94/Day12/day12-02-hidden-rules.png)
 
@@ -10,7 +10,7 @@ Day 11 的讀取型任務明確指定要讀 `pom.xml`、查看 `src`、附上路
 
 我不會把整份內部知識庫塞給 Codex，而是先問：哪些資訊會改變它的動作、驗證或回報？這次整理成五層：
 
-| 層次 | Codex 需要知道什麼 | Day 10 專案的內容 |
+| 層次 | Codex 需要知道什麼 | Day 11 專案的內容 |
 |---|---|---|
 | 任務目標 | 要解決的行為與不處理的範圍 | 修正批次計數，不做無關重構 |
 | 目錄與模組 | 程式、測試與文件在哪裡 | `src/main/java`、`src/test/java`、`docs` |
@@ -32,7 +32,7 @@ Day 11 的讀取型任務明確指定要讀 `pom.xml`、查看 `src`、附上路
 
 ## 我的最小可用 `AGENTS.md`
 
-我把 Day 10 反覆出現的限制寫成下列版本：
+我把 Day 11 反覆出現的限制寫成下列版本：
 
 ```markdown
 # Repository instructions
@@ -56,7 +56,7 @@ Day 11 的讀取型任務明確指定要讀 `pom.xml`、查看 `src`、附上路
 - List changed files, commands run, test results, and remaining risks.
 ```
 
-完整的 [Day 12 AGENTS.md](https://github.com/a26703248/ithome-2026-codex/blob/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY12/AGENTS.md) 是下載範本，不會套用到相鄰的 DAY10。第一輪先不複製；第二輪才把它放到 DAY10 的 `pom.xml` 同一層、重新啟動 Codex，再交付相同任務。規則都要能由命令、差異或回報驗證，不放口號、密碼、內部主機與付費文件。
+完整的 [Day 12 AGENTS.md](https://github.com/a26703248/ithome-2026-codex/blob/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY12/AGENTS.md) 是下載範本，不會套用到相鄰的 DAY11。第一輪先不複製；第二輪才把它放到 DAY11 的 `pom.xml` 同一層、重新啟動 Codex，再交付相同任務。規則都要能由命令、差異或回報驗證，不放口號、密碼、內部主機與付費文件。
 
 ## 加入規則後，我怎麼驗收？
 

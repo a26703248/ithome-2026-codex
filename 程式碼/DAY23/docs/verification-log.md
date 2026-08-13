@@ -1,4 +1,4 @@
-# Day 23 驗證紀錄
+# Day 22 驗證紀錄
 
 驗證日期：2026-08-09
 
@@ -7,10 +7,24 @@
 - OpenJDK 17.0.10。
 - Apache Maven 3.8.1。
 - Windows 11。
-- Spring Boot 4.1.0。
-- Apache PDFBox 2.0.23。
 
-這是公開縮小案例的實測環境，不代表正式日報服務的版本、相依或部署設定。
+這是本篇縮小案例的實測環境，不代表正式日報服務的執行環境。
+
+## 過時指令
+
+執行 `README-before.md` 留下的舊指令：
+
+```shell
+java -jar target/daily-report.jar --config config/prod.yml
+```
+
+結果：
+
+```text
+Error: Unable to access jarfile target/daily-report.jar
+```
+
+縮小專案沒有該 JAR、設定檔或正式啟動方式的證據，因此新版 README 移除這項指令並標為待確認，不另外猜一條看似合理的替代命令。
 
 ## 測試命令
 
@@ -18,33 +32,24 @@
 mvn clean test
 ```
 
-第一次執行被受限環境阻擋 Maven Central 連線，尚未進入編譯。核准連線後，建置依序發現 `@WebMvcTest` 缺少啟動設定、`@Validated` 無法代理 `final` 控制器，以及路徑驗證例外未固定轉成 400。其後把已停止開源支援的 Spring Boot 3.3.5 升至 4.1.0，舊版測試註解套件再次造成編譯失敗；改用 Boot 4.1 的 Web MVC 測試模組與 Spring Framework `@MockitoBean` 後，以相同命令重跑：
+受限環境第一次阻擋 Maven 連到 Maven Central，建置停在外掛解析階段，JUnit 尚未執行。確認來源後核准連線，再以相同命令重跑。
+
+成功結果：
 
 ```text
-Tests run: 6, Failures: 0, Errors: 0, Skipped: 0
+Running com.ithome.day22.report.ReportBatchDocumentationTest
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0
 BUILD SUCCESS
 ```
 
-六項測試涵蓋缺少身分物件、授權政策拒絕、錯誤客戶代號、未知格式、已授權請求獲得受理，以及 PDF 輸出檔頭。
+## 已驗證範圍
 
-## 相依版本與通知範圍
+- `pom.xml` 的 Java 編譯目標為 17。
+- 批次會先準備兩份測試報表，再進入兩次郵件呼叫。
+- 郵件測試替身每次等待 900 毫秒時，第二份仍在 50 毫秒開始準備，但總時間仍為 1900 毫秒。
 
-```shell
-mvn dependency:tree "-Dincludes=org.apache.pdfbox:pdfbox"
-```
+## 尚未驗證
 
-結果固定為：
-
-```text
-org.apache.pdfbox:pdfbox:jar:2.0.23:compile
-```
-
-另以相依清單與詳細相依樹確認 `commons-logging` 1.3.6 仍由 Spring Core 7.0.8 帶入，有效範圍為 `compile`；PDFBox 的排除設定不代表整棵相依樹已移除該套件。本篇不把它誤記為已完成排除。
-
-Apache PDFBox 官方安全頁指出，2.0.23 受 CVE-2021-31811 與 CVE-2021-31812 影響，觸發條件是載入特製 PDF；2.0.24 修正。縮小專案的 `PdfReportRenderer` 只建立新的 `PDDocument` 並輸出，搜尋 `PDDocument.load` 與 `Loader.loadPDF` 均無結果。這只能支持「目前縮小路徑未找到可達呼叫」，不能證明正式系統不受影響，也不能取代升級評估。
-
-## 已修正與仍未知
-
-- 修正：身分與客戶授權分開、輸入格式與長度受到限制、路徑驗證的 400 回應不附詳細內容、日誌不再記錄完整收件信箱。
-- 已知但未在本文處理：PDFBox 2.0.23 升級與相容性測試應另開工作。
-- 未知：正式系統的完整呼叫路徑與相依清單，以及 API 閘道、限流、佇列、跨節點冪等性、祕密管理與監控設定。
+- 正式日報服務的啟動參數、設定檔位置、環境變數與部署流程。
+- 正式排程器、資料庫、PDF 元件與郵件服務。
+- 佇列容量、重試、冪等性、交易與多執行個體行為。

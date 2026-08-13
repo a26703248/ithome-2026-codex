@@ -1,8 +1,27 @@
-# Day 25 團隊提示詞庫與 SOP 素材
+# Day 24 跨角色交接最小案例
 
-- `prompt/draft-from-sources.md`：版本化的 AI 草稿生成提示詞資產。
-- `docs/test-cases.md`：四組不含真實資料的合成測試案例。
-- `docs/sop.md`：從申請、生成、複核到版本維護的標準作業程序。
-- `docs/verification-log.md`：本篇桌上演練結果與驗證邊界。
+本專案示範「複核與修改介面」背後的一小段 Java 契約。它只驗證複核決策與版本保留，不包含畫面、資料庫、正式驗證授權、稽核儲存或部署設定。
 
-本目錄只提供文章示範，不包含正式客戶資料、機密、權杖或可直接部署的生產設定。
+## 已實作的規則
+
+- 複核決策包含採用、修改與否決。
+- 修改會新增草稿版本，不覆蓋原始內容。
+- 每種決策都必須填寫複核原因，並留下複核事件。
+- 程式不提供自動發布或自動核准功能。
+
+## 執行測試
+
+使用 Java Development Kit 17 與 Apache Maven，在本目錄執行：
+
+```shell
+mvn clean test
+```
+
+成功結果應包含：
+
+```text
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0
+BUILD SUCCESS
+```
+
+完整實測結果見 [`docs/verification-log.md`](docs/verification-log.md)。

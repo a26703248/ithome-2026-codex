@@ -1,30 +1,6 @@
-# Day 22 驗證紀錄
+# Day 21 驗證紀錄
 
 驗證日期：2026-08-09
-
-## 驗證環境
-
-- OpenJDK 17.0.10。
-- Apache Maven 3.8.1。
-- Windows 11。
-
-這是本篇縮小案例的實測環境，不代表正式日報服務的執行環境。
-
-## 過時指令
-
-執行 `README-before.md` 留下的舊指令：
-
-```shell
-java -jar target/daily-report.jar --config config/prod.yml
-```
-
-結果：
-
-```text
-Error: Unable to access jarfile target/daily-report.jar
-```
-
-縮小專案沒有該 JAR、設定檔或正式啟動方式的證據，因此新版 README 移除這項指令並標為待確認，不另外猜一條看似合理的替代命令。
 
 ## 測試命令
 
@@ -32,24 +8,37 @@ Error: Unable to access jarfile target/daily-report.jar
 mvn clean test
 ```
 
-受限環境第一次阻擋 Maven 連到 Maven Central，建置停在外掛解析階段，JUnit 尚未執行。確認來源後核准連線，再以相同命令重跑。
+第一次執行時，受限環境禁止 Maven 連到 Maven Central，建置停在外掛解析階段，JUnit 尚未啟動。確認下載來源後核准這次連線，再以相同命令執行。
 
 成功結果：
 
 ```text
-Running com.ithome.day22.report.ReportBatchDocumentationTest
-Tests run: 2, Failures: 0, Errors: 0, Skipped: 0
+Running com.ithome.day21.report.DailyReportBatchDebugTest
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 0
 BUILD SUCCESS
 ```
 
+## 縮小案例的診斷數字
+
+測試替身使用可控制的單調時鐘，不等待真實時間：
+
+```text
+舊流程＋郵件 900 ms：customer-002 在 950 ms 才開始準備
+舊流程＋郵件   0 ms：customer-002 在  50 ms 開始準備
+兩階段實驗＋郵件 900 ms：customer-002 仍在 50 ms 開始準備
+```
+
+固定的讀資料與 PDF 時間分別為 10 ms、40 ms。只把郵件測試替身從 900 ms 換成 0 ms，就移除 900 ms 等待，因此縮小案例支持「同步等待郵件回應阻塞下一份報表」；這不是正式環境的效能量測。
+
 ## 已驗證範圍
 
-- `pom.xml` 的 Java 編譯目標為 17。
-- 批次會先準備兩份測試報表，再進入兩次郵件呼叫。
-- 郵件測試替身每次等待 900 毫秒時，第二份仍在 50 毫秒開始準備，但總時間仍為 1900 毫秒。
+- 舊流程必須完成第一位測試客戶的寄信呼叫，才會開始第二份報表。
+- 兩階段實驗先準備全部報表，再進入郵件邊界。
+- 舊流程與兩階段實驗的第二封信都在 1900 ms 完成；實驗沒有解決郵件總耗時。
+- 診斷資料只包含測試客戶代號、階段名稱與毫秒數。
 
 ## 尚未驗證
 
-- 正式日報服務的啟動參數、設定檔位置、環境變數與部署流程。
-- 正式排程器、資料庫、PDF 元件與郵件服務。
-- 佇列容量、重試、冪等性、交易與多執行個體行為。
+- 正式資料庫、PDF 套件、郵件服務與實際客戶量下的延遲分布。
+- 郵件是否成功排入佇列、送達、重試，以及重跑時的冪等性。
+- 記憶體上限、背壓、交易與多執行個體併發行為。

@@ -113,8 +113,8 @@ def cover():
     draw.rectangle((0, 0, W, H), fill=NAVY)
     draw.ellipse((1090, -210, 1760, 460), fill="#173D57")
     draw.ellipse((-180, 610, 410, 1200), fill="#163C50")
-    draw_text(draw, (100, 92), "DAY 30｜團隊、流程與治理", 27, "#77D2C4", True)
-    draw_text(draw, (100, 195), "30 天回顧與展望", 60, WHITE, True)
+    draw_text(draw, (100, 92), "DAY 30｜結語：AI 與人類是否能夠共存", 27, "#77D2C4", True)
+    draw_text(draw, (100, 195), "What's next?", 60, WHITE, True)
     draw_text(draw, (104, 296), "沒有找到替我負責的工具,找到了一套能重跑的方法", 28, "#DCEBE8")
 
     col_w = 640
@@ -142,8 +142,8 @@ def five_stage_overview():
         ("第 0 週", "心智模型", "Day 01-03", "先分清楚兩者的\n能力邊界", CORAL),
         ("第 1 週", "需求與設計", "Day 04-09", "提示詞六欄,把\n未知決策攤開", GOLD),
         ("第 2 週", "Codex 基礎", "Day 10-16", "讀→改→測→報,\n證據留在 diff 裡", TEAL),
-        ("第 3 週", "整合工作流", "Day 17-23", "重構、除錯、文件\n都靠拆小任務", SLATE),
-        ("第 4 週", "團隊與治理", "Day 24-30", "個人技巧變成\n可稽核的流程", NAVY),
+        ("第 3 週", "整合工作流", "Day 17-24", "重構、除錯、文件\n都靠拆小任務", SLATE),
+        ("第 4 週", "團隊與治理", "Day 25-29", "個人技巧變成\n可稽核的流程", NAVY),
     ]
     col_w = 250
     gap = 45
@@ -192,14 +192,14 @@ def tool_vs_human():
         yy += 100
 
     box(draw, (110, 740, 1490, 800), fill=NAVY, radius=18)
-    draw_text(draw, (800, 770), "Day 13-16、Day 26 的證據都落在這條線的兩側,線本身要交辦時先畫好", 20, WHITE, True, anchor="mm")
+    draw_text(draw, (800, 770), "Day 13-16、Day 27 的證據都落在這條線的兩側,線本身要交辦時先畫好", 20, WHITE, True, anchor="mm")
     footer(draw, 3)
     save(image, "day30-03-tool-vs-human.png")
 
 
-def day01_day28_data():
+def day01_day29_data():
     image, draw = canvas()
-    header(draw, "Day 01 卡片　vs　Day 28 配對前後測", "範圍與樣本數不同,不能直接比;能比的是同條件跑出的數字")
+    header(draw, "Day 01 卡片　vs　Day 29 配對前後測", "範圍與樣本數不同,不能直接比;能比的是同條件跑出的數字")
 
     box(draw, (110, 280, 720, 500), fill="#EDF3F3", outline="#B9C7CC", width=3, radius=22)
     draw_text(draw, (415, 320), "Day 01 基準線卡片", 23, SLATE, True, anchor="mm")
@@ -238,7 +238,7 @@ def day01_day28_data():
     box(draw, (110, 730, 1510, 800), fill=NAVY, radius=18)
     draw_text(draw, (800, 765), "兩批各 8 筆屬示範規模,結論只支持這個案例,不能推論整個團隊", 21, WHITE, True, anchor="mm")
     footer(draw, 4)
-    save(image, "day30-04-day01-day28-data.png")
+    save(image, "day30-04-day01-day29-data.png")
 
 
 def action_roadmap():
@@ -269,10 +269,45 @@ def action_roadmap():
     save(image, "day30-05-action-roadmap.png")
 
 
+def boundary_and_next():
+    image, draw = canvas()
+    header(draw, "邊界會一直移動", "AI 擅長的部分持續擴張,人要顧好的判斷責任沒有變")
+
+    box(draw, (110, 280, 760, 700), fill=WHITE, outline=TEAL, width=4, radius=24)
+    draw_text(draw, (435, 322), "context／skill／Agent", 24, TEAL, True, anchor="mm")
+    left_rows = [
+        "context：先把上下文交代清楚,\n工具才少猜錯",
+        "skill：把重複驗證過的做法\n收進可重跑的技能",
+        "Agent：授權範圍變大,\n核對證據的責任也變大",
+    ]
+    yy = 400
+    for row in left_rows:
+        box(draw, (150, yy, 720, yy + 90), fill=MINT, radius=14)
+        draw_text(draw, (435, yy + 45), row, 19, INK, True, anchor="mm", max_width=540, align="center")
+        yy += 110
+
+    arrow(draw, (780, 490), (860, 490), CORAL, 8)
+
+    box(draw, (860, 280, 1510, 700), fill=WHITE, outline=CORAL, width=4, radius=24)
+    draw_text(draw, (1185, 322), "不會跟著移動的界線", 24, CORAL, True, anchor="mm")
+    right_rows = ["目標與限制由人設定", "驗收條件由人拍板", "上線與否由人承擔後果"]
+    yy = 400
+    for row in right_rows:
+        box(draw, (900, yy, 1470, yy + 80), fill="#FBDCD3", radius=14)
+        draw_text(draw, (1185, yy + 40), row, 19, INK, True, anchor="mm", max_width=540)
+        yy += 100
+
+    box(draw, (110, 740, 1490, 800), fill=NAVY, radius=18)
+    draw_text(draw, (800, 770), "工具能做的事會一直變多,但誰承擔判斷責任,三十天下來沒有變過", 20, WHITE, True, anchor="mm")
+    footer(draw, 6)
+    save(image, "day30-06-boundary-and-next.png")
+
+
 if __name__ == "__main__":
     cover()
     five_stage_overview()
     tool_vs_human()
-    day01_day28_data()
+    day01_day29_data()
     action_roadmap()
-    print("Generated 5 Day 30 images at 1600x900.")
+    boundary_and_next()
+    print("Generated 6 Day 30 images at 1600x900.")

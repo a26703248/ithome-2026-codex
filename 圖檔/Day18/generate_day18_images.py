@@ -20,7 +20,6 @@ ORANGE = "#F97316"
 GREEN = "#16A34A"
 RED = "#DC2626"
 PURPLE = "#8B5CF6"
-LINE = "#CBD5E1"
 
 
 def font(size: int, bold: bool = False) -> ImageFont.FreeTypeFont:
@@ -48,128 +47,127 @@ def save(image, name):
 def cover():
     image = Image.new("RGB", (WIDTH, HEIGHT), NAVY)
     draw = ImageDraw.Draw(image)
-    draw.ellipse((1230, -180, 1770, 360), fill="#1E3A8A")
-    draw.ellipse((-250, 650, 220, 1120), fill="#134E4A")
-    label(draw, (105, 90), "DAY 18 · 進階整合工作流", 38, "#5EEAD4", True)
-    label(draw, (105, 210), "大型重構任務拆解", 72, WHITE, True)
-    label(draw, (105, 315), "讓每次改動都能停、能測、能退", 45, "#CBD5E1", True)
+    draw.ellipse((1220, -190, 1770, 360), fill="#1E3A8A")
+    draw.ellipse((-250, 650, 210, 1110), fill="#134E4A")
+    label(draw, (105, 95), "DAY 18 · 前人砍樹後人曝曬", 38, "#5EEAD4", True)
+    label(draw, (105, 220), "ChatGPT ＋ Codex", 75, WHITE, True)
+    label(draw, (105, 325), "用任務契約接好規劃與執行", 48, "#CBD5E1", True)
 
-    cards = [
-        (100, "範圍歸零", "main 零差異", BLUE),
-        (485, "行為留證", "08:00／07:59", ORANGE),
-        (870, "逐段放行", "局部／完整測試", GREEN),
-        (1255, "節點可退", "單獨提交", PURPLE),
-    ]
-    for x, title, note, color in cards:
-        rounded(draw, (x, 570, x + 300, 735), "#1E293B", 24, color, 4)
-        label(draw, (x + 150, 620), title, 30, color, True, "mm")
-        label(draw, (x + 150, 680), note, 25, WHITE, False, "mm")
+    rounded(draw, (110, 565, 430, 720), "#1E293B", 24, BLUE, 4)
+    label(draw, (270, 620), "ChatGPT", 34, BLUE, True, "mm")
+    label(draw, (270, 675), "釐清與拆解", 26, WHITE, False, "mm")
+    arrow(draw, (440, 642), (610, 642), CYAN, 8)
+    rounded(draw, (620, 540, 980, 745), "#1E293B", 24, ORANGE, 4)
+    label(draw, (800, 605), "任務契約", 38, ORANGE, True, "mm")
+    label(draw, (800, 670), "範圍 · 驗收 · 未知", 26, WHITE, False, "mm")
+    arrow(draw, (990, 642), (1160, 642), CYAN, 8)
+    rounded(draw, (1170, 565, 1490, 720), "#1E293B", 24, GREEN, 4)
+    label(draw, (1330, 620), "Codex", 34, GREEN, True, "mm")
+    label(draw, (1330, 675), "修改與驗證", 26, WHITE, False, "mm")
     save(image, "day18-01-cover.png")
 
 
-def coupling_scope():
+def handoff_flow():
     image = Image.new("RGB", (WIDTH, HEIGHT), PALE)
     draw = ImageDraw.Draw(image)
-    label(draw, (85, 60), "runIfScheduled() 集中協調四段流程", 52, NAVY, True)
-    label(draw, (85, 132), "T2 與 T3 都會修改這個方法，先後關係不能省", 31, MUTED)
+    label(draw, (85, 65), "雙工具接力：人是交接點，也是核准點", 56, NAVY, True)
+    label(draw, (85, 135), "規劃與執行分工，責任不外包", 31, MUTED)
 
-    rounded(draw, (105, 230, 1495, 690), WHITE, 30, RED, 5)
-    label(draw, (800, 290), "DailyReportService.runIfScheduled()", 39, RED, True, "mm")
-    items = [
-        (170, "08:00 觸發", "時間判斷", BLUE),
-        (505, "組合數值", "報表內文", TEAL),
-        (840, "呼叫 PDF", "取得附件", ORANGE),
-        (1175, "交付附件", "郵件元件", PURPLE),
+    cards = [
+        (80, "ChatGPT", "找出缺口\n比較切法", BLUE),
+        (550, "作者核准", "確認範圍\n保留未知", ORANGE),
+        (1020, "Codex", "讀取專案\n修改測試", GREEN),
     ]
-    for x, title, note, color in items:
-        rounded(draw, (x, 390, x + 255, 585), "#F1F5F9", 22, color, 4)
-        label(draw, (x + 127, 450), title, 29, color, True, "mm")
-        label(draw, (x + 127, 515), note, 25, SLATE, False, "mm")
-    rounded(draw, (310, 755, 1290, 835), NAVY, 18)
-    label(draw, (800, 795), "先列出可觀察證據，再決定哪一段先移出", 29, CYAN, True, "mm")
-    save(image, "day18-02-coupling-scope.png")
+    for x, title, note, color in cards:
+        rounded(draw, (x, 260, x + 400, 650), WHITE, 28, color, 5)
+        label(draw, (x + 200, 350), title, 43, color, True, "mm")
+        first, second = note.split("\n")
+        label(draw, (x + 200, 465), first, 32, NAVY, True, "mm")
+        label(draw, (x + 200, 525), second, 32, SLATE, False, "mm")
+    arrow(draw, (490, 455), (535, 455), CYAN, 7)
+    arrow(draw, (960, 455), (1005, 455), CYAN, 7)
+    rounded(draw, (300, 735, 1300, 820), NAVY, 20)
+    label(draw, (800, 777), "交接物：能獨立閱讀、能驗收的任務契約", 31, CYAN, True, "mm")
+    save(image, "day18-02-handoff-flow.png")
 
 
-def task_map():
+def requirement_gaps():
     image = Image.new("RGB", (WIDTH, HEIGHT), PALE)
     draw = ImageDraw.Draw(image)
-    label(draw, (85, 60), "重構任務地圖：每一步都有驗收與停手點", 53, NAVY, True)
-    label(draw, (85, 132), "本例共用同一個熱點類別，採循序修改", 31, MUTED)
+    label(draw, (85, 65), "先拆資訊，不急著把需求變成程式碼", 56, NAVY, True)
+    label(draw, (85, 135), "同一句需求裡，事實、推測與未知不能混在一起", 31, MUTED)
 
-    tasks = [
-        (70, "T1", "留下證據", "2 項測試", BLUE),
-        (455, "T2", "抽出排程", "介面不變", ORANGE),
-        (840, "T3", "拆內容／傳送", "兩段可測", TEAL),
-        (1225, "T4", "格式路由", "先接 PDF", PURPLE),
+    columns = [
+        (75, "已知事實", ["目前每日 08:00", "現有輸出為 PDF", "三段難以獨立測試"], GREEN),
+        (555, "技術推測", ["可能需重做排程", "格式介面可能要抽離", "回歸風險偏高"], ORANGE),
+        (1035, "待確認", ["能否訂閱多頻率", "逾時如何處理", "各格式內容是否一致"], RED),
     ]
-    for index, (x, code, title, check, color) in enumerate(tasks):
-        rounded(draw, (x, 280, x + 305, 620), WHITE, 26, color, 5)
-        rounded(draw, (x + 95, 320, x + 210, 390), color, 18)
-        label(draw, (x + 152, 355), code, 30, WHITE, True, "mm")
-        label(draw, (x + 152, 455), title, 30, NAVY, True, "mm")
-        label(draw, (x + 152, 530), check, 25, SLATE, False, "mm")
-        if index < len(tasks) - 1:
-            arrow(draw, (x + 315, 450), (x + 370, 450), LINE, 7)
-    rounded(draw, (235, 730, 1365, 825), NAVY, 20)
-    label(draw, (800, 775), "不是每張任務圖都需要平行；先避開同檔衝突", 28, CYAN, True, "mm")
-    save(image, "day18-03-task-map.png")
+    for x, title, items, color in columns:
+        rounded(draw, (x, 235, x + 410, 700), WHITE, 28, color, 5)
+        label(draw, (x + 205, 305), title, 38, color, True, "mm")
+        y = 415
+        for item in items:
+            draw.ellipse((x + 50, y - 8, x + 68, y + 10), fill=color)
+            label(draw, (x + 95, y), item, 27, NAVY, False, "lm")
+            y += 95
+    rounded(draw, (345, 760, 1255, 835), NAVY, 18)
+    label(draw, (800, 797), "未知事項留在契約裡，不交給 Codex 猜", 29, CYAN, True, "mm")
+    save(image, "day18-03-requirement-gaps.png")
 
 
-def first_step_diff():
+def task_contract():
     image = Image.new("RGB", (WIDTH, HEIGHT), NAVY)
     draw = ImageDraw.Draw(image)
-    label(draw, (85, 60), "T1 邊界：main 雜湊不變，只新增測試證據", 50, WHITE, True)
-    label(draw, (85, 132), "任務邊界直接寫進 Codex 提示詞", 31, "#CBD5E1")
+    label(draw, (85, 65), "任務契約：把能做、不能做、如何驗收寫在一起", 53, WHITE, True)
+    label(draw, (85, 135), "本次只新增「發送前一小時」的時間計算", 31, "#CBD5E1")
 
-    rounded(draw, (100, 230, 750, 680), "#111827", 28, GREEN, 5)
-    label(draw, (425, 300), "允許", 38, GREEN, True, "mm")
-    allowed = ["新增特徵測試", "記錄測試結果", "回報殘留風險"]
-    y = 405
-    for item in allowed:
-        draw.ellipse((175, y - 10, 197, y + 12), fill=GREEN)
-        label(draw, (235, y), item, 30, WHITE, False, "lm")
-        y += 90
-
-    rounded(draw, (850, 230, 1500, 680), "#111827", 28, RED, 5)
-    label(draw, (1175, 300), "禁止", 38, RED, True, "mm")
-    denied = ["修改 src/main", "新增 Word／Excel", "順手搬檔或改名"]
-    y = 405
-    for item in denied:
-        draw.ellipse((925, y - 10, 947, y + 12), fill=RED)
-        label(draw, (985, y), item, 30, WHITE, False, "lm")
-        y += 90
-
-    rounded(draw, (390, 755, 1210, 835), "#1E293B", 18, CYAN, 3)
-    label(draw, (800, 795), "程式差異：測試＋1 檔；正式程式 0 檔", 28, CYAN, True, "mm")
-    save(image, "day18-04-first-step-diff.png")
+    fields = [
+        ("目標", "輸入指定發送時間，回傳提前一小時", BLUE),
+        ("允許", "新增時間計算類別與 JUnit 5 測試", GREEN),
+        ("禁止", "不碰既有排程、寄信、PDF 與資料庫", RED),
+        ("驗收", "08:00 → 07:00，保留 Asia/Taipei", ORANGE),
+        ("回報", "檔案、命令、結果、殘留風險", PURPLE),
+    ]
+    y = 220
+    for title, note, color in fields:
+        rounded(draw, (105, y, 1495, y + 100), "#111827", 20, color, 4)
+        rounded(draw, (130, y + 18, 335, y + 82), color, 14)
+        label(draw, (232, y + 50), title, 29, WHITE, True, "mm")
+        label(draw, (390, y + 50), note, 29, WHITE, True, "lm")
+        y += 112
+    label(draw, (800, 825), "契約不替未知事項補答案", 29, CYAN, True, "mm")
+    save(image, "day18-04-task-contract.png")
 
 
-def verification_nodes():
+def verification_map():
     image = Image.new("RGB", (WIDTH, HEIGHT), PALE)
     draw = ImageDraw.Draw(image)
-    label(draw, (85, 60), "測試通過只是其中一關，範圍也要核對", 54, NAVY, True)
-    label(draw, (85, 132), "每個完成節點，都要能說明、審查與回復", 31, MUTED)
+    label(draw, (85, 65), "完成不是一句話，而是四段可核對的證據", 55, NAVY, True)
+    label(draw, (85, 135), "需求、修改、測試與風險要能互相對映", 31, MUTED)
 
-    points = [
-        (170, "呼叫證據", "08:00／07:59", BLUE),
-        (525, "局部測試", "2 項通過", GREEN),
-        (880, "完整測試", "BUILD SUCCESS", TEAL),
-        (1235, "範圍核對", "SHA-256 相同", PURPLE),
+    rows = [
+        ("契約", "提前一小時並保留時區", BLUE, "已確認"),
+        ("修改", "ReportProductionWindow", PURPLE, "範圍內"),
+        ("測試", "mvn clean test · 2 項通過", GREEN, "有證據"),
+        ("未完成", "頻率、格式、寄信整合", ORANGE, "保留風險"),
     ]
-    draw.line((200, 465, 1385, 465), fill=LINE, width=10)
-    for x, title, note, color in points:
-        draw.ellipse((x, 390, x + 150, 540), fill=color)
-        label(draw, (x + 75, 465), "通過", 27, WHITE, True, "mm")
-        label(draw, (x + 75, 605), title, 28, NAVY, True, "mm")
-        label(draw, (x + 75, 660), note, 24, SLATE, False, "mm")
-    rounded(draw, (280, 760, 1320, 840), NAVY, 18)
-    label(draw, (800, 800), "建立 T1 完成節點後，T2 才取得前置條件", 28, CYAN, True, "mm")
-    save(image, "day18-05-verification-nodes.png")
+    y = 235
+    for title, note, color, status in rows:
+        rounded(draw, (100, y, 1500, y + 120), WHITE, 22, color, 4)
+        rounded(draw, (125, y + 25, 345, y + 95), color, 14)
+        label(draw, (235, y + 60), title, 29, WHITE, True, "mm")
+        label(draw, (400, y + 60), note, 29, NAVY, True, "lm")
+        rounded(draw, (1240, y + 28, 1450, y + 92), "#E2E8F0", 14)
+        label(draw, (1345, y + 60), status, 25, SLATE, True, "mm")
+        y += 140
+    rounded(draw, (345, 805, 1255, 865), NAVY, 16)
+    label(draw, (800, 835), "只證明契約內的範圍，不放大成果", 27, CYAN, True, "mm")
+    save(image, "day18-05-verification-map.png")
 
 
 if __name__ == "__main__":
     cover()
-    coupling_scope()
-    task_map()
-    first_step_diff()
-    verification_nodes()
+    handoff_flow()
+    requirement_gaps()
+    task_contract()
+    verification_map()

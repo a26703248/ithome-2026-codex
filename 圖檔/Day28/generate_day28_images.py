@@ -113,184 +113,165 @@ def cover():
     draw.rectangle((0, 0, W, H), fill=NAVY)
     draw.ellipse((1090, -210, 1760, 460), fill="#173D57")
     draw.ellipse((-180, 610, 410, 1200), fill="#163C50")
-    draw_text(draw, (100, 92), "DAY 28｜團隊、流程與治理", 27, "#77D2C4", True)
-    draw_text(draw, (100, 205), "用數據說話", 62, WHITE, True)
-    draw_text(draw, (104, 307), "「感覺變快了」不是可採用的導入結論", 32, "#DCEBE8")
+    draw_text(draw, (100, 92), "DAY 28｜從 0 到 1 的 AI 可驗證工作流試煉", 27, "#77D2C4", True)
+    draw_text(draw, (100, 205), "成本與效能管理", 62, WHITE, True)
+    draw_text(draw, (104, 307), "回應更快，不等於總成本更低", 32, "#DCEBE8")
 
-    col_w = 640
-    xs = [100, 800]
-    titles = [("只看生成時間、任務難度不同", CORAL), ("固定規格＋前後測＋品質護欄", TEAL)]
-    rows_a = ["只記錄 AI 生成那幾分鐘", "前後任務範圍、難度不一致", "沒有品質護欄、只看速度"]
-    rows_b = ["生成到定稿、複核全程都算", "同一規格，雙軌各做一次", "同時追蹤修改與否決比例"]
-    y0 = 470
-    for x, (title, color), rows in zip(xs, titles, [rows_a, rows_b]):
-        box(draw, (x, y0, x + col_w, y0 + 250), fill="#173D57", outline=color, width=4, radius=24)
-        draw_text(draw, (x + col_w / 2, y0 + 40), title, 24, WHITE, True, anchor="mm", max_width=col_w - 60)
-        yy = y0 + 90
-        for row in rows:
-            draw_text(draw, (x + 34, yy), "・" + row, 21, "#DCEBE8", max_width=col_w - 68, spacing=8)
-            yy += 48
-    draw_text(draw, (100, 805), "比較的單位是「可追溯的一批資料」，不是一次主觀印象", 24, "#AFC5CE")
+    stages = [
+        ("14 分鐘", "AI 生成看起來很快", CORAL),
+        ("＋ 9 分鐘", "OCR／ETL 前處理", GOLD),
+        ("＋ 33 分鐘", "覆核＋返工", TEAL),
+        ("＝ 56 分鐘", "一份被接受的成果", TEAL),
+    ]
+    x_positions = [105, 465, 825, 1185]
+    y = 500
+    for index, ((title, detail, color), x) in enumerate(zip(stages, x_positions)):
+        box(draw, (x, y, x + 270, y + 170), fill="#173D57", outline=color, width=4, radius=24)
+        draw_text(draw, (x + 135, y + 58), title, 30, WHITE, True, anchor="mm")
+        draw_text(draw, (x + 135, y + 116), detail, 21, "#C8D8DF", anchor="mm", max_width=230, align="center")
+        if index < len(stages) - 1:
+            arrow(draw, (x + 280, y + 85), (x + 345, y + 85), "#91A8B6", 5)
+    draw_text(draw, (100, 805), "比較單位是「被接受的成果」，不是一次模型回應", 25, "#AFC5CE")
     save(image, "day28-01-cover.png")
 
 
-def metrics_guardrail():
+def cost_breakdown():
     image, draw = canvas()
-    header(draw, "效率指標要搭配品質護欄", "五項指標：定義、資料來源、對應護欄")
-
-    headers = ["指標", "定義", "護欄行動"]
-    col_x = [80, 430, 1120, 1520]
-    for i, title in enumerate(headers):
-        box(draw, (col_x[i], 260, col_x[i + 1] - 10, 305), fill=NAVY, radius=12)
-        draw_text(draw, ((col_x[i] + col_x[i + 1] - 10) / 2, 282), title, 21, WHITE, True, anchor="mm")
-
+    header(draw, "看每個被接受成果的總成本", "補 OcrPreprocessor 測試：一份定稿要花多少時間")
+    labels = [(80, 300, 460, "成本項目"), (480, 300, 1520, "本案例數值")]
+    for x1, y1, x2, title in labels:
+        box(draw, (x1, y1 - 45, x2, y1), fill=NAVY, radius=12)
+        draw_text(draw, ((x1 + x2) / 2, y1 - 22), title, 22, WHITE, True, anchor="mm")
     rows = [
-        ("生成到定稿時間", "系統產出草稿到複核人員定稿的時間", "同時看修改或否決比例是否上升"),
-        ("複核審查時間", "複核人員檢視、修改、標註的時間", "同時看引用錯誤數是否增加"),
-        ("大幅修改或否決比例", "MAJOR_REVISION 與 REJECTED 合計佔比", "比例上升就先別擴大試用範圍"),
-        ("任務完成率", "未被否決、有進入定稿流程的比例", "與否決原因交叉比對，不能只看數字"),
-        ("平均引用錯誤數", "複核時發現引用既有內容出錯的次數", "錯誤數上升需加強複核強度"),
+        ("模型／方案使用", "共 6 輪對話，未量測精確 token 數"),
+        ("OCR／ETL 前處理時間", "約 9 分鐘（含 2 份低解析度情境重新確認）"),
+        ("AI 草稿生成執行與等待", "約 14 分鐘"),
+        ("複核人員審查時間", "約 22 分鐘"),
+        ("重新生成與返工", "2 次，共 11 分鐘"),
+        ("最終被接受草稿", "第 3 版（v3），8 項測試通過覆核"),
     ]
-    y = 320
-    row_h = 92
-    for index, (metric, definition, guardrail) in enumerate(rows):
+    y = 322
+    row_height = 78
+    coords = [(80, 460), (480, 1520)]
+    for index, row in enumerate(rows):
         fill = WHITE if index % 2 == 0 else "#EDF3F3"
-        box(draw, (col_x[0], y, col_x[3], y + row_h - 10), fill=fill, outline="#D4DEE2", width=2, radius=14)
-        draw_text(draw, (col_x[0] + 22, y + (row_h - 10) / 2), metric, 20, TEAL, True,
-                  max_width=col_x[1] - col_x[0] - 44, anchor="lm", spacing=6)
-        draw_text(draw, (col_x[1] + 22, y + (row_h - 10) / 2), definition, 19, INK,
-                  max_width=col_x[2] - col_x[1] - 44, anchor="lm", spacing=6)
-        draw_text(draw, (col_x[2] + 22, y + (row_h - 10) / 2), guardrail, 19, SLATE,
-                  max_width=col_x[3] - col_x[2] - 44, anchor="lm", spacing=6)
-        y += row_h
-    box(draw, (80, 812, 1520, 848), fill=MINT, radius=16)
-    draw_text(draw, (800, 830), "速度變快、品質同時退步，不能只摘速度那一半", 21, TEAL, True, anchor="mm")
+        for column, ((x1, x2), value) in enumerate(zip(coords, row)):
+            box(draw, (x1, y, x2, y + row_height - 10), fill=fill, outline="#D4DEE2", width=2, radius=12)
+            color = TEAL if column == 0 else INK
+            draw_text(draw, (x1 + 24, y + (row_height - 10) / 2), value, 21, color, column == 0,
+                      max_width=x2 - x1 - 48, anchor="lm")
+        y += row_height
+    box(draw, (80, 812, 1520, 838), fill=MINT, radius=14)
+    draw_text(draw, (800, 825), "總計約 56 分鐘，只看 14 分鐘的生成時間會低估近 4 倍", 21, TEAL, True, anchor="mm")
     footer(draw, 2)
-    save(image, "day28-02-metrics-guardrail.png")
+    save(image, "day28-02-cost-breakdown.png")
 
 
-def pre_post_design():
+def strategy_comparison():
     image, draw = canvas()
-    header(draw, "配對前後測，才可比較", "同一份規格，分別以人工與 Codex 各實作一次")
+    header(draw, "同一份測試檔，兩種做法", "策略 A：一次生成　vs　策略 B：拆成小步驟")
 
-    box(draw, (560, 270, 1040, 340), fill=NAVY, radius=18)
-    draw_text(draw, (800, 305), "固定規格＋固定驗收條件", 24, WHITE, True, anchor="mm")
-    arrow(draw, (800, 345), (800, 390), TEAL, 6)
-
-    col_w = 640
-    xs = [100, 800]
-    titles = [("基準線：人工撰寫", CORAL), ("AI 協作：Codex", TEAL)]
+    col_w = 660
+    xs = [110, 830]
+    titles = [("策略 A：一次要求生成完整測試", CORAL), ("策略 B：拆成小步驟", TEAL)]
     rows_a = [
-        ("設計＋撰寫", "6 分鐘設計＋24 分鐘產出"),
-        ("覆核與測試", "12 分鐘"),
-        ("返工", "1 次，6 分鐘：漏防呆空清單"),
-        ("總耗時", "48 分鐘"),
+        ("首次產出時間", "4 分鐘產生 9 個測試案例"),
+        ("覆核發現的問題", "漏掉 2 個邊界案例，1 項斷言錯誤"),
+        ("重跑次數", "2 次：整批重生成＋單獨修正"),
+        ("總耗時", "約 31 分鐘"),
+        ("最終結果", "9 個測試，2 項需後補"),
     ]
     rows_b = [
-        ("設計＋撰寫", "5 分鐘寫規格＋4 分鐘產出"),
-        ("覆核與測試", "9 分鐘覆核 diff＋補測試"),
-        ("返工", "1 次，8 分鐘：完成率定義理解落差"),
-        ("總耗時", "26 分鐘"),
+        ("首次產出時間", "3 分鐘產生骨架＋3 個基本案例"),
+        ("覆核發現的問題", "第二步驟就抓到邊界值遺漏"),
+        ("重跑次數", "1 次：只補邊界案例"),
+        ("總耗時", "約 19 分鐘"),
+        ("最終結果", "8 個測試，一次到位"),
     ]
-    y0 = 410
-    for x, (title, color), rows in zip(xs, titles, [rows_a, rows_b]):
-        box(draw, (x, y0, x + col_w, y0 + 50), fill=color, radius=16)
-        draw_text(draw, (x + col_w / 2, y0 + 25), title, 22, WHITE, True, anchor="mm")
-        yy = y0 + 64
-        row_h = 78
+
+    for (x, (title, color), rows) in zip(xs, titles, [rows_a, rows_b]):
+        box(draw, (x, 280, x + col_w, 330), fill=color, radius=16)
+        draw_text(draw, (x + col_w / 2, 305), title, 23, WHITE, True, anchor="mm", max_width=col_w - 40)
+        y = 344
+        row_h = 90
         for label, value in rows:
-            box(draw, (x, yy, x + col_w, yy + row_h - 12), fill=WHITE, outline="#D4DEE2", width=2, radius=14)
-            draw_text(draw, (x + 24, yy + 18), label, 18, SLATE, True)
-            draw_text(draw, (x + 24, yy + 44), value, 19, INK, max_width=col_w - 48, spacing=6)
-            yy += row_h
+            box(draw, (x, y, x + col_w, y + row_h - 12), fill=WHITE, outline="#D4DEE2", width=2, radius=14)
+            draw_text(draw, (x + 24, y + 20), label, 19, SLATE, True)
+            draw_text(draw, (x + 24, y + 47), value, 20, INK, max_width=col_w - 48, spacing=6)
+            y += row_h
 
     box(draw, (110, 812, 1490, 852), fill=NAVY, radius=18)
-    draw_text(draw, (800, 832), "兩邊最後收斂到同 8 項測試，差異只在耗時與返工原因", 21, WHITE, True, anchor="mm")
+    draw_text(draw, (800, 832), "產出快不等於總成本低，覆核與返工要一起算", 22, WHITE, True, anchor="mm")
     footer(draw, 3)
-    save(image, "day28-03-pre-post-design.png")
+    save(image, "day28-03-strategy-comparison.png")
 
 
-def day01_vs_day28():
+def scheduling_diagram():
     image, draw = canvas()
-    header(draw, "從主觀記錄到可追溯資料", "Day 01 基準線卡片　vs　Day 28 配對資料集")
+    header(draw, "串行或並行，看相依與衝突", "三個任務組合，三種排程判斷")
 
-    col_w = 640
-    xs = [100, 800]
-    titles = [("Day 01：基準線卡片", GOLD), ("Day 28：配對資料集", TEAL)]
-    rows_a = [
-        "任務範圍自選，難度不固定",
-        "只記錄「原本完成時間」的粗略描述",
-        "沒有固定驗收條件",
-        "無法直接併入本篇統計數字",
+    combos = [
+        ("組合一", "補 OCR 測試 ＋ 複核介面\n否決原因欄位", "無相依、低衝突", "並行", TEAL),
+        ("組合二", "先定分級規則 → 再讓 ETL\n產生存取權限", "高相依", "串行", CORAL),
+        ("組合三", "OCR 輸出格式調整 ＋\nprompt 調整（共用資料結構）", "中相依、高衝突風險", "先對齊介面\n再並行", GOLD),
     ]
-    rows_b = [
-        "同一規格雙軌各實作一次",
-        "生成、複核、返工分項計時",
-        "固定驗收條件：8 項測試＋例外處理",
-        "16 筆樣本，基準線／AI 協作各 8 筆",
-    ]
-    y0 = 300
-    for x, (title, color), rows in zip(xs, titles, [rows_a, rows_b]):
-        box(draw, (x, y0, x + col_w, y0 + 400), fill=WHITE, outline=color, width=4, radius=24)
-        box(draw, (x, y0, x + col_w, y0 + 60), fill=color, radius=24)
-        draw_text(draw, (x + col_w / 2, y0 + 30), title, 23, WHITE, True, anchor="mm")
-        yy = y0 + 96
-        for row in rows:
-            draw_text(draw, (x + 30, yy), "・" + row, 21, INK, max_width=col_w - 60, spacing=8)
-            yy += 76
-
-    box(draw, (110, 730, 1490, 800), fill=MINT, radius=18)
-    draw_text(draw, (800, 750), "不是否定 Day 01，而是承認它的限制：", 21, TEAL, True, anchor="mm")
-    draw_text(draw, (800, 778), "沒有固定驗收條件的紀錄，不能拿來做速度比較", 21, TEAL, True, anchor="mm")
+    x_positions = [90, 620, 1150]
+    y = 300
+    w = 360
+    h = 430
+    for (label, task, risk, decision, color), x in zip(combos, x_positions):
+        box(draw, (x, y, x + w, y + h), fill=WHITE, outline=color, width=4, radius=24)
+        box(draw, (x, y, x + w, y + 64), fill=color, radius=24)
+        draw_text(draw, (x + w / 2, y + 32), label, 24, WHITE, True, anchor="mm")
+        draw_text(draw, (x + 26, y + 96), task, 21, NAVY, True, max_width=w - 52, spacing=10)
+        draw.line((x + 26, y + 210, x + w - 26, y + 210), fill="#D9E2E6", width=2)
+        draw_text(draw, (x + 26, y + 232), "風險：" + risk, 20, SLATE, max_width=w - 52, spacing=8)
+        box(draw, (x + 26, y + h - 96, x + w - 26, y + h - 26), fill="#EDF3F3", radius=16)
+        draw_text(draw, (x + w / 2, y + h - 61), "建議：" + decision, 22, color, True, anchor="mm",
+                  max_width=w - 70, align="center")
     footer(draw, 4)
-    save(image, "day28-04-day01-vs-day28.png")
+    save(image, "day28-04-scheduling.png")
 
 
-def decision_matrix():
+def tradeoff_triangle():
     image, draw = canvas()
-    header(draw, "結果對應決策", "速度與品質，四種組合對應四種行動")
+    header(draw, "成本最佳化的邊界", "省下來的時間，不能拿安全、測試與可維護性去換")
 
-    cx0, cy0 = 480, 300
-    size = 460
-    mid_x = cx0 + size / 2
-    mid_y = cy0 + size / 2
-    box(draw, (cx0, cy0, cx0 + size, cy0 + size), fill=WHITE, outline=NAVY, width=4, radius=8)
-    draw.line((mid_x, cy0, mid_x, cy0 + size), fill="#C9D5DB", width=3)
-    draw.line((cx0, mid_y, cx0 + size, mid_y), fill="#C9D5DB", width=3)
-
-    quadrants = [
-        (cx0, cy0, "速度、品質\n都改善", "擴大試用", TEAL),
-        (mid_x, cy0, "只提升品質", "評估額外\n時間是否值得", GOLD),
-        (cx0, mid_y, "只提升速度", "補強複核驗收\n（本次落點）", CORAL),
-        (mid_x, mid_y, "速度、品質\n都退步", "停止或\n重新設計流程", SLATE),
+    cx, cy, r = 800, 560, 280
+    import math
+    labels = [
+        ("成本／時間", TEAL, -90),
+        ("安全與權限", CORAL, 150),
+        ("測試與可維護性", GOLD, 30),
     ]
-    half = size / 2
-    for x, y, label, action, color in quadrants:
-        draw_text(draw, (x + half / 2, y + 46), label, 19, NAVY, True, anchor="mm", max_width=half - 30, align="center")
-        box(draw, (x + 20, y + 80, x + half - 20, y + half - 20), fill=color, radius=14)
-        draw_text(draw, (x + half / 2, y + (80 + half - 20) / 2), action, 18, WHITE, True,
-                  anchor="mm", max_width=half - 60, align="center")
+    points = []
+    for _, _, angle in labels:
+        rad = math.radians(angle)
+        points.append((cx + r * math.cos(rad), cy + r * math.sin(rad)))
+    draw.polygon(points, outline=NAVY)
+    for i in range(len(points)):
+        draw.line([points[i], points[(i + 1) % len(points)]], fill=NAVY, width=6)
+    box(draw, (cx - 210, cy - 90, cx + 210, cy + 90), fill=WHITE, outline=NAVY, width=3, radius=20)
+    draw_text(draw, (cx, cy - 20), "只縮短上下文、", 24, INK, True, anchor="mm")
+    draw_text(draw, (cx, cy + 20), "把任務講清楚、排好順序", 24, INK, True, anchor="mm")
 
-    draw_text(draw, (cx0 + size / 2, cy0 - 34), "品質改善 →", 20, SLATE, True, anchor="mm")
-    draw_text(draw, (cx0 - 40, mid_y), "速度改善 ↑", 20, SLATE, True, anchor="mm")
+    for (text, color, angle), point in zip(labels, points):
+        rad = math.radians(angle)
+        lx = cx + (r + 130) * math.cos(rad)
+        ly = cy + (r + 60) * math.sin(rad)
+        draw.ellipse((point[0] - 14, point[1] - 14, point[0] + 14, point[1] + 14), fill=color)
+        draw_text(draw, (lx, ly), text, 26, color, True, anchor="mm", align="center")
 
-    box(draw, (1040, 320, 1520, 700), fill="#EDF3F3", outline=CORAL, width=3, radius=20)
-    draw_text(draw, (1080, 356), "本次結果", 24, CORAL, True)
-    draw_text(draw, (1080, 404), "生成到定稿：-42 分鐘", 20, INK, spacing=8)
-    draw_text(draw, (1080, 440), "複核時間：+7.4 分鐘", 20, INK, spacing=8)
-    draw_text(draw, (1080, 476), "大幅修改或否決：+12.5 個百分點", 20, INK, max_width=400, spacing=8)
-    draw_text(draw, (1080, 540), "平均引用錯誤：+0.75（約 4 倍）", 20, INK, max_width=400, spacing=8)
-    draw_text(draw, (1080, 600), "落在「只提升速度」象限：", 19, CORAL, True, max_width=400, spacing=8)
-    draw_text(draw, (1080, 630), "先補強複核，不宜貿然擴大範圍", 19, CORAL, True, max_width=400, spacing=8)
-
+    box(draw, (140, 806, 1460, 848), fill=MINT, radius=18)
+    draw_text(draw, (800, 827), "浪費的是等待與返工，不是驗收標準與安全把關", 22, TEAL, True, anchor="mm")
     footer(draw, 5)
-    save(image, "day28-05-decision-matrix.png")
+    save(image, "day28-05-tradeoff.png")
 
 
 if __name__ == "__main__":
     cover()
-    metrics_guardrail()
-    pre_post_design()
-    day01_vs_day28()
-    decision_matrix()
+    cost_breakdown()
+    strategy_comparison()
+    scheduling_diagram()
+    tradeoff_triangle()
     print("Generated 5 Day 28 images at 1600x900.")

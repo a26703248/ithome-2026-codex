@@ -32,22 +32,17 @@ def text(draw, xy, value, size, fill, bold=False, anchor=None):
     draw.text(xy, value, font=font(size, bold), fill=fill, anchor=anchor)
 
 
-def arrow(draw, start, end, color=CYAN, width=7):
+def arrow(draw, start, end, color=CYAN, width=8):
     draw.line([start, end], fill=color, width=width)
     ex, ey = end
     sx, sy = start
     if abs(ex - sx) >= abs(ey - sy):
         direction = 1 if ex > sx else -1
-        points = [(ex, ey), (ex - direction * 18, ey - 12), (ex - direction * 18, ey + 12)]
+        points = [(ex, ey), (ex - direction * 20, ey - 14), (ex - direction * 20, ey + 14)]
     else:
         direction = 1 if ey > sy else -1
-        points = [(ex, ey), (ex - 12, ey - direction * 18), (ex + 12, ey - direction * 18)]
+        points = [(ex, ey), (ex - 14, ey - direction * 20), (ex + 14, ey - direction * 20)]
     draw.polygon(points, fill=color)
-
-
-def multiline(draw, center_x, start_y, lines, size, fill, gap=38, bold=False):
-    for index, line in enumerate(lines):
-        text(draw, (center_x, start_y + index * gap), line, size, fill, bold, "mm")
 
 
 def save(image, name):
@@ -57,130 +52,134 @@ def save(image, name):
 def cover():
     im = Image.new("RGB", (WIDTH, HEIGHT), NAVY)
     d = ImageDraw.Draw(im)
-    d.ellipse((1020, -140, 1380, 220), fill="#0C4A6E")
+    d.ellipse((1010, -130, 1370, 230), fill="#0C4A6E")
     d.ellipse((-170, 520, 190, 880), fill="#172554")
-    text(d, (70, 70), "DAY 05 · 系統設計", 34, CYAN, True)
-    text(d, (70, 165), "先比較代價，", 66, WHITE, True)
-    text(d, (70, 250), "再決定架構", 66, WHITE, True)
-    text(d, (70, 342), "ChatGPT 攤開選項，人承擔取捨", 31, "#CBD5E1")
+    text(d, (70, 70), "DAY 05 · 需求釐清", 34, CYAN, True)
+    text(d, (70, 170), "先把未知攤開，", 66, WHITE, True)
+    text(d, (70, 254), "再開始設計", 66, WHITE, True)
+    text(d, (70, 340), "ChatGPT 找缺口，人決定規則與責任", 31, "#CBD5E1")
 
-    cards = [("1", "事實", TEAL), ("2", "方案", BLUE), ("3", "證據", ORANGE)]
-    x = 82
-    for number, label, color in cards:
-        rounded(d, (x, 490, x + 300, 625), WHITE, 25)
-        d.ellipse((x + 28, 526, x + 80, 578), fill=color)
-        text(d, (x + 54, 553), number, 24, WHITE, True, "mm")
-        text(d, (x + 105, 555), label, 38, NAVY, True, "lm")
+    labels = [("事實", TEAL), ("假設", ORANGE), ("決策", BLUE)]
+    x = 92
+    for label, color in labels:
+        rounded(d, (x, 485, x + 285, 625), WHITE, 25)
+        d.ellipse((x + 28, 520, x + 76, 568), fill=color)
+        if label == "事實":
+            d.line((x + 37, 545, x + 48, 556), fill=WHITE, width=6)
+            d.line((x + 48, 556, x + 67, 532), fill=WHITE, width=6)
+        else:
+            text(d, (x + 52, 545), "?", 29, WHITE, True, "mm")
+        text(d, (x + 98, 548), label, 38, NAVY, True, "lm")
         x += 405
     save(im, "day05-01-cover.png")
 
 
-def constraints():
+def hidden_gaps():
     im = Image.new("RGB", (WIDTH, HEIGHT), PALE)
     d = ImageDraw.Draw(im)
-    text(d, (64, 55), "設計前，先分開輸入與未知", 47, NAVY, True)
-    text(d, (64, 108), "數字是輸入；限制位置與驗收門檻仍要查證", 27, MUTED)
+    text(d, (64, 55), "一句需求，至少藏著四類未決問題", 47, NAVY, True)
+    text(d, (64, 108), "句子有動作，不代表已經可以估工與驗收", 27, MUTED)
+    rounded(d, (64, 160, 1216, 285), WHITE, 22, "#CBD5E1", 2)
+    text(d, (640, 202), "「把自行爬文或企業內部資料匯入工作區，繼續編輯加值」", 31, NAVY, True, "mm")
+    text(d, (640, 250), "業務目標清楚　｜　執行規則未定", 23, TEAL, True, "mm")
 
     cards = [
-        ("每日資料量", "約 1 TB", TEAL, "本輪輸入"),
-        ("來源速率", "約 12 MB/s", BLUE, "本輪輸入"),
-        ("純傳輸時間", "> 23 小時", ORANGE, "條件式推論"),
-        ("瓶頸位置", "尚未確認", RED, "待測量"),
+        ("資料", "欄位是否對齊？", BLUE),
+        ("權限", "誰可以匯入？", ORANGE),
+        ("流程", "日報何時執行？", TEAL),
+        ("驗收", "怎樣才算完成？", RED),
     ]
-    for i, (title, value, color, tag) in enumerate(cards):
+    for i, (title, body, color) in enumerate(cards):
         x = 64 + i * 291
-        rounded(d, (x, 175, x + 260, 455), WHITE, 24, color, 4)
-        rounded(d, (x + 24, 202, x + 135, 242), color, 12)
-        text(d, (x + 79, 223), tag, 18, WHITE, True, "mm")
-        text(d, (x + 130, 302), title, 25, SLATE, True, "mm")
-        text(d, (x + 130, 367), value, 35, color, True, "mm")
-        text(d, (x + 130, 414), "→ 決定下一個實驗", 18, MUTED, False, "mm")
-
-    rounded(d, (135, 525, 1145, 640), NAVY, 22)
-    text(d, (640, 563), "未知：批次大小｜尖峰流量｜可接受完成時間｜團隊維運能力", 25, WHITE, True, "mm")
-    text(d, (640, 607), "沒有這些證據，就不能把推論寫成架構事實", 23, CYAN, True, "mm")
-    save(im, "day05-02-constraints.png")
+        rounded(d, (x, 345, x + 260, 575), WHITE, 22, color, 4)
+        d.ellipse((x + 90, 375, x + 170, 455), fill=color)
+        text(d, (x + 130, 417), str(i + 1), 36, WHITE, True, "mm")
+        text(d, (x + 130, 500), title, 32, color, True, "mm")
+        text(d, (x + 130, 542), body, 22, SLATE, False, "mm")
+    rounded(d, (210, 620, 1070, 676), NAVY, 16)
+    text(d, (640, 649), "缺少規則時，工程團隊只是在各自猜答案", 25, WHITE, True, "mm")
+    save(im, "day05-02-hidden-gaps.png")
 
 
-def options():
+def four_buckets():
+    im = Image.new("RGB", (WIDTH, HEIGHT), PALE)
+    d = ImageDraw.Draw(im)
+    text(d, (64, 55), "讓每句需求都有狀態", 47, NAVY, True)
+    text(d, (64, 108), "分類不是排版，而是把下一個責任人找出來", 27, MUTED)
+    cards = [
+        ("01", "已知事實", "保留文件位置", TEAL, "#ECFEFF"),
+        ("02", "暫時假設", "要求證據驗證", ORANGE, "#FFF7ED"),
+        ("03", "待決策", "交回負責人拍板", BLUE, "#EFF6FF"),
+        ("04", "版本範圍", "明確納入或排除", GREEN, "#F0FDF4"),
+    ]
+    for i, (num, title, body, color, bg) in enumerate(cards):
+        col, row = i % 2, i // 2
+        x, y = 64 + col * 590, 170 + row * 225
+        rounded(d, (x, y, x + 550, y + 185), bg, 24, color, 3)
+        rounded(d, (x + 25, y + 31, x + 105, y + 111), color, 18)
+        text(d, (x + 65, y + 73), num, 29, WHITE, True, "mm")
+        text(d, (x + 135, y + 62), title, 34, NAVY, True)
+        text(d, (x + 135, y + 113), body, 25, SLATE)
+        text(d, (x + 135, y + 150), "→ 下一個動作可追蹤", 20, color, True)
+    save(im, "day05-03-four-buckets.png")
+
+
+def three_rounds():
     im = Image.new("RGB", (WIDTH, HEIGHT), NAVY)
     d = ImageDraw.Draw(im)
-    text(d, (64, 55), "三個候選方案，用同一把尺比較", 47, WHITE, True)
-    text(d, (64, 108), "責任邊界越多，部署與故障處理成本也會增加", 27, "#CBD5E1")
-    cards = [
-        ("A", "同步單體", ["HTTP 請求", "匯入處理", "工作區"], TEAL),
-        ("B", "模組化單體＋非同步任務", ["匯入介面", "任務表／背景工作元件", "工作區"], ORANGE),
-        ("C", "獨立匯入服務＋訊息代理", ["匯入服務", "訊息代理", "既有工作區"], BLUE),
+    text(d, (64, 55), "三輪對話，不是一次生成完整規格", 47, WHITE, True)
+    text(d, (64, 108), "每輪只消除一種不確定性，也保留人工檢查點", 27, "#CBD5E1")
+    rounds = [
+        ("1", "找缺口", "只依 v0 文件\n列出歧義與缺漏", TEAL),
+        ("2", "補證據", "加入範圍、欄位\n資料量與速率", ORANGE),
+        ("3", "寫驗收", "把候選規則\n改成驗收草案", BLUE),
     ]
-    for i, (tag, title, items, color) in enumerate(cards):
-        x = 64 + i * 405
-        rounded(d, (x, 175, x + 360, 555), WHITE, 25, color, 4)
-        d.ellipse((x + 142, 200, x + 218, 276), fill=color)
-        text(d, (x + 180, 239), tag, 32, WHITE, True, "mm")
-        title_size = 24 if i > 0 else 29
-        text(d, (x + 180, 320), title, title_size, NAVY, True, "mm")
-        for idx, item in enumerate(items):
-            y = 372 + idx * 57
-            rounded(d, (x + 42, y, x + 318, y + 42), "#E2E8F0", 12)
-            text(d, (x + 180, y + 22), item, 20, SLATE, idx == 1, "mm")
-    rounded(d, (185, 600, 1095, 660), "#164E63", 16)
-    text(d, (640, 631), "候選方案不是排名；關鍵是什麼證據會改變選擇", 25, WHITE, True, "mm")
-    save(im, "day05-03-options.png")
+    xs = [70, 470, 870]
+    for idx, ((num, title, body, color), x) in enumerate(zip(rounds, xs)):
+        rounded(d, (x, 200, x + 330, 510), WHITE, 28)
+        d.ellipse((x + 125, 230, x + 205, 310), fill=color)
+        text(d, (x + 165, 271), num, 36, WHITE, True, "mm")
+        text(d, (x + 165, 360), title, 38, NAVY, True, "mm")
+        line1, line2 = body.split("\n")
+        text(d, (x + 165, 417), line1, 23, SLATE, False, "mm")
+        text(d, (x + 165, 452), line2, 23, SLATE, False, "mm")
+        if idx < 2:
+            arrow(d, (x + 342, 355), (x + 388, 355), CYAN, 7)
+    rounded(d, (165, 570, 1115, 646), "#164E63", 18)
+    text(d, (640, 609), "每一輪都要回看原文件，模型回覆不是需求證據", 27, WHITE, True, "mm")
+    save(im, "day05-04-three-rounds.png")
 
 
-def selected_flow():
+def acceptance():
     im = Image.new("RGB", (WIDTH, HEIGHT), PALE)
     d = ImageDraw.Draw(im)
-    text(d, (64, 55), "第一版：模組化單體＋非同步任務", 47, NAVY, True)
-    text(d, (64, 108), "先切開執行責任，不急著切開部署邊界", 27, MUTED)
-
-    nodes = [
-        (65, "手動／排程", TEAL),
-        (300, "匯入 API", BLUE),
-        (535, "任務表", ORANGE),
-        (770, "背景工作元件", BLUE),
-        (1005, "工作區", GREEN),
+    text(d, (64, 55), "把候選規則改成可驗收草案", 47, NAVY, True)
+    text(d, (64, 108), "Given／When／Then 讓前提、操作與預期結果可以逐項核對", 27, MUTED)
+    blocks = [
+        ("GIVEN", "前提", "候選規則允許租戶 A\n使用者匯入工作區 W", TEAL),
+        ("WHEN", "操作", "匯入一筆含有\n本輪暫定欄位的資料", ORANGE),
+        ("THEN", "預期結果", "租戶 A 看得到資料\n租戶 B 無法存取", GREEN),
     ]
-    for x, label, color in nodes:
-        rounded(d, (x, 245, x + 190, 365), WHITE, 22, color, 4)
-        text(d, (x + 95, 307), label, 25, NAVY, True, "mm")
-    for x in [255, 490, 725, 960]:
-        arrow(d, (x, 305), (x + 38, 305), CYAN, 7)
-
-    rounded(d, (165, 445, 1115, 610), NAVY, 22)
-    text(d, (640, 486), "共同規則", 28, CYAN, True, "mm")
-    multiline(d, 640, 532, ["租戶隔離　｜　任務狀態　｜　冪等鍵　｜　重試與告警", "介面保留未來拆分空間，但第一版仍是單一部署"], 23, WHITE, 40)
-    save(im, "day05-04-selected-flow.png")
-
-
-def decision_record():
-    im = Image.new("RGB", (WIDTH, HEIGHT), PALE)
-    d = ImageDraw.Draw(im)
-    text(d, (64, 55), "決策完成後，留下驗證門檻", 47, NAVY, True)
-    text(d, (64, 108), "架構決策紀錄要能回答：現在選什麼、延後什麼、何時重看", 27, MUTED)
-    cards = [
-        ("現在採用", ["單一部署", "非同步任務", "共同匯入規則"], GREEN, "#F0FDF4"),
-        ("暫緩加入", ["訊息代理", "獨立匯入服務", "多套部署流程"], ORANGE, "#FFF7ED"),
-        ("觸發重評", ["背景工作元件追不上來源", "前台延遲惡化", "故障無法隔離"], BLUE, "#EFF6FF"),
-    ]
-    for i, (title, items, color, bg) in enumerate(cards):
+    for i, (tag, title, body, color) in enumerate(blocks):
         x = 64 + i * 405
-        rounded(d, (x, 175, x + 360, 540), bg, 24, color, 4)
-        text(d, (x + 180, 230), title, 32, color, True, "mm")
-        d.line((x + 40, 270, x + 320, 270), fill=color, width=3)
-        for idx, item in enumerate(items):
-            y = 324 + idx * 72
-            d.ellipse((x + 45, y - 12, x + 69, y + 12), fill=color)
-            d.ellipse((x + 53, y - 4, x + 61, y + 4), fill=WHITE)
-            text(d, (x + 90, y), item, 23, SLATE, True, "lm")
-    rounded(d, (180, 590, 1100, 660), NAVY, 18)
-    text(d, (640, 626), "壓測、故障注入與租戶隔離測試，才是升級架構的證據", 24, WHITE, True, "mm")
-    save(im, "day05-05-decision-record.png")
+        rounded(d, (x, 180, x + 360, 480), WHITE, 26, color, 4)
+        rounded(d, (x + 28, 210, x + 150, 256), color, 14)
+        text(d, (x + 89, 234), tag, 20, WHITE, True, "mm")
+        text(d, (x + 28, 315), title, 38, NAVY, True)
+        line1, line2 = body.split("\n")
+        text(d, (x + 28, 380), line1, 23, SLATE)
+        text(d, (x + 28, 420), line2, 23, SLATE)
+        if i < 2:
+            arrow(d, (x + 365, 330), (x + 395, 330), "#94A3B8", 6)
+    rounded(d, (140, 545, 1140, 655), NAVY, 22)
+    text(d, (640, 580), "仍待決策：無權限回應｜部分錯誤策略｜重送是否去重", 25, WHITE, True, "mm")
+    text(d, (640, 622), "保留未知，比用猜測補滿規格更安全", 24, CYAN, True, "mm")
+    save(im, "day05-05-acceptance.png")
 
 
 if __name__ == "__main__":
     cover()
-    constraints()
-    options()
-    selected_flow()
-    decision_record()
+    hidden_gaps()
+    four_buckets()
+    three_rounds()
+    acceptance()

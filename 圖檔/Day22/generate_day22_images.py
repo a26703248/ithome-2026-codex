@@ -50,131 +50,148 @@ def cover():
     draw = ImageDraw.Draw(image)
     draw.ellipse((1250, -180, 1770, 340), fill="#312E81")
     draw.ellipse((-250, 650, 220, 1120), fill="#134E4A")
-    label(draw, (105, 90), "DAY 22 · 進階整合工作流", 38, "#5EEAD4", True)
-    label(draw, (105, 205), "文件與註解自動化", 72, WHITE, True)
-    label(draw, (105, 310), "生成文字很快，建立可信文件靠證據", 45, "#CBD5E1", True)
+    label(draw, (105, 90), "DAY 22 · 前人砍樹後人曝曬", 38, "#5EEAD4", True)
+    label(draw, (105, 210), "AI 輔助除錯實戰", 72, WHITE, True)
+    label(draw, (105, 315), "合理解釋不是根因，實驗才是證據", 46, "#CBD5E1", True)
 
     stages = [
-        (105, "來源", BLUE),
-        (470, "草稿", PURPLE),
-        (835, "驗證", ORANGE),
-        (1200, "責任", GREEN),
+        (130, "症狀", BLUE),
+        (470, "假設", PURPLE),
+        (810, "實驗", ORANGE),
+        (1150, "結論", GREEN),
     ]
     for index, (x, title, color) in enumerate(stages):
-        rounded(draw, (x, 565, x + 260, 730), "#111827", 28, color, 5)
-        label(draw, (x + 130, 648), title, 37, color, True, "mm")
+        rounded(draw, (x, 565, x + 250, 725), "#111827", 28, color, 5)
+        label(draw, (x + 125, 645), title, 37, color, True, "mm")
         if index < len(stages) - 1:
-            arrow(draw, (x + 275, 648), (x + 345, 648), "#475569", 7)
+            arrow(draw, (x + 265, 645), (x + 325, 645), "#475569", 7)
     save(image, "day22-01-cover.png")
 
 
-def source_map():
+def symptom_vs_root_cause():
     image = Image.new("RGB", (WIDTH, HEIGHT), PALE)
     draw = ImageDraw.Draw(image)
-    label(draw, (85, 55), "文件裡的每一句話，都要能回到來源與驗證", 48, NAVY, True)
-    label(draw, (85, 128), "沒有證據的欄位保留未知，不用合理文字填滿", 30, MUTED)
+    label(draw, (85, 60), "第一個合理解釋，通常只是起點", 52, NAVY, True)
+    label(draw, (85, 132), "同一個延遲症狀，可能來自不同環節", 30, MUTED)
 
-    columns = [85, 490, 875, 1210, 1515]
-    headers = ["文件內容", "可信來源", "驗證方式", "狀態"]
-    rounded(draw, (85, 205, 1515, 300), NAVY, 18)
+    rounded(draw, (90, 230, 700, 735), WHITE, 30, BLUE, 5)
+    label(draw, (395, 295), "看見的症狀", 38, BLUE, True, "mm")
+    label(draw, (150, 390), "08:00 批次已啟動", 29, NAVY, True)
+    label(draw, (150, 460), "後面的報表較晚才開始", 29, NAVY, True)
+    label(draw, (150, 530), "部分信件超過預期時間", 29, NAVY, True)
+    rounded(draw, (140, 615, 650, 680), "#EFF6FF", 15)
+    label(draw, (395, 648), "症狀描述不等於原因", 25, BLUE, True, "mm")
+
+    rounded(draw, (830, 230, 1510, 735), WHITE, 30, PURPLE, 5)
+    label(draw, (1170, 295), "待驗證的假設", 38, PURPLE, True, "mm")
+    hypotheses = [
+        ("資料計算變慢", ORANGE),
+        ("PDF 產生器退化", RED),
+        ("郵件回應阻塞流程", GREEN),
+    ]
+    for index, (text, color) in enumerate(hypotheses):
+        y = 405 + index * 105
+        draw.ellipse((900, y - 18, 936, y + 18), fill=color)
+        label(draw, (965, y), text, 29, NAVY, False, "lm")
+    save(image, "day22-02-symptom-vs-root-cause.png")
+
+
+def hypothesis_table():
+    image = Image.new("RGB", (WIDTH, HEIGHT), PALE)
+    draw = ImageDraw.Draw(image)
+    label(draw, (85, 55), "把合理解釋改寫成能被實驗推翻的假設", 48, NAVY, True)
+    label(draw, (85, 127), "每次只替換一個外部環節，保留其他條件", 30, MUTED)
+
+    columns = [85, 485, 855, 1190, 1515]
+    headers = ["假設", "目前證據", "最小實驗", "結果"]
+    rounded(draw, (85, 210, 1515, 305), NAVY, 18)
     for index, header in enumerate(headers):
-        label(draw, ((columns[index] + columns[index + 1]) // 2, 253), header, 27, WHITE, True, "mm")
+        left = columns[index]
+        right = columns[index + 1]
+        label(draw, ((left + right) // 2, 258), header, 27, WHITE, True, "mm")
 
     rows = [
-        ("Java 17", "pom.xml", "mvn clean test", "已驗證", GREEN),
-        ("兩階段順序", "程式＋測試", "事件序列", "已驗證", GREEN),
-        ("正式啟動參數", "沒有來源", "正式部署設定", "待確認", ORANGE),
-        ("週期數值區間", "需求書未定義", "產品決策", "待確認", ORANGE),
+        ("資料計算變慢", "讀取固定 10 ms", "固定測試資料量", "不支持"),
+        ("PDF 元件退化", "產生固定 40 ms", "替換 PDF 測試替身", "不支持"),
+        ("郵件阻塞流程", "寄信等待 900 ms", "郵件延遲改為 0", "支持"),
     ]
-    for row_index, (item, source, check, status, color) in enumerate(rows):
-        top = 325 + row_index * 125
-        rounded(draw, (85, top, 1515, top + 98), WHITE if row_index % 2 == 0 else "#F1F5F9", 14, LINE, 2)
-        values = [item, source, check, status]
-        for col_index, value in enumerate(values):
-            fill = color if col_index == 3 else NAVY
-            label(draw, ((columns[col_index] + columns[col_index + 1]) // 2, top + 49), value, 25, fill, col_index == 3, "mm")
+    for row_index, row in enumerate(rows):
+        top = 330 + row_index * 155
+        fill = WHITE if row_index % 2 == 0 else "#F1F5F9"
+        rounded(draw, (85, top, 1515, top + 125), fill, 14, LINE, 2)
+        for col_index, value in enumerate(row):
+            left = columns[col_index]
+            right = columns[col_index + 1]
+            color = GREEN if row_index == 2 and col_index == 3 else NAVY
+            label(draw, ((left + right) // 2, top + 62), value, 25, color, row_index == 2, "mm")
 
-    rounded(draw, (260, 820, 1340, 880), "#FFF7ED", 16, ORANGE, 3)
-    label(draw, (800, 850), "待確認不是缺陷；把推測寫成事實才是", 26, ORANGE, True, "mm")
-    save(image, "day22-02-source-map.png")
-
-
-def readme_before_after():
-    image = Image.new("RGB", (WIDTH, HEIGHT), PALE)
-    draw = ImageDraw.Draw(image)
-    label(draw, (85, 55), "README 修改前後：從『看似完整』變成『可重現』", 47, NAVY, True)
-    label(draw, (85, 125), "新版沒有發明正式啟動方式，而是清楚標出證據邊界", 30, MUTED)
-
-    rounded(draw, (90, 210, 755, 770), WHITE, 28, RED, 5)
-    label(draw, (422, 270), "修改前", 36, RED, True, "mm")
-    label(draw, (145, 365), "java -jar target/daily-report.jar", 25, NAVY, True)
-    label(draw, (145, 418), "--config config/prod.yml", 25, NAVY, True)
-    rounded(draw, (135, 500, 710, 575), "#FEF2F2", 14)
-    label(draw, (422, 537), "JAR 與設定檔都不存在", 26, RED, True, "mm")
-    label(draw, (145, 650), "正式環境設定：沿用舊值", 26, MUTED)
-    label(draw, (145, 700), "來源：未標示", 26, MUTED)
-
-    rounded(draw, (845, 210, 1510, 770), WHITE, 28, GREEN, 5)
-    label(draw, (1177, 270), "修改後", 36, GREEN, True, "mm")
-    label(draw, (900, 365), "mvn clean test", 29, NAVY, True)
-    rounded(draw, (890, 420, 1465, 495), "#ECFDF5", 14)
-    label(draw, (1177, 457), "2 項測試通過", 27, GREEN, True, "mm")
-    label(draw, (900, 575), "正式啟動與部署", 26, NAVY, True)
-    rounded(draw, (890, 620, 1465, 695), "#FFF7ED", 14)
-    label(draw, (1177, 657), "待正式設定確認", 27, ORANGE, True, "mm")
-    save(image, "day22-03-readme-before-after.png")
+    rounded(draw, (260, 805, 1340, 870), "#ECFDF5", 16, GREEN, 3)
+    label(draw, (800, 837), "結論只涵蓋縮小案例，不外推成正式環境量測", 26, GREEN, True, "mm")
+    save(image, "day22-03-hypothesis-table.png")
 
 
-def command_verification():
+def minimal_experiment():
     image = Image.new("RGB", (WIDTH, HEIGHT), NAVY)
     draw = ImageDraw.Draw(image)
-    label(draw, (85, 55), "文件裡的命令，也要真的執行", 52, WHITE, True)
-    label(draw, (85, 128), "同一份驗證紀錄同時保留失敗證據與成功結果", 30, "#CBD5E1")
+    label(draw, (85, 60), "最小實驗：只改郵件等待時間", 52, WHITE, True)
+    label(draw, (85, 132), "第二份報表何時開始，是最直接的觀察值", 30, "#CBD5E1")
 
-    rounded(draw, (90, 225, 1510, 460), "#111827", 26, RED, 4)
-    label(draw, (140, 280), "過時 README", 28, RED, True)
-    label(draw, (140, 345), "> java -jar target/daily-report.jar", 27, WHITE)
-    label(draw, (140, 405), "Error: Unable to access jarfile target/daily-report.jar", 25, RED, True)
+    rounded(draw, (110, 235, 720, 680), "#111827", 30, RED, 5)
+    label(draw, (415, 300), "舊流程 · 郵件 900 ms", 33, RED, True, "mm")
+    label(draw, (175, 400), "讀資料", 26, WHITE)
+    label(draw, (175, 468), "PDF", 26, WHITE)
+    label(draw, (175, 536), "郵件", 26, WHITE)
+    label(draw, (175, 604), "第二份開始", 26, WHITE)
+    label(draw, (640, 400), "10 ms", 28, CYAN, True, "rm")
+    label(draw, (640, 468), "40 ms", 28, CYAN, True, "rm")
+    label(draw, (640, 536), "900 ms", 28, RED, True, "rm")
+    label(draw, (640, 604), "950 ms", 34, RED, True, "rm")
 
-    rounded(draw, (90, 520, 1510, 790), "#111827", 26, GREEN, 4)
-    label(draw, (140, 575), "更新後 README", 28, GREEN, True)
-    label(draw, (140, 640), "> mvn clean test", 27, WHITE)
-    label(draw, (140, 700), "Tests run: 2 · Failures: 0 · Errors: 0", 26, CYAN, True)
-    label(draw, (140, 738), "BUILD SUCCESS", 31, GREEN, True)
-    save(image, "day22-04-command-verification.png")
+    rounded(draw, (880, 235, 1490, 680), "#111827", 30, GREEN, 5)
+    label(draw, (1185, 300), "舊流程 · 郵件 0 ms", 33, GREEN, True, "mm")
+    label(draw, (945, 400), "讀資料", 26, WHITE)
+    label(draw, (945, 468), "PDF", 26, WHITE)
+    label(draw, (945, 536), "郵件", 26, WHITE)
+    label(draw, (945, 604), "第二份開始", 26, WHITE)
+    label(draw, (1410, 400), "10 ms", 28, CYAN, True, "rm")
+    label(draw, (1410, 468), "40 ms", 28, CYAN, True, "rm")
+    label(draw, (1410, 536), "0 ms", 28, GREEN, True, "rm")
+    label(draw, (1410, 604), "50 ms", 34, GREEN, True, "rm")
+
+    rounded(draw, (275, 750, 1325, 835), "#1E293B", 18, ORANGE, 3)
+    label(draw, (800, 792), "移除 900 ms 郵件等待，觀察值也少了 900 ms", 29, ORANGE, True, "mm")
+    save(image, "day22-04-minimal-experiment.png")
 
 
-def comment_comparison():
+def two_phase_experiment():
     image = Image.new("RGB", (WIDTH, HEIGHT), PALE)
     draw = ImageDraw.Draw(image)
-    label(draw, (85, 55), "我刪掉重述程式碼的註解，只保留理由與限制", 47, NAVY, True)
-    label(draw, (85, 125), "程式碼能說明做了什麼；註解補上為什麼這樣安排", 30, MUTED)
+    label(draw, (85, 55), "兩階段實驗：先準備報表，再進入寄信階段", 48, NAVY, True)
+    label(draw, (85, 125), "固定準備順序，但沒有縮短郵件總耗時", 30, MUTED)
 
-    rounded(draw, (90, 220, 755, 690), WHITE, 28, RED, 5)
-    label(draw, (422, 280), "冗餘註解", 35, RED, True, "mm")
-    label(draw, (145, 390), "// 把報表加入清單", 28, NAVY, True)
-    label(draw, (145, 455), "preparedReports.add(", 25, SLATE)
-    label(draw, (180, 505), "prepare(customer));", 25, SLATE)
-    rounded(draw, (140, 585, 705, 650), "#FEF2F2", 14)
-    label(draw, (422, 617), "實作一改，註解也容易過時", 24, RED, True, "mm")
+    steps = [
+        (95, "準備 1", BLUE),
+        (400, "準備 2", BLUE),
+        (900, "寄信 1", ORANGE),
+        (1205, "寄信 2", ORANGE),
+    ]
+    for index, (x, text, color) in enumerate(steps):
+        rounded(draw, (x, 280, x + 250, 445), WHITE, 24, color, 5)
+        label(draw, (x + 125, 362), text, 34, color, True, "mm")
+        if index < len(steps) - 1:
+            gap_color = TEAL if index == 1 else LINE
+            arrow(draw, (x + 265, 362), (x + 290, 362), gap_color, 7)
 
-    rounded(draw, (845, 220, 1510, 690), WHITE, 28, GREEN, 5)
-    label(draw, (1177, 280), "有效註解", 35, GREEN, True, "mm")
-    label(draw, (900, 378), "避免慢速寄信延後", 27, NAVY, True)
-    label(draw, (900, 430), "下一份報表的準備", 27, NAVY, True)
-    label(draw, (900, 515), "限制：沒有縮短", 27, ORANGE, True)
-    label(draw, (900, 567), "郵件總耗時", 27, ORANGE, True)
-    rounded(draw, (890, 610, 1465, 660), "#ECFDF5", 14)
-    label(draw, (1177, 635), "理由與邊界都有測試證據", 23, GREEN, True, "mm")
-
-    rounded(draw, (245, 770, 1355, 850), NAVY, 18)
-    label(draw, (800, 810), "好註解解釋設計理由；測試負責證明它沒有失真", 27, CYAN, True, "mm")
-    save(image, "day22-05-comment-comparison.png")
+    rounded(draw, (110, 560, 1490, 790), NAVY, 28)
+    label(draw, (800, 610), "mvn clean test", 34, CYAN, True, "mm")
+    label(draw, (800, 675), "Tests run: 3 · Failures: 0 · Errors: 0", 28, WHITE, True, "mm")
+    label(draw, (800, 755), "BUILD SUCCESS", 31, GREEN, True, "mm")
+    save(image, "day22-05-fix-and-regression.png")
 
 
 if __name__ == "__main__":
     cover()
-    source_map()
-    readme_before_after()
-    command_verification()
-    comment_comparison()
+    symptom_vs_root_cause()
+    hypothesis_table()
+    minimal_experiment()
+    two_phase_experiment()

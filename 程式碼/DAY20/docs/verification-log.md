@@ -1,31 +1,40 @@
-# Day 20 驗證紀錄
+# DAY19 驗證紀錄
 
-驗證日期：2026-08-09
+- 驗證日期：2026-08-09
+- 環境：Windows 11、OpenLogic JDK 17.0.10、Maven 3.8.1、JUnit 5.13.4
+- 工作目錄：`程式碼/DAY19/`
 
-## 測試命令
+## 失敗重現
 
-```shell
-mvn clean test
-```
-
-第一次執行時，Maven 需要從 Maven Central 下載 `maven-clean-plugin`，但受限環境拒絕網路連線，因此建置停在相依解析階段，JUnit 尚未啟動。確認來源後核准這次連線，再以相同命令執行。
-
-## 成功結果
+失敗版本收到 `reportZone` 後沒有使用它，直接以 `Clock` 的 UTC 時區取得本地時間。固定瞬間 `2026-08-18T23:00:00Z` 在 `Asia/Taipei` 是次日 07:00，應符合 08:00 發送前一小時的條件；失敗版本卻拿 23:00 比較。
 
 ```text
-Running com.ithome.day20.report.DailyReportFlowCharacterizationTest
-Tests run: 2, Failures: 0, Errors: 0, Skipped: 0
+mvn -Dtest=ReportProductionWindowTest test
+Tests run: 3, Failures: 1, Errors: 0, Skipped: 0
+ReportProductionWindowTest.startsOneHourBeforeSendTimeInTheReportZone
+expected: <true> but was: <false>
+BUILD FAILURE
+```
+
+## 最小修正
+
+在取得 `Clock` 時間後使用 `withZoneSameInstant(reportZone)`，保留同一瞬間並轉成訂閱設定的業務時區。沒有刪除測試、放寬斷言或加入重試。
+
+## 修正後驗證
+
+```text
+mvn -Dtest=ReportProductionWindowTest test
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 0
+BUILD SUCCESS
+
+mvn clean test
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 0
 BUILD SUCCESS
 ```
 
-## 已驗證範圍
+## 尚未證明
 
-- 臺北時間 08:00 會讀取一位訂閱者與前一日數值，接著各呼叫一次 PDF 產生器與郵件閘道測試替身。
-- 縮小案例交給郵件閘道的附件名稱為 `daily-report.pdf`，內文包含前一日筆數 1280 與成長率 12.5％。
-- 同一分鐘呼叫兩次時，兩個測試替身各被呼叫兩次，縮小案例沒有冪等防線。
-
-## 尚未驗證
-
-- 正式排程器、依賴注入與環境變數來源。
-- 正式資料庫、PDF 套件、檔案系統與郵件服務。
-- 交易、重試、併發與真正的郵件送達結果。
+- 縮小案例沒有接上正式排程器，未驗證多節點或重複觸發。
+- 縮小案例沒有接上真正的 CI；UTC 條件來自測試注入的固定 `Clock`。
+- 固定時鐘測試沒有涵蓋報表產製超過一小時時的處理規則。
+- 沒有連接 PDF 產生器、郵件伺服器或客戶設定資料庫。

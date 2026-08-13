@@ -15,28 +15,12 @@ CORAL = "#EE7B65"
 GOLD = "#E4AD43"
 SLATE = "#547084"
 PALE = "#E8EEF2"
-FONT_CANDIDATES = [
-    (Path(r"C:\Windows\Fonts\msjh.ttc"), Path(r"C:\Windows\Fonts\msjhbd.ttc")),
-    (Path("/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc"),
-     Path("/usr/share/fonts/opentype/noto/NotoSansCJK-Bold.ttc")),
-]
-
-
-def _resolve_fonts():
-    for regular, bold in FONT_CANDIDATES:
-        if regular.exists() and bold.exists():
-            return regular, bold
-    raise FileNotFoundError("No CJK font found; install Microsoft JhengHei or Noto Sans CJK.")
-
-
-FONT, FONT_BOLD = _resolve_fonts()
+FONT = Path(r"C:\Windows\Fonts\msjh.ttc")
+FONT_BOLD = Path(r"C:\Windows\Fonts\msjhbd.ttc")
 
 
 def font(size: int, bold: bool = False):
-    path = FONT_BOLD if bold else FONT
-    if path.suffix.lower() == ".ttc" and "NotoSansCJK" in path.name:
-        return ImageFont.truetype(str(path), size, index=3)  # index 3 == Traditional Chinese face
-    return ImageFont.truetype(str(path), size)
+    return ImageFont.truetype(str(FONT_BOLD if bold else FONT), size)
 
 
 def canvas():
@@ -113,97 +97,118 @@ def cover():
     draw.rectangle((0, 0, W, H), fill=NAVY)
     draw.ellipse((1090, -210, 1760, 460), fill="#173D57")
     draw.ellipse((-180, 610, 410, 1200), fill="#163C50")
-    draw_text(draw, (100, 92), "DAY 26｜團隊、流程與治理", 27, "#77D2C4", True)
-    draw_text(draw, (100, 205), "導入 AI 開發工具的治理課題", 62, WHITE, True)
-    draw_text(draw, (104, 307), "個人試用順手，不等於組織可以直接開放", 32, "#DCEBE8")
+    draw_text(draw, (100, 92), "DAY 26｜從 0 到 1 的 AI 可驗證工作流試煉", 27, "#77D2C4", True)
+    draw_text(draw, (100, 205), "團隊 Prompt 庫與 SOP", 70, WHITE, True)
+    draw_text(draw, (104, 307), "能測試、能否決、能維護，才是團隊資產", 32, "#DCEBE8")
 
     stages = [
-        ("個人試用", "順手、無紀錄", CORAL),
-        ("事件發生", "真實資料被誤用", GOLD),
-        ("盤點用途", "風險分級", TEAL),
-        ("組織治理", "權限＋稽核＋覆核", TEAL),
+        ("聊天紀錄", "個人經驗", CORAL),
+        ("版本化 Prompt", "輸入與停止條件", TEAL),
+        ("基準案例", "預期與失效", GOLD),
+        ("複核 SOP", "角色與升級", TEAL),
     ]
     x_positions = [105, 465, 825, 1185]
     y = 500
     for index, ((title, detail, color), x) in enumerate(zip(stages, x_positions)):
         box(draw, (x, y, x + 270, y + 170), fill="#173D57", outline=color, width=4, radius=24)
         draw_text(draw, (x + 135, y + 58), title, 28, WHITE, True, anchor="mm")
-        draw_text(draw, (x + 135, y + 116), detail, 21, "#C8D8DF", anchor="mm", max_width=230, align="center")
+        draw_text(draw, (x + 135, y + 116), detail, 22, "#C8D8DF", anchor="mm")
         if index < len(stages) - 1:
             arrow(draw, (x + 280, y + 85), (x + 345, y + 85), "#91A8B6", 5)
-    draw_text(draw, (100, 805), "治理邊界擋不住的，就交給程式碼擋", 25, "#AFC5CE")
+    draw_text(draw, (100, 805), "把一次成功，變成下一位能重跑的流程", 25, "#AFC5CE")
     save(image, "day26-01-cover.png")
 
 
-def inventory_table():
+def chat_to_asset():
     image, draw = canvas()
-    header(draw, "先把用途攤開", "使用案例盤點：誰、碰什麼、拿到什麼權限")
-    labels = [(80, 300, 300, "盤點項目"), (320, 300, 900, "本案例內容"),
-              (920, 300, 1520, "主要風險")]
+    header(draw, "從個人技巧到團隊資產", "提示詞離開聊天紀錄，才開始累積")
+    box(draw, (80, 300, 650, 730), fill="#FBE8E4", outline="#F2B7AA", width=3)
+    draw_text(draw, (120, 340), "個人聊天紀錄", 32, CORAL, True)
+    chat_items = ["不知道是哪一版", "來源與限制散落", "沒有驗收基準", "換人就重新試"]
+    y = 425
+    for item in chat_items:
+        draw.ellipse((125, y + 5, 147, y + 27), fill=CORAL)
+        draw_text(draw, (170, y), item, 27, INK)
+        y += 70
+
+    arrow(draw, (700, 515), (865, 515), TEAL, 8)
+    draw_text(draw, (782, 465), "補齊契約", 23, TEAL, True, anchor="mm")
+
+    box(draw, (915, 300, 1520, 730), fill=WHITE, outline="#B6DAD3", width=3)
+    draw_text(draw, (955, 340), "團隊提示詞資產", 32, TEAL, True)
+    asset_items = ["版本與負責人", "必要輸入與禁止事項", "固定輸出與停止條件", "測試、失效與變更紀錄"]
+    y = 425
+    for item in asset_items:
+        draw.ellipse((960, y + 5, 982, y + 27), fill=TEAL)
+        draw_text(draw, (1005, y), item, 27, INK)
+        y += 70
+    footer(draw, 2)
+    save(image, "day26-02-chat-to-asset.png")
+
+
+def prompt_contract():
+    image, draw = canvas()
+    header(draw, "Prompt 契約", "不是一段神奇句子，而是一份可驗收工作說明")
+    box(draw, (80, 290, 1520, 755), fill=WHITE, outline="#CAD7DD", width=3)
+    draw_text(draw, (125, 330), "draft-from-sources · v0.1.0", 30, NAVY, True)
+    cards = [
+        ("必要輸入", "目的｜允許等級\n來源｜分級表｜沿用規則", TEAL),
+        ("停止條件", "規則待確認\n來源超出權限", CORAL),
+        ("固定輸出", "草稿標示｜來源對照\n沿用檢查｜待確認", GOLD),
+        ("驗收責任", "人工核對來源\n另用一致算法重算", NAVY),
+    ]
+    x_positions = [120, 480, 840, 1200]
+    for (title, detail, color), x in zip(cards, x_positions):
+        box(draw, (x, 410, x + 280, 650), fill="#F7FAFA", outline=color, width=4, radius=24)
+        draw_text(draw, (x + 140, 470), title, 28, color, True, anchor="mm")
+        draw.line((x + 38, 515, x + 242, 515), fill="#D6E0E4", width=2)
+        draw_text(draw, (x + 140, 570), detail, 22, INK, anchor="mm", align="center", spacing=18)
+    box(draw, (210, 690, 1390, 735), fill=MINT, radius=18)
+    draw_text(draw, (800, 713), "沒有核定規則時，正確輸出是停止，不是猜一個答案", 24, TEAL, True, anchor="mm")
+    footer(draw, 3)
+    save(image, "day26-03-prompt-contract.png")
+
+
+def test_matrix():
+    image, draw = canvas()
+    header(draw, "合成案例人工走查", "沒有呼叫正式模型，只檢查判斷分支與預期結果")
+    labels = [(80, 300, 220, "案例"), (240, 300, 790, "檢查重點"),
+              (810, 300, 1270, "預期行為"), (1290, 300, 1520, "人工走查")]
     for x1, y1, x2, title in labels:
         box(draw, (x1, y1 - 45, x2, y1), fill=NAVY, radius=12)
         draw_text(draw, ((x1 + x2) / 2, y1 - 22), title, 22, WHITE, True, anchor="mm")
     rows = [
-        ("使用目的", "補 OCR／ETL 前處理測試、調整草稿生成邏輯", "誤把測試範圍當成生產資料"),
-        ("輸入資料", "測試資料是否使用真實客戶掃描檔、含個資", "個資或機密文件外流"),
-        ("工具權限", "Codex 可讀寫目錄、能否連外部網路", "誤讀客戶資料庫或機密設定"),
-        ("輸出用途", "修改是否先開分支、經 Code Review 才合併", "未經審查的變更混入正式環境"),
-        ("外部依賴", "Codex 執行環境、OCR／ETL 套件來源", "供應商合規責任"),
+        ("P-01", "兩項主張、兩份來源", "各自連回來源", "符合預期"),
+        ("P-02", "本案例的通用術語", "不列為逐字引用", "符合預期"),
+        ("P-03", "沿用規則待確認", "停止生成正文", "符合預期"),
+        ("P-04", "示範分級表＋來源", "依示範規則停止", "符合預期"),
     ]
     y = 322
-    row_height = 96
-    coords = [(80, 300), (320, 900), (920, 1520)]
+    row_height = 112
+    coords = [(80, 220), (240, 790), (810, 1270), (1290, 1520)]
     for index, row in enumerate(rows):
         fill = WHITE if index % 2 == 0 else "#EDF3F3"
         for column, ((x1, x2), value) in enumerate(zip(coords, row)):
             box(draw, (x1, y, x2, y + row_height - 12), fill=fill, outline="#D4DEE2", width=2, radius=12)
-            color = TEAL if column == 0 else (CORAL if column == 2 else INK)
-            draw_text(draw, (x1 + 24, y + (row_height - 12) / 2), value, 21, color, column == 0,
-                      max_width=x2 - x1 - 48, anchor="lm")
+            color = TEAL if column in (0, 3) else INK
+            draw_text(draw, ((x1 + x2) / 2, y + 49), value, 22, color, column in (0, 3),
+                      max_width=x2 - x1 - 28, anchor="mm", align="center")
         y += row_height
-    box(draw, (80, 800, 1520, 838), fill=MINT, radius=16)
-    draw_text(draw, (800, 819), "風險越高，核准與覆核就該越嚴，不是所有用途一視同仁", 22, TEAL, True, anchor="mm")
-    footer(draw, 2)
-    save(image, "day26-02-inventory.png")
+    box(draw, (80, 786, 1520, 824), fill="#FBE8E4", radius=16)
+    draw_text(draw, (800, 805), "走查結果不是模型測試；正式分級規則仍待組織核定", 22, CORAL, True, anchor="mm")
+    footer(draw, 4)
+    save(image, "day26-04-test-matrix.png")
 
 
-def governance_hexagon():
+def sop_flow():
     image, draw = canvas()
-    header(draw, "治理骨架", "六個面向，缺一不可")
-    items = [
-        ("權限與分級", "無角色對應分級清單", CORAL),
-        ("稽核紀錄", "Codex 操作無對應紀錄", GOLD),
-        ("人工覆核", "分級邏輯異動未加嚴", TEAL),
-        ("事件通報", "無標準表單與時限", CORAL),
-        ("供應商變更", "條款更新未重新評估", GOLD),
-        ("效果改善", "沒人追蹤執行率", TEAL),
-    ]
-    cols = 3
-    cell_w, cell_h = 460, 190
-    gap_x, gap_y = 40, 40
-    start_x, start_y = 100, 300
-    for index, (title, gap, color) in enumerate(items):
-        col = index % cols
-        row = index // cols
-        x = start_x + col * (cell_w + gap_x)
-        y = start_y + row * (cell_h + gap_y)
-        box(draw, (x, y, x + cell_w, y + cell_h), fill=WHITE, outline=color, width=4, radius=22)
-        draw_text(draw, (x + 30, y + 34), title, 30, NAVY, True)
-        draw.line((x + 30, y + 82, x + cell_w - 30, y + 82), fill="#D9E2E6", width=2)
-        draw_text(draw, (x + 30, y + 104), "缺口：" + gap, 22, SLATE, max_width=cell_w - 60, spacing=10)
-    footer(draw, 3)
-    save(image, "day26-03-governance-hexagon.png")
-
-
-def dev_flow():
-    image, draw = canvas()
-    header(draw, "把治理放進開發流程", "每個節點都有一個能被追問的答案")
+    header(draw, "Prompt 接入複核 SOP", "每個角色知道何時接手，也知道何時必須停止")
     stages = [
-        ("1", "任務申請", "使用目的＋\n資料分級", TEAL),
-        ("2", "存取檢查", "AccessGovernance\nGuard 核准／拒絕", CORAL),
-        ("3", "Codex 執行", "讀寫範圍受限\n於核准結果", GOLD),
-        ("4", "Code Review", "分級異動\n雙人覆核", TEAL),
-        ("5", "稽核紀錄", "核准與拒絕\n都留存", NAVY),
+        ("1", "申請人", "核准來源\n與任務條件", TEAL),
+        ("2", "執行人", "鎖定版本\n檢查輸入", GOLD),
+        ("3", "AI 生成", "草稿＋\n來源對照", CORAL),
+        ("4", "複核人", "來源／沿用／\n敏感資料", TEAL),
+        ("5", "維護人", "失敗分類\n新版重測", NAVY),
     ]
     x_positions = [70, 375, 680, 985, 1290]
     y = 345
@@ -213,44 +218,20 @@ def dev_flow():
         box(draw, (x, y, x + 240, y + 238), fill=WHITE, outline=color, width=4, radius=24)
         draw.ellipse((x + 18, y + 18, x + 68, y + 68), fill=color)
         draw_text(draw, (x + 43, y + 43), number, 23, WHITE, True, anchor="mm")
-        draw_text(draw, (x + 120, y + 96), role, 25, NAVY, True, anchor="mm")
+        draw_text(draw, (x + 120, y + 96), role, 27, NAVY, True, anchor="mm")
         draw.line((x + 35, y + 132, x + 205, y + 132), fill="#D5DFE3", width=2)
-        draw_text(draw, (x + 120, y + 181), output, 21, SLATE, anchor="mm", align="center", spacing=13)
+        draw_text(draw, (x + 120, y + 181), output, 22, SLATE, anchor="mm", align="center", spacing=15)
     box(draw, (180, 680, 1420, 770), fill=NAVY, radius=24)
-    draw_text(draw, (800, 711), "被拒絕的請求不是消失，是變成一筆可查的稽核事件", 26, WHITE, True, anchor="mm")
-    draw_text(draw, (800, 751), "角色不符、用途空白或分級異動 → 停止並留存原因", 21, "#C7D8DF", anchor="mm")
-    footer(draw, 4)
-    save(image, "day26-04-dev-flow.png")
-
-
-def copyright_layers():
-    image, draw = canvas()
-    header(draw, "引用邊界", "素材屬於哪一層，決定能不能引用原文")
-    layers = [
-        ("第一層", "ISO／CNS 標準", "只能用自己的話說明\n逐字引用一律視為紅燈", CORAL, "#FBE8E4"),
-        ("第二層", "法律條文", "可自由引用、全文轉錄\n建議註明條號與出處", GOLD, "#FBF1DC"),
-        ("第三層", "開放／公開授權", "依授權引用、改作\n標註來源與版本", TEAL, "#E1F1EC"),
-    ]
-    x = 110
-    width = 430
-    y = 300
-    for title, name, rule, color, bg in layers:
-        box(draw, (x, y, x + width, y + 430), fill=bg, outline=color, width=4, radius=26)
-        draw_text(draw, (x + width / 2, y + 60), title, 26, color, True, anchor="mm")
-        draw_text(draw, (x + width / 2, y + 116), name, 32, NAVY, True, anchor="mm")
-        draw.line((x + 40, y + 160, x + width - 40, y + 160), fill="#D9E2E6", width=2)
-        draw_text(draw, (x + width / 2, y + 250), rule, 23, INK, anchor="mm", align="center", spacing=16)
-        x += width + 45
-    box(draw, (110, 760, 1490, 812), fill=NAVY, radius=20)
-    draw_text(draw, (800, 786), "本篇引用 ISO/IEC 42001 一律改寫；法律與政府框架標明出處", 23, WHITE, True, anchor="mm")
+    draw_text(draw, (800, 711), "失敗不刪紀錄：保留原因、輸入識別碼與 Prompt 版本", 27, WHITE, True, anchor="mm")
+    draw_text(draw, (800, 751), "跨客戶資料、敏感資訊或規則未核定 → 停止並升級", 22, "#C7D8DF", anchor="mm")
     footer(draw, 5)
-    save(image, "day26-05-copyright-layers.png")
+    save(image, "day26-05-sop-flow.png")
 
 
 if __name__ == "__main__":
     cover()
-    inventory_table()
-    governance_hexagon()
-    dev_flow()
-    copyright_layers()
+    chat_to_asset()
+    prompt_contract()
+    test_matrix()
+    sop_flow()
     print("Generated 5 Day 26 images at 1600x900.")

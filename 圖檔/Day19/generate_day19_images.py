@@ -50,127 +50,126 @@ def cover():
     draw = ImageDraw.Draw(image)
     draw.ellipse((1230, -180, 1770, 360), fill="#1E3A8A")
     draw.ellipse((-250, 650, 220, 1120), fill="#134E4A")
-    label(draw, (105, 90), "DAY 19 · 進階整合工作流", 38, "#5EEAD4", True)
-    label(draw, (105, 210), "自動化測試維運", 72, WHITE, True)
-    label(draw, (105, 315), "先證明根因，再處理紅燈", 47, "#CBD5E1", True)
+    label(draw, (105, 90), "DAY 19 · 前人砍樹後人曝曬", 38, "#5EEAD4", True)
+    label(draw, (105, 210), "大型重構任務拆解", 72, WHITE, True)
+    label(draw, (105, 315), "讓每次改動都能停、能測、能退", 45, "#CBD5E1", True)
 
     cards = [
-        (100, "紅燈", "固定重現", RED),
-        (485, "假設", "依序驗證", ORANGE),
-        (870, "修正", "最小差異", BLUE),
-        (1255, "綠燈", "留下證據", GREEN),
+        (100, "範圍歸零", "main 零差異", BLUE),
+        (485, "行為留證", "08:00／07:59", ORANGE),
+        (870, "逐段放行", "局部／完整測試", GREEN),
+        (1255, "節點可退", "單獨提交", PURPLE),
     ]
     for x, title, note, color in cards:
         rounded(draw, (x, 570, x + 300, 735), "#1E293B", 24, color, 4)
-        label(draw, (x + 150, 620), title, 31, color, True, "mm")
+        label(draw, (x + 150, 620), title, 30, color, True, "mm")
         label(draw, (x + 150, 680), note, 25, WHITE, False, "mm")
     save(image, "day19-01-cover.png")
 
 
-def failure_classification():
+def coupling_scope():
     image = Image.new("RGB", (WIDTH, HEIGHT), PALE)
     draw = ImageDraw.Draw(image)
-    label(draw, (85, 60), "CI 紅燈先分五類，再決定修哪裡", 53, NAVY, True)
-    label(draw, (85, 132), "錯誤分類，比立刻修改斷言更重要", 31, MUTED)
+    label(draw, (85, 60), "runIfScheduled() 集中協調四段流程", 52, NAVY, True)
+    label(draw, (85, 132), "T2 與 T3 都會修改這個方法，先後關係不能省", 31, MUTED)
 
-    cards = [
-        (65, "產品缺陷", "固定輸入仍失敗", RED),
-        (370, "測試缺陷", "斷言不符規格", ORANGE),
-        (675, "環境差異", "版本／時區不同", BLUE),
-        (980, "相依問題", "JUnit 尚未啟動", PURPLE),
-        (1285, "偶發失敗", "結果無法重現", TEAL),
+    rounded(draw, (105, 230, 1495, 690), WHITE, 30, RED, 5)
+    label(draw, (800, 290), "DailyReportService.runIfScheduled()", 39, RED, True, "mm")
+    items = [
+        (170, "08:00 觸發", "時間判斷", BLUE),
+        (505, "組合數值", "報表內文", TEAL),
+        (840, "呼叫 PDF", "取得附件", ORANGE),
+        (1175, "交付附件", "郵件元件", PURPLE),
     ]
-    for x, title, note, color in cards:
-        rounded(draw, (x, 265, x + 250, 610), WHITE, 24, color, 5)
-        draw.ellipse((x + 85, 315, x + 165, 395), fill=color)
-        label(draw, (x + 125, 355), "?", 38, WHITE, True, "mm")
-        label(draw, (x + 125, 465), title, 29, NAVY, True, "mm")
-        label(draw, (x + 125, 535), note, 22, SLATE, False, "mm")
-
-    rounded(draw, (255, 730, 1345, 830), NAVY, 20)
-    label(draw, (800, 780), "禁止捷徑：刪測試／放寬斷言／無條件重試", 29, CYAN, True, "mm")
-    save(image, "day19-02-failure-classification.png")
+    for x, title, note, color in items:
+        rounded(draw, (x, 390, x + 255, 585), "#F1F5F9", 22, color, 4)
+        label(draw, (x + 127, 450), title, 29, color, True, "mm")
+        label(draw, (x + 127, 515), note, 25, SLATE, False, "mm")
+    rounded(draw, (310, 755, 1290, 835), NAVY, 18)
+    label(draw, (800, 795), "先列出可觀察證據，再決定哪一段先移出", 29, CYAN, True, "mm")
+    save(image, "day19-02-coupling-scope.png")
 
 
-def diagnosis_sequence():
+def task_map():
     image = Image.new("RGB", (WIDTH, HEIGHT), PALE)
     draw = ImageDraw.Draw(image)
-    label(draw, (85, 60), "Codex 診斷順序：先取證，後修改", 54, NAVY, True)
-    label(draw, (85, 132), "把修改權暫時拿掉，避免用綠燈掩蓋根因", 31, MUTED)
+    label(draw, (85, 60), "重構任務地圖：每一步都有驗收與停手點", 53, NAVY, True)
+    label(draw, (85, 132), "本例共用同一個熱點類別，採循序修改", 31, MUTED)
 
-    steps = [
-        (70, "1", "讀失敗摘要", "expected true", RED),
-        (455, "2", "建立假設", "時區／測試／相依", ORANGE),
-        (840, "3", "固定重現", "UTC 23:00", BLUE),
-        (1225, "4", "證據定位", "reportZone 未用", GREEN),
+    tasks = [
+        (70, "T1", "留下證據", "2 項測試", BLUE),
+        (455, "T2", "抽出排程", "介面不變", ORANGE),
+        (840, "T3", "拆內容／傳送", "兩段可測", TEAL),
+        (1225, "T4", "格式路由", "先接 PDF", PURPLE),
     ]
-    for index, (x, code, title, note, color) in enumerate(steps):
-        rounded(draw, (x, 275, x + 305, 625), WHITE, 26, color, 5)
-        rounded(draw, (x + 105, 315, x + 200, 390), color, 18)
-        label(draw, (x + 152, 352), code, 31, WHITE, True, "mm")
-        label(draw, (x + 152, 465), title, 29, NAVY, True, "mm")
-        label(draw, (x + 152, 535), note, 23, SLATE, False, "mm")
-        if index < len(steps) - 1:
+    for index, (x, code, title, check, color) in enumerate(tasks):
+        rounded(draw, (x, 280, x + 305, 620), WHITE, 26, color, 5)
+        rounded(draw, (x + 95, 320, x + 210, 390), color, 18)
+        label(draw, (x + 152, 355), code, 30, WHITE, True, "mm")
+        label(draw, (x + 152, 455), title, 30, NAVY, True, "mm")
+        label(draw, (x + 152, 530), check, 25, SLATE, False, "mm")
+        if index < len(tasks) - 1:
             arrow(draw, (x + 315, 450), (x + 370, 450), LINE, 7)
-
-    rounded(draw, (310, 735, 1290, 835), NAVY, 20)
-    label(draw, (800, 785), "根因：忽略 reportZone，直接使用 Clock 時區", 29, CYAN, True, "mm")
-    save(image, "day19-03-diagnosis-sequence.png")
-
-
-def timezone_regression():
-    image = Image.new("RGB", (WIDTH, HEIGHT), PALE)
-    draw = ImageDraw.Draw(image)
-    label(draw, (85, 60), "同一瞬間，先轉成業務時區再判斷", 52, NAVY, True)
-    label(draw, (85, 132), "2026-08-18T23:00:00Z ＝ 臺北次日 07:00", 31, MUTED)
-
-    rounded(draw, (100, 235, 735, 650), WHITE, 28, RED, 5)
-    label(draw, (417, 300), "修正前", 37, RED, True, "mm")
-    label(draw, (417, 400), "UTC 23:00", 49, NAVY, True, "mm")
-    label(draw, (417, 485), "直接與 07:00 比較", 28, SLATE, False, "mm")
-    rounded(draw, (250, 550, 585, 610), "#FEE2E2", 16)
-    label(draw, (417, 580), "expected true → false", 23, RED, True, "mm")
-
-    arrow(draw, (760, 445), (835, 445), BLUE, 9)
-
-    rounded(draw, (865, 235, 1500, 650), WHITE, 28, GREEN, 5)
-    label(draw, (1182, 300), "修正後", 37, GREEN, True, "mm")
-    label(draw, (1182, 400), "Asia/Taipei 07:00", 45, NAVY, True, "mm")
-    label(draw, (1182, 485), "同一瞬間轉換時區", 28, SLATE, False, "mm")
-    rounded(draw, (1015, 550, 1350, 610), "#DCFCE7", 16)
-    label(draw, (1182, 580), "準點 true／前後一分 false", 23, GREEN, True, "mm")
-
-    rounded(draw, (275, 745, 1325, 835), NAVY, 18)
-    label(draw, (800, 790), "三條邊界：06:59 false／07:00 true／07:01 false", 27, CYAN, True, "mm")
-    save(image, "day19-04-timezone-regression.png")
+    rounded(draw, (235, 730, 1365, 825), NAVY, 20)
+    label(draw, (800, 775), "不是每張任務圖都需要平行；先避開同檔衝突", 28, CYAN, True, "mm")
+    save(image, "day19-03-task-map.png")
 
 
-def ci_verification():
+def first_step_diff():
     image = Image.new("RGB", (WIDTH, HEIGHT), NAVY)
     draw = ImageDraw.Draw(image)
-    label(draw, (85, 60), "三段證據，不把單次綠燈當完成", 52, WHITE, True)
-    label(draw, (85, 132), "先保留失敗，再核對局部測試與乾淨建置", 31, "#CBD5E1")
+    label(draw, (85, 60), "T1 邊界：main 雜湊不變，只新增測試證據", 50, WHITE, True)
+    label(draw, (85, 132), "任務邊界直接寫進 Codex 提示詞", 31, "#CBD5E1")
 
-    checks = [
-        (100, "修正前", "1 failure", RED, "FAIL"),
-        (575, "局部測試", "3 passed", BLUE, "OK"),
-        (1050, "mvn clean test", "BUILD SUCCESS", GREEN, "OK"),
+    rounded(draw, (100, 230, 750, 680), "#111827", 28, GREEN, 5)
+    label(draw, (425, 300), "允許", 38, GREEN, True, "mm")
+    allowed = ["新增特徵測試", "記錄測試結果", "回報殘留風險"]
+    y = 405
+    for item in allowed:
+        draw.ellipse((175, y - 10, 197, y + 12), fill=GREEN)
+        label(draw, (235, y), item, 30, WHITE, False, "lm")
+        y += 90
+
+    rounded(draw, (850, 230, 1500, 680), "#111827", 28, RED, 5)
+    label(draw, (1175, 300), "禁止", 38, RED, True, "mm")
+    denied = ["修改 src/main", "新增 Word／Excel", "順手搬檔或改名"]
+    y = 405
+    for item in denied:
+        draw.ellipse((925, y - 10, 947, y + 12), fill=RED)
+        label(draw, (985, y), item, 30, WHITE, False, "lm")
+        y += 90
+
+    rounded(draw, (390, 755, 1210, 835), "#1E293B", 18, CYAN, 3)
+    label(draw, (800, 795), "程式差異：測試＋1 檔；正式程式 0 檔", 28, CYAN, True, "mm")
+    save(image, "day19-04-first-step-diff.png")
+
+
+def verification_nodes():
+    image = Image.new("RGB", (WIDTH, HEIGHT), PALE)
+    draw = ImageDraw.Draw(image)
+    label(draw, (85, 60), "測試通過只是其中一關，範圍也要核對", 54, NAVY, True)
+    label(draw, (85, 132), "每個完成節點，都要能說明、審查與回復", 31, MUTED)
+
+    points = [
+        (170, "呼叫證據", "08:00／07:59", BLUE),
+        (525, "局部測試", "2 項通過", GREEN),
+        (880, "完整測試", "BUILD SUCCESS", TEAL),
+        (1235, "範圍核對", "SHA-256 相同", PURPLE),
     ]
-    for x, title, note, color, status in checks:
-        rounded(draw, (x, 280, x + 400, 640), "#111827", 28, color, 5)
-        draw.ellipse((x + 145, 330, x + 255, 440), fill=color)
-        label(draw, (x + 200, 385), status, 38, WHITE, True, "mm")
-        label(draw, (x + 200, 510), title, 30, WHITE, True, "mm")
-        label(draw, (x + 200, 575), note, 24, color, True, "mm")
-
-    rounded(draw, (270, 740, 1330, 835), "#1E293B", 18, CYAN, 3)
-    label(draw, (800, 787), "尚未證明：正式排程／產製耗時／郵件送達", 28, CYAN, True, "mm")
-    save(image, "day19-05-ci-verification.png")
+    draw.line((200, 465, 1385, 465), fill=LINE, width=10)
+    for x, title, note, color in points:
+        draw.ellipse((x, 390, x + 150, 540), fill=color)
+        label(draw, (x + 75, 465), "通過", 27, WHITE, True, "mm")
+        label(draw, (x + 75, 605), title, 28, NAVY, True, "mm")
+        label(draw, (x + 75, 660), note, 24, SLATE, False, "mm")
+    rounded(draw, (280, 760, 1320, 840), NAVY, 18)
+    label(draw, (800, 800), "建立 T1 完成節點後，T2 才取得前置條件", 28, CYAN, True, "mm")
+    save(image, "day19-05-verification-nodes.png")
 
 
 if __name__ == "__main__":
     cover()
-    failure_classification()
-    diagnosis_sequence()
-    timezone_regression()
-    ci_verification()
+    coupling_scope()
+    task_map()
+    first_step_diff()
+    verification_nodes()

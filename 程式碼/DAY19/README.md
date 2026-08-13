@@ -1,17 +1,18 @@
-# DAY19 自動化測試維運案例
+# DAY18 大型重構任務拆解範例
 
-這個縮小案例在本機注入 UTC 的固定時鐘，重現日報服務忽略訂閱時區的缺陷，並用 JUnit 5 驗證前一分鐘、準點與後一分鐘三條邊界。
+這個 Java 17／Maven 範例保留一個刻意集中協調多段流程的 `DailyReportService`，示範大型重構的第一小步：只新增特徵測試，不修改正式程式。
+
+## 目錄
+
+- `task-map.md`：四個可驗證步驟與相依順序。
+- `first-step-task.md`：交給 Codex 的第一小步任務契約。
+- `src/main/`：時間判斷、內容組合、PDF 與郵件元件協調集中在同一方法的既有範例。
+- `src/test/`：記錄 08:00 與 07:59 兩條呼叫路徑的 JUnit 5 特徵測試。
+- `docs/verification-log.md`：測試、雜湊與範圍審查紀錄。
 
 ## 執行
 
-```bash
-mvn -Dtest=ReportProductionWindowTest test
+```text
+mvn -Dtest=DailyReportServiceCharacterizationTest test
 mvn clean test
 ```
-
-## 驗收
-
-- `2026-08-18T23:00:00Z` 是臺北時間次日 07:00，08:00 發送的報表應開始製作。
-- 提早一分鐘的 `2026-08-18T22:59:00Z` 不應開始製作。
-- 延後一分鐘的 `2026-08-18T23:01:00Z` 不應再次開始製作。
-- 指定測試與乾淨完整測試均為 3 項通過。

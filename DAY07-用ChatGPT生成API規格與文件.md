@@ -18,13 +18,13 @@ OpenAPI 規格（OpenAPI Specification）用與程式語言無關的格式描述
 | 身分驗證 | 不在本文示範範圍，正式介面不可直接省略 |
 | 規格版本 | OpenAPI `3.1.0` |
 
-這個範圍刻意很小。Day 05 已建立 `jobId` 與初始狀態，本文只補可追蹤的下一步；進度百分比、完成資料位置、失敗原因與輪詢間隔都沒有可靠決策，先不塞進契約。
+這個範圍刻意很小。Day 06 已建立 `jobId` 與初始狀態，本文只補可追蹤的下一步；進度百分比、完成資料位置、失敗原因與輪詢間隔都沒有可靠決策，先不塞進契約。
 
-![從 Day 05 的 jobId 接續查詢契約](./%E5%9C%96%E6%AA%94/Day07/day07-02-contract-flow.png)
+![從 Day 06 的 jobId 接續查詢契約](./%E5%9C%96%E6%AA%94/Day07/day07-02-contract-flow.png)
 
 ## 提示詞改用白名單，不讓模型補缺口
 
-Day 06 的六欄方法在這裡仍然適用，但我把限制寫得更像機器可檢查的規則。[完整提示詞](./%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY07/contract-prompt.txt) 用 `DECISIONS` 約束業務契約；OpenAPI 必填的標題與版本，以及本文採用的描述文字，則取自 `DOCUMENT_TEMPLATE`：
+延續一貫做法，我把限制寫得更像機器可檢查的規則。[完整提示詞](./%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY07/contract-prompt.txt) 用 `DECISIONS` 約束業務契約；OpenAPI 必填的標題與版本，以及本文採用的描述文字，則取自 `DOCUMENT_TEMPLATE`：
 
 ```text
 不得擴充 HTTP 回應碼、狀態或資料欄位。
@@ -80,7 +80,7 @@ var result = client.find(baseUri, jobId);
 
 ## 小結：契約讓非同步流程接得起來
 
-這次我從 Day 05 已有的 `jobId` 出發，限定 ChatGPT 只能整理決策白名單，再用 OpenAPI、控制器與測試建立對映；Day 08 會沿用這種「先劃範圍、再找證據」的做法，練習學習陌生的排程技術。
+這次我從 Day 06 已有的 `jobId` 出發，限定 ChatGPT 只能整理決策白名單，再用 OpenAPI、控制器與測試建立對映；Day 08 會沿用這種「先劃範圍、再找證據」的做法，練習學習陌生的排程技術。
 
 ## 參考資料
 

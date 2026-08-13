@@ -1,29 +1,28 @@
-# DAY18 驗證紀錄
+# DAY17 驗證紀錄
 
 - 驗證日期：2026-08-09
-- 環境：Windows 11、OpenLogic JDK 17.0.10、Maven 3.8.1、JUnit 5.13.4
-- 工作目錄：`程式碼/DAY18/`
+- 環境：Windows、Java 17、Maven、JUnit 5
+- 工作目錄：`程式碼/DAY17/`
 
-## 第一小步範圍
-
-- 正式程式保留時間判斷、報表內容組合、PDF 與郵件元件協調集中在同一方法的現況。
-- 本輪只新增 `DailyReportServiceCharacterizationTest` 與說明文件。
-- 未實作日、週、雙週、月頻率，未新增 Word、Excel，也未處理 PDF 套件安全通知。
-
-## 測試執行
-
-第一次執行時，Maven 在受限環境解析建置相依項目時遭到阻擋，因此在 JUnit 啟動前停止。確認來源為 Maven Central 並核准本次連線後，局部測試通過。補上明確呼叫次數斷言後於 2026-08-09 10:12:20 重跑，摘要如下：
-
-```text
-mvn -Dtest=DailyReportServiceCharacterizationTest test
-Tests run: 2, Failures: 0, Errors: 0, Skipped: 0
-BUILD SUCCESS
-```
-
-接著於 2026-08-09 10:12:32 執行完整測試：
+## 第一次執行
 
 ```text
 mvn clean test
+```
+
+沙箱內執行時，Maven 需要下載 `maven-clean-plugin`，但網路權限未開放，因此建置在 JUnit 執行前停止。這次結果不能算測試失敗，也不能算驗收通過。
+
+## 核准連線後重跑
+
+確認下載來源為 Maven Central，僅核准本次測試所需連線後再次執行：
+
+```text
+mvn clean test
+```
+
+結果摘要：
+
+```text
 Tests run: 2, Failures: 0, Errors: 0, Skipped: 0
 BUILD SUCCESS
 ```
@@ -32,13 +31,15 @@ BUILD SUCCESS
 
 | 驗收條件 | 證據 | 結果 |
 |---|---|---|
-| 08:00 各呼叫 PDF 與郵件元件一次，並交付附件 | `passesCurrentDailyAttachmentToMailGatewayAtEightOClock` 的 `callCount` 與內容斷言 | 通過 |
-| 郵件元件收到前一日筆數、成長率與附件名稱 | 同一測試逐項比對 | 通過 |
-| 07:59 不呼叫 PDF 或郵件元件 | `doesNotCallPdfOrMailGatewayBeforeEightOClock` 的零次呼叫斷言 | 通過 |
-| 正式程式未變更 | 執行前後 SHA-256 均為 `9B432193F90DA8428E7137C5DE5B2133B0F4525D108310E5E39AAFF9F604E6CB` | 通過 |
+| 08:00 計算為同日 07:00 | `startsProductionOneHourBeforeDeliveryInTheSameTimezone` | 通過 |
+| 保留 `Asia/Taipei` 時區 | 同一測試比對 `ZoneId` | 通過 |
+| 空值輸入明確拒絕 | `rejectsMissingDeliveryTime` | 通過 |
+| Maven 測試全數通過 | `mvn clean test` 輸出 | 2 項通過 |
 
-## 尚未證明
+## 人工範圍審查
 
-- 特徵測試只記錄這個縮小案例的現況，不代表正式環境的排程、PDF 套件或郵件伺服器已完成整合驗證。
-- 測試通過不代表既有行為一定符合新需求；它只提供後續純重構的比較基準。
-- 負載增加後的延遲寄出問題尚未定位，留待 Day 19 的測試與持續整合流程處理。
+- 新增 `ReportProductionWindow` 與對應測試。
+- 未修改既有排程、寄信、PDF、資料庫或公開 API。
+- 未實作日、週、雙週、月頻率與 Word、Excel 格式。
+- 尚未驗證與既有系統整合、實際寄信及大量客戶負載；這些均不在本次任務契約範圍內。
+- 本例只驗證 `Asia/Taipei`。若未來支援會切換日光節約時間的時區，須先確認「前一小時」是實際經過六十分鐘或當地鐘面時間，再補跨時區測試。

@@ -3,230 +3,193 @@ from pathlib import Path
 from PIL import Image, ImageDraw, ImageFont
 
 
-OUT = Path(__file__).resolve().parent
-W, H = 1600, 900
-NAVY = "#11263D"
-INK = "#183047"
-TEAL = "#1C8C82"
-MINT = "#DDF3EC"
-CREAM = "#F7F3E8"
-WHITE = "#FFFFFF"
-CORAL = "#EE7B65"
-GOLD = "#E4AD43"
-SLATE = "#547084"
-PALE = "#E8EEF2"
-FONT = Path(r"C:\Windows\Fonts\msjh.ttc")
+WIDTH, HEIGHT = 1600, 900
+ROOT = Path(__file__).parent
+FONT_REGULAR = Path(r"C:\Windows\Fonts\msjh.ttc")
 FONT_BOLD = Path(r"C:\Windows\Fonts\msjhbd.ttc")
 
-
-def font(size: int, bold: bool = False):
-    return ImageFont.truetype(str(FONT_BOLD if bold else FONT), size)
-
-
-def canvas():
-    image = Image.new("RGB", (W, H), CREAM)
-    return image, ImageDraw.Draw(image)
-
-
-def text_width(draw, value, f):
-    box = draw.textbbox((0, 0), value, font=f)
-    return box[2] - box[0]
-
-
-def wrap(draw, value, f, max_width):
-    lines = []
-    current = ""
-    for char in value:
-        trial = current + char
-        if current and text_width(draw, trial, f) > max_width:
-            lines.append(current)
-            current = char
-        else:
-            current = trial
-    if current:
-        lines.append(current)
-    return lines
+NAVY = "#0F172A"
+SLATE = "#334155"
+MUTED = "#64748B"
+PALE = "#F8FAFC"
+WHITE = "#FFFFFF"
+TEAL = "#14B8A6"
+CYAN = "#22D3EE"
+BLUE = "#3B82F6"
+ORANGE = "#F97316"
+GREEN = "#16A34A"
+RED = "#DC2626"
+PURPLE = "#8B5CF6"
+LINE = "#CBD5E1"
 
 
-def draw_text(draw, xy, value, size, color=INK, bold=False, max_width=None,
-              anchor="la", spacing=12, align="left"):
-    f = font(size, bold)
-    if max_width:
-        value = "\n".join(wrap(draw, value, f, max_width))
-    draw.multiline_text(xy, value, font=f, fill=color, anchor=anchor,
-                        spacing=spacing, align=align)
+def font(size: int, bold: bool = False) -> ImageFont.FreeTypeFont:
+    return ImageFont.truetype(str(FONT_BOLD if bold else FONT_REGULAR), size)
 
 
-def box(draw, xy, fill=WHITE, outline=None, width=2, radius=26):
-    draw.rounded_rectangle(xy, radius=radius, fill=fill, outline=outline, width=width)
+def rounded(draw, box, fill, radius=24, outline=None, width=1):
+    draw.rounded_rectangle(box, radius=radius, fill=fill, outline=outline, width=width)
 
 
-def header(draw, kicker, title, subtitle=None):
-    draw_text(draw, (80, 62), kicker, 26, TEAL, True)
-    draw_text(draw, (80, 116), title, 54, NAVY, True)
-    if subtitle:
-        draw_text(draw, (82, 190), subtitle, 26, SLATE)
-    draw.line((80, 238, 1520, 238), fill="#C9D5DB", width=2)
+def label(draw, xy, value, size, fill, bold=False, anchor=None):
+    draw.text(xy, value, font=font(size, bold), fill=fill, anchor=anchor)
 
 
-def footer(draw, number):
-    draw_text(draw, (80, 846), "2026 iThome 鐵人賽｜ChatGPT & Codex", 20, SLATE)
-    draw_text(draw, (1520, 846), f"DAY 24 · {number:02d}", 20, SLATE, True, anchor="ra")
+def arrow(draw, start, end, color=CYAN, width=8):
+    draw.line([start, end], fill=color, width=width)
+    ex, ey = end
+    draw.polygon([(ex, ey), (ex - 22, ey - 15), (ex - 22, ey + 15)], fill=color)
 
 
 def save(image, name):
-    image.save(OUT / name, "PNG", optimize=True)
+    image.save(ROOT / name, format="PNG", optimize=True)
 
 
 def cover():
-    image, draw = canvas()
-    draw.rectangle((0, 0, W, H), fill=NAVY)
-    draw.ellipse((1060, -190, 1760, 510), fill="#173D57")
-    draw.ellipse((-180, 590, 430, 1200), fill="#163C50")
-    draw_text(draw, (100, 92), "DAY 24｜團隊、流程與治理", 27, "#77D2C4", True)
-    draw_text(draw, (100, 205), "不只是工程師", 76, WHITE, True)
-    draw_text(draw, (104, 310), "AI 加速的是交接，不是取代角色", 34, "#DCEBE8")
+    image = Image.new("RGB", (WIDTH, HEIGHT), NAVY)
+    draw = ImageDraw.Draw(image)
+    draw.ellipse((1260, -190, 1780, 330), fill="#312E81")
+    draw.ellipse((-260, 660, 220, 1140), fill="#134E4A")
+    label(draw, (105, 90), "DAY 24 · 前人砍樹後人曝曬", 38, "#5EEAD4", True)
+    label(draw, (105, 205), "安全與程式碼品質把關", 69, WHITE, True)
+    label(draw, (105, 310), "測試通過，只證明你測過的那一部分", 45, "#CBD5E1", True)
 
-    roles = [
-        ("PM", "定義範圍", 120, TEAL),
-        ("法遵", "核定規則", 390, GOLD),
-        ("設計／QA", "補齊驗收", 660, CORAL),
-        ("工程", "實作測試", 930, TEAL),
-        ("維運", "部署復原", 1200, GOLD),
+    stages = [
+        (105, "清單", BLUE),
+        (470, "證據", PURPLE),
+        (835, "判讀", ORANGE),
+        (1200, "決策", GREEN),
     ]
-    y = 505
-    for idx, (role, task, x, color) in enumerate(roles):
-        box(draw, (x, y, x + 220, y + 150), fill="#173D57", outline=color, width=4, radius=24)
-        draw_text(draw, (x + 110, y + 46), role, 31, WHITE, True, anchor="mm")
-        draw_text(draw, (x + 110, y + 102), task, 23, "#C8D8DF", anchor="mm")
-        if idx < len(roles) - 1:
-            draw.line((x + 224, y + 75, x + 258, y + 75), fill="#91A8B6", width=5)
-            draw.polygon([(x + 258, y + 75), (x + 244, y + 65), (x + 244, y + 85)], fill="#91A8B6")
-    draw_text(draw, (100, 805), "ChatGPT 整理脈絡｜Codex 執行驗證｜人員承擔決策", 25, "#AFC5CE")
+    for index, (x, title, color) in enumerate(stages):
+        rounded(draw, (x, 565, x + 260, 730), "#111827", 28, color, 5)
+        label(draw, (x + 130, 648), title, 37, color, True, "mm")
+        if index < len(stages) - 1:
+            arrow(draw, (x + 275, 648), (x + 345, 648), "#475569", 7)
     save(image, "day24-01-cover.png")
 
 
-def role_matrix():
-    image, draw = canvas()
-    header(draw, "角色 × 工具 × 責任", "工具可以接力，決策不能外包")
-    columns = [(80, 300, 285, "角色"), (305, 300, 655, "ChatGPT"),
-               (675, 300, 1025, "Codex"), (1045, 300, 1520, "人工責任")]
-    for x1, y1, x2, title in columns:
-        box(draw, (x1, y1 - 46, x2, y1), fill=NAVY, radius=12)
-        draw_text(draw, ((x1 + x2) / 2, y1 - 24), title, 22, WHITE, True, anchor="mm")
+def six_layers():
+    image = Image.new("RGB", (WIDTH, HEIGHT), PALE)
+    draw = ImageDraw.Draw(image)
+    label(draw, (85, 55), "六層檢查：一個綠燈不能代表整套系統安全", 48, NAVY, True)
+    label(draw, (85, 128), "每一層都要留下可重現證據，沒有資料就標成未知", 30, MUTED)
+
+    cards = [
+        ("需求與權限", "誰能替哪位客戶建立報表？", BLUE),
+        ("程式碼行為", "輸入、例外與失敗路徑", PURPLE),
+        ("相依套件", "版本、來源、通知與可達性", ORANGE),
+        ("資料與祕密", "信箱、憑證與日誌最小化", RED),
+        ("執行環境", "網路、檔案與資源上限", TEAL),
+        ("維運與監控", "限流、告警、重試與追蹤", GREEN),
+    ]
+    for index, (title, detail, color) in enumerate(cards):
+        col, row = index % 3, index // 3
+        left = 85 + col * 500
+        top = 220 + row * 275
+        rounded(draw, (left, top, left + 430, top + 205), WHITE, 24, color, 4)
+        rounded(draw, (left + 25, top + 28, left + 90, top + 93), color, 18)
+        label(draw, (left + 57, top + 60), str(index + 1), 29, WHITE, True, "mm")
+        label(draw, (left + 115, top + 55), title, 30, NAVY, True)
+        label(draw, (left + 35, top + 135), detail, 24, SLATE)
+
+    rounded(draw, (255, 785, 1345, 855), NAVY, 18)
+    label(draw, (800, 820), "掃描器提供線索；清單負責防止視野只剩掃描器", 27, CYAN, True, "mm")
+    save(image, "day24-02-six-layers.png")
+
+
+def code_review():
+    image = Image.new("RGB", (WIDTH, HEIGHT), PALE)
+    draw = ImageDraw.Draw(image)
+    label(draw, (85, 55), "Java 修改審查：登入成功，不等於有權操作客戶資料", 47, NAVY, True)
+    label(draw, (85, 125), "把授權、輸入限制與日誌內容拆成三個可驗證條件", 30, MUTED)
+
+    rounded(draw, (90, 215, 755, 725), WHITE, 28, RED, 5)
+    label(draw, (422, 270), "AI 修改草稿", 35, RED, True, "mm")
+    label(draw, (145, 355), "request：帶有 Principal", 27, NAVY, True)
+    label(draw, (145, 425), "customerId：直接採用路徑值", 26, SLATE)
+    label(draw, (145, 495), "format：任意字串", 26, SLATE)
+    label(draw, (145, 565), "log：完整收件信箱", 26, SLATE)
+    rounded(draw, (140, 630, 705, 685), "#FEF2F2", 14)
+    label(draw, (422, 657), "缺少客戶層級授權", 25, RED, True, "mm")
+
+    rounded(draw, (845, 215, 1510, 725), WHITE, 28, GREEN, 5)
+    label(draw, (1177, 270), "修正版", 35, GREEN, True, "mm")
+    label(draw, (900, 355), "Principal：只提供請求身分", 27, NAVY, True)
+    label(draw, (900, 425), "AccessPolicy：判斷客戶權限", 26, SLATE)
+    label(draw, (900, 495), "format 列舉：PDF／WORD／EXCEL", 25, SLATE)
+    label(draw, (900, 565), "log：代號、客戶與格式", 26, SLATE)
+    rounded(draw, (890, 630, 1465, 685), "#ECFDF5", 14)
+    label(draw, (1177, 657), "輸入與權限都有測試", 25, GREEN, True, "mm")
+
+    arrow(draw, (765, 470), (830, 470), ORANGE, 8)
+    save(image, "day24-03-code-review.png")
+
+
+def evidence_matrix():
+    image = Image.new("RGB", (WIDTH, HEIGHT), NAVY)
+    draw = ImageDraw.Draw(image)
+    label(draw, (85, 55), "安全通知不是結論：版本、觸發條件、呼叫路徑要一起看", 47, WHITE, True)
+    label(draw, (85, 125), "Apache PDFBox 2.0.23 的縮小案例判讀", 30, "#CBD5E1")
+
+    columns = [90, 500, 940, 1510]
+    headers = ["檢查", "證據", "判斷"]
+    rounded(draw, (90, 205, 1510, 295), "#111827", 18, "#475569", 2)
+    for index, header in enumerate(headers):
+        label(draw, ((columns[index] + columns[index + 1]) // 2, 250), header, 28, WHITE, True, "mm")
+
     rows = [
-        ("PM", "整理決議與空白", "查既有實作限制", "範圍與優先順序"),
-        ("法遵／資安", "轉成檢查問題", "找權限與日誌證據", "分級與例外"),
-        ("設計／QA", "補狀態與測試案例", "原型與自動化測試", "可用性與風險覆蓋"),
-        ("工程／維運", "整理方案與手冊", "修改、測試、查設定", "差異、部署與復原"),
+        ("版本", "dependency:tree → 2.0.23", "通知命中", ORANGE),
+        ("觸發條件", "載入特製 PDF", "官方條件", BLUE),
+        ("縮小路徑", "只建立並輸出新 PDF", "未找到載入呼叫", GREEN),
+        ("正式系統", "程式與相依清單未提供", "維持待確認", RED),
     ]
-    y = 322
-    row_h = 112
-    for i, row in enumerate(rows):
-        fill = WHITE if i % 2 == 0 else "#EDF3F3"
-        coords = [(80, 285), (305, 655), (675, 1025), (1045, 1520)]
-        for j, (x1, x2) in enumerate(coords):
-            box(draw, (x1, y, x2, y + row_h - 12), fill=fill, outline="#D4DEE2", width=2, radius=12)
-            color = TEAL if j == 0 else INK
-            draw_text(draw, ((x1 + x2) / 2, y + 49), row[j], 21, color, j == 0,
-                      max_width=x2 - x1 - 24, anchor="mm", align="center")
-        y += row_h
-    box(draw, (80, 786, 1520, 824), fill=MINT, radius=16)
-    draw_text(draw, (800, 805), "規則不清楚時先標示待確認；證據不足時不要自動補答案", 22, TEAL, True, anchor="mm")
-    footer(draw, 2)
-    save(image, "day24-02-role-matrix.png")
+    for row_index, (item, evidence, result, color) in enumerate(rows):
+        top = 320 + row_index * 112
+        rounded(draw, (90, top, 1510, top + 88), "#111827", 14, "#334155", 2)
+        values = [item, evidence, result]
+        for col_index, value in enumerate(values):
+            label(
+                draw,
+                ((columns[col_index] + columns[col_index + 1]) // 2, top + 44),
+                value,
+                24,
+                color if col_index == 2 else WHITE,
+                col_index == 2,
+                "mm",
+            )
+
+    rounded(draw, (235, 805, 1365, 865), "#172554", 16, BLUE, 3)
+    label(draw, (800, 835), "目前路徑未找到觸發點 ≠ 正式系統安全 ≠ 不必升級", 26, CYAN, True, "mm")
+    save(image, "day24-04-evidence-matrix.png")
 
 
-def before_after():
-    image, draw = canvas()
-    header(draw, "交接單前後對照", "從一句模糊交辦，到下一位能驗收的輸入")
-    box(draw, (80, 292, 590, 745), fill="#FBE8E4", outline="#F2B7AA", width=3)
-    draw_text(draw, (120, 332), "整理前", 28, CORAL, True)
-    draw_text(draw, (120, 410), "「請幫我做複核介面」", 35, NAVY, True, max_width=430)
-    draw_text(draw, (120, 555), "缺少：\n誰決定規則？\n怎樣才算完成？\n失敗時留下什麼？", 25, SLATE, max_width=410, spacing=18)
-    draw.line((630, 515, 755, 515), fill=TEAL, width=8)
-    draw.polygon([(755, 515), (725, 493), (725, 537)], fill=TEAL)
-    draw_text(draw, (692, 465), "ChatGPT\n只整理，不代答", 22, TEAL, True, anchor="mm", align="center")
-    box(draw, (795, 292, 1520, 745), fill=WHITE, outline="#B6DAD3", width=3)
-    draw_text(draw, (835, 332), "整理後", 28, TEAL, True)
+def review_comparison():
+    image = Image.new("RGB", (WIDTH, HEIGHT), PALE)
+    draw = ImageDraw.Draw(image)
+    label(draw, (85, 55), "同一份修改，三種檢查看到不同問題", 50, NAVY, True)
+    label(draw, (85, 128), "有效發現、脈絡誤報與證據缺口都要保留", 30, MUTED)
+
     items = [
-        ("已確認", "不含自動發布；複核原因必填"),
-        ("待確認", "版本衝突與資料留存策略"),
-        ("驗收條件", "畫面、測試、日誌或設定可證明"),
-        ("負責人", "PM、法遵、設計、QA、維運逐項簽認"),
+        (120, "Codex 初篩", "跨客戶授權缺口", "已用 403 測試重現", BLUE),
+        (585, "套件通知＋呼叫路徑", "PDFBox 版本命中", "縮小路徑未找到觸發點", ORANGE),
+        (1050, "人工六層複核", "日誌洩漏與限流未知", "一項修正、一項待確認", GREEN),
     ]
-    y = 405
-    colors = [TEAL, GOLD, CORAL, NAVY]
-    for (label, detail), color in zip(items, colors):
-        draw.ellipse((840, y + 5, 864, y + 29), fill=color)
-        draw_text(draw, (885, y), label, 23, color, True)
-        draw_text(draw, (1040, y), detail, 22, INK, max_width=420)
-        y += 82
-    footer(draw, 3)
-    save(image, "day24-03-handoff-before-after.png")
+    for left, title, finding, status, color in items:
+        rounded(draw, (left, 235, left + 410, 715), WHITE, 28, color, 5)
+        label(draw, (left + 205, 300), title, 29, color, True, "mm")
+        rounded(draw, (left + 35, 370, left + 375, 480), "#F1F5F9", 18)
+        label(draw, (left + 205, 425), finding, 25, NAVY, True, "mm")
+        rounded(draw, (left + 35, 535, left + 375, 645), "#F8FAFC", 18, LINE, 2)
+        label(draw, (left + 205, 590), status, 23, SLATE, True, "mm")
 
-
-def handoff_flow():
-    image, draw = canvas()
-    header(draw, "複核功能交接流程", "每一棒都有輸入、輸出與驗收證據")
-    stages = [
-        ("1", "PM", "範圍／驗收", TEAL),
-        ("2", "法遵＋設計", "規則／狀態", GOLD),
-        ("3", "QA", "例外／邊界", CORAL),
-        ("4", "工程＋Codex", "程式／測試", TEAL),
-        ("5", "維運", "監控／復原", NAVY),
-    ]
-    xs = [70, 375, 680, 985, 1290]
-    y = 360
-    for i, ((num, role, output, color), x) in enumerate(zip(stages, xs)):
-        if i:
-            draw.line((x - 80, y + 112, x - 18, y + 112), fill="#91A7B2", width=6)
-            draw.polygon([(x - 18, y + 112), (x - 36, y + 99), (x - 36, y + 125)], fill="#91A7B2")
-        box(draw, (x, y, x + 240, y + 225), fill=WHITE, outline=color, width=4, radius=24)
-        draw.ellipse((x + 18, y + 18, x + 68, y + 68), fill=color)
-        draw_text(draw, (x + 43, y + 43), num, 23, WHITE, True, anchor="mm")
-        draw_text(draw, (x + 120, y + 100), role, 27, NAVY, True, anchor="mm")
-        draw.line((x + 35, y + 132, x + 205, y + 132), fill="#D5DFE3", width=2)
-        draw_text(draw, (x + 120, y + 172), output, 22, SLATE, anchor="mm")
-    box(draw, (220, 685, 1380, 765), fill=MINT, radius=24)
-    draw_text(draw, (800, 725), "決議 → 介面狀態 → 測試案例 → 程式差異 → 部署檢查", 28, TEAL, True, anchor="mm")
-    footer(draw, 4)
-    save(image, "day24-04-handoff-flow.png")
-
-
-def evidence_chain():
-    image, draw = canvas()
-    header(draw, "可追溯交付鏈", "「做完了」要能回到需求、測試與上線條件")
-    nodes = [
-        ("需求決議", "不含自動發布"),
-        ("介面狀態", "載入／失敗／唯讀"),
-        ("程式差異", "複核原因必填"),
-        ("測試結果", "4 項通過"),
-        ("部署檢查", "權限／監控／復原"),
-    ]
-    colors = [TEAL, GOLD, CORAL, TEAL, NAVY]
-    x = 76
-    y = 352
-    for i, ((title, detail), color) in enumerate(zip(nodes, colors)):
-        if i:
-            draw.line((x - 54, y + 102, x - 12, y + 102), fill="#8AA0AC", width=5)
-            draw.polygon([(x - 12, y + 102), (x - 28, y + 91), (x - 28, y + 113)], fill="#8AA0AC")
-        box(draw, (x, y, x + 250, y + 205), fill=WHITE, outline=color, width=4, radius=24)
-        draw_text(draw, (x + 125, y + 70), title, 27, color, True, anchor="mm")
-        draw.line((x + 35, y + 105, x + 215, y + 105), fill="#D6E0E4", width=2)
-        draw_text(draw, (x + 125, y + 146), detail, 21, INK, max_width=205, anchor="mm", align="center")
-        x += 300
-    box(draw, (80, 655, 1520, 770), fill=NAVY, radius=24)
-    draw_text(draw, (800, 698), "通過測試 ≠ 可以直接上線", 30, WHITE, True, anchor="mm")
-    draw_text(draw, (800, 741), "正式授權、資料留存、併發衝突與復原仍需真實環境驗證", 23, "#C7D8DF", anchor="mm")
-    footer(draw, 5)
-    save(image, "day24-05-evidence-chain.png")
+    rounded(draw, (250, 790, 1350, 855), NAVY, 18)
+    label(draw, (800, 822), "工具找候選問題，人工負責脈絡、取捨與結案", 27, CYAN, True, "mm")
+    save(image, "day24-05-review-comparison.png")
 
 
 if __name__ == "__main__":
     cover()
-    role_matrix()
-    before_after()
-    handoff_flow()
-    evidence_chain()
-    print("Generated 5 Day 24 images at 1600x900.")
+    six_layers()
+    code_review()
+    evidence_matrix()
+    review_comparison()

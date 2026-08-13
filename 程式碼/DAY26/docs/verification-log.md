@@ -1,37 +1,17 @@
-# Day 26 驗證紀錄
+# Day 25 提示詞資產驗證紀錄
 
-草擬日期：2026-08-10
+- 日期：2026-08-09
+- 提示詞版本：`draft-from-sources` 0.1.0
+- 資料：四組合成案例，不含真實客戶內容、個人資料或機密
+- 驗證方式：沒有呼叫正式模型；由人工依固定輸出與否決條件走查輸入、判斷分支與預期結果
 
-## 環境（待作者本機執行後補齊）
+## 結果
 
-- 建議：Windows 11、OpenJDK 17、Apache Maven 3.8 以上、JUnit Jupiter 5.13.4（比照 Day 24／25 的既有環境）。
-- 本次草擬是在沒有 Maven／JDK 編譯工具的沙盒環境中完成，只能以人工方式覆核程式邏輯與測試設計，
-  尚未實際執行 `mvn clean test`。這一點與 Day 24／25 已附上真實建置輸出不同，作者發布前必須在本機
-  重新執行並貼上實際結果，不可只沿用本文件的預期說明。
+- P-01：人工走查符合預期。預期輸出維持草稿標示，兩項主張分別對應 S1、S2。
+- P-02：人工走查符合預期。在本案例規則下，「人工複核」作為通用術語，不列成逐字引用片段。
+- P-03：人工走查符合預期。沿用規則未核定時停止生成正文。
+- P-04：人工走查符合預期。先提供 `public < internal < restricted` 的示範規則，來源 S5 超出 `internal` 時停止處理；此順序不是需求書已核定的正式規則。
 
-## 待執行指令
+## 驗證邊界
 
-```shell
-cd 程式碼/DAY26
-mvn clean test
-```
-
-## 測試設計與預期結果（人工覆核，非實際執行輸出）
-
-`AccessGovernanceGuardTest` 共 5 項測試：
-
-1. `engineerCannotUseRealCustomerScansAsTestData`：工程師申請存取限閱等級的客戶掃描檔，預期拋出 `SecurityException`，且稽核紀錄中該筆事件的 `approved` 為 `false`。
-2. `complianceCanAccessRestrictedDataWithPurpose`：法遵／資安角色申請存取限閱等級資料且填寫用途，預期核准並記錄。
-3. `techLeadCanAccessInternalButNotRestricted`：技術主管可存取內部等級，但申請限閱等級應被拒絕。
-4. `purposeMustNotBeBlankEvenForPublicData`：用途欄位空白時，即使是公開等級也要拋出 `IllegalArgumentException`。
-5. `deniedAttemptsStillAppearInAuditTrail`：確認被拒絕的請求仍會寫入稽核紀錄，而不是被靜默忽略。
-
-預期結果為 `Tests run: 5, Failures: 0, Errors: 0, Skipped: 0`，但這是依程式邏輯推演的預期值，不是
-實際建置輸出；作者需在本機執行後，把真實的 `BUILD SUCCESS` 或失敗訊息貼回本文件。
-
-## 證據邊界
-
-即使本機執行通過，結果也只涵蓋 `AccessGovernanceGuard` 的記憶體內單元測試：角色與分級的核准
-判斷、稽核紀錄留存。未驗證真正的檔案系統存取、單一登入、正式稽核儲存、事故通報流程、供應商
-條款變更偵測，或跨部門實際核定的資料分級標準。這些項目仍列在
-[`governance-inventory.md`](governance-inventory.md) 的待角色確認清單。
+本次只確認提示詞與流程範例能否表達預期行為。沒有串接正式模型 API、權限系統、文件資料庫或發布流程，也沒有證明模型會依預期輸出。正式導入仍需使用組織核定的資料分級規則、自動化比例計算、資料隔離、稽核儲存、模型測試與真實使用者驗收。

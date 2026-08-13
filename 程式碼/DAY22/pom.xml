@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.ithome</groupId>
-    <artifactId>day22-documentation-evidence</artifactId>
+    <artifactId>day21-debugging-evidence</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>

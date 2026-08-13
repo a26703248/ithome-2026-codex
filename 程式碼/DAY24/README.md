@@ -1,27 +1,10 @@
-# Day 24 跨角色交接最小案例
+# Day 23 安全與品質縮小案例
 
-本專案示範「複核與修改介面」背後的一小段 Java 契約。它只驗證複核決策與版本保留，不包含畫面、資料庫、正式驗證授權、稽核儲存或部署設定。
-
-## 已實作的規則
-
-- 複核決策包含採用、修改與否決。
-- 修改會新增草稿版本，不覆蓋原始內容。
-- 每種決策都必須填寫複核原因，並留下複核事件。
-- 程式不提供自動發布或自動核准功能。
-
-## 執行測試
-
-使用 Java Development Kit 17 與 Apache Maven，在本目錄執行：
+這個 Spring Boot 縮小專案示範報表建立端點的輸入驗證、身分與授權分離、日誌最小化，以及套件通知的可達性判讀。它不代表正式日報服務的完整程式或部署設定。
 
 ```shell
 mvn clean test
+mvn dependency:tree "-Dincludes=org.apache.pdfbox:pdfbox"
 ```
 
-成功結果應包含：
-
-```text
-Tests run: 4, Failures: 0, Errors: 0, Skipped: 0
-BUILD SUCCESS
-```
-
-完整實測結果見 [`docs/verification-log.md`](docs/verification-log.md)。
+正式環境的 API 閘道、限流、佇列、祕密管理、監控與完整相依清單均未在本專案中提供，需另行確認。
