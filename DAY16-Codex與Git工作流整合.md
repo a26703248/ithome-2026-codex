@@ -17,7 +17,7 @@ Day 15 劃出可核准範圍後，Day 13 的日期修正仍停在工作目錄。
 
 ![Git 證據鏈：從任務分支到 PR 草稿](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E5%9C%96%E6%AA%94/Day16/day16-02-evidence-chain.png)
 
-依 2026 年 8 月 9 日的 OpenAI 官方文件，桌面 App 的審查窗格（review pane）可能同時包含 Codex 的修改與原有的未提交修改，所以我先用 `git status` 對照。要看未提交內容或基底分支差異，再從桌面 App、命令列介面（Command-Line Interface，CLI）或整合開發環境（Integrated Development Environment，IDE）擴充啟動 `/review`；結束後重看狀態，避免把審查誤認成修正。
+依 OpenAI 官方文件，桌面 App 的審查窗格（review pane）可能同時包含 Codex 的修改與原有的未提交修改，所以我先用 `git status` 對照。要看未提交內容或基底分支差異，再從桌面 App、命令列介面（Command-Line Interface，CLI）或整合開發環境（Integrated Development Environment，IDE）擴充啟動 `/review`；結束後重看狀態，避免把審查誤認成修正。
 
 ## 從確認起點走到一個 commit
 
@@ -66,7 +66,7 @@ commit 訊息描述行為，不寫「Codex 修好了」。提交後我用 `git s
 
 ## 小結：交付完成，要能重建判斷過程
 
-今天我用分支隔離範圍，以 diff、測試、commit 與 PR 草稿留下證據。修改可追溯，才有資格談自動化。Day 17 會先用一個故事，帶出接手老舊「日報服務」系統時的第一印象，Day 18 再把 ChatGPT 規劃與 Codex 執行接成可驗收的任務契約。
+今天我用分支隔離範圍，以 diff、測試、commit 與 PR 草稿留下證據。修改可追溯，才有資格談自動化。Day 17 會先用一個故事，帶出接手老舊「日報服務」系統時的第一印象，可以讓我們知道當面對古人遺留下來的天書時該如何處理。
 
 ## 參考資料
 
