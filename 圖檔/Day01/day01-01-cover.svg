@@ -14,9 +14,9 @@
   <circle cx="110" cy="640" r="230" fill="#a78bfa" opacity=".08"/>
   <rect x="78" y="80" width="190" height="48" rx="24" fill="#15213d" stroke="#334155"/>
   <text x="173" y="112" text-anchor="middle" fill="#67e8f9" font-size="23" font-family="Inter, Noto Sans TC, Microsoft JhengHei, sans-serif" font-weight="700">DAY 01</text>
-  <text x="78" y="230" fill="#f8fafc" font-size="64" font-family="Inter, Noto Sans TC, Microsoft JhengHei, sans-serif" font-weight="800">為什麼 2026 年要認真學</text>
-  <text x="78" y="318" fill="url(#accent)" font-size="78" font-family="Inter, Noto Sans TC, Microsoft JhengHei, sans-serif" font-weight="800">ChatGPT × Codex</text>
-  <text x="82" y="385" fill="#cbd5e1" font-size="30" font-family="Inter, Noto Sans TC, Microsoft JhengHei, sans-serif">從「得到回答」走進「可驗證的開發成果」</text>
+  <text x="78" y="230" fill="#f8fafc" font-size="64" font-family="Inter, Noto Sans TC, Microsoft JhengHei, sans-serif" font-weight="800">用 ChatGPT 和 Codex</text>
+  <text x="78" y="318" fill="url(#accent)" font-size="78" font-family="Inter, Noto Sans TC, Microsoft JhengHei, sans-serif" font-weight="800">打造開發輔助助手</text>
+  <text x="82" y="385" fill="#cbd5e1" font-size="30" font-family="Inter, Noto Sans TC, Microsoft JhengHei, sans-serif">交代上下文．拆分責任．要求證據</text>
   <g transform="translate(82 485)">
     <rect width="250" height="76" rx="18" fill="#111b32" stroke="#22d3ee"/>
     <text x="125" y="47" text-anchor="middle" fill="#e2e8f0" font-size="26" font-family="Inter, Noto Sans TC, Microsoft JhengHei, sans-serif">思考與釐清</text>
