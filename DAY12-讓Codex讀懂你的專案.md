@@ -8,7 +8,7 @@ Day 11 的批次任務明確指定要讀 `pom.xml`、查看 `src`、附上路徑
 
 ## 我先整理五層上下文
 
-我不會把整份內部知識庫塞給 Codex，而是先問：哪些資訊會改變它的動作、驗證或回報？這次整理成五層：
+我不會把整份資料塞給 Codex，而是先問：哪些資訊會改變它的動作、驗證或回報？這次整理成五層：
 
 | 層次 | Codex 需要知道什麼 | Day 11 專案的內容 |
 |---|---|---|
@@ -38,22 +38,22 @@ Day 11 的批次任務明確指定要讀 `pom.xml`、查看 `src`、附上路徑
 # Repository instructions
 
 ## Scope
-- These instructions apply to every file under this directory.
+- 本規範適用於此目錄下的所有檔案。
 
 ## Project
-- Use Java 17 and Maven.
-- Production code is under `src/main/java`; tests are under `src/test/java`.
+- 使用 Java 17 與 Maven。
+- 正式程式碼位於 src/main/java；測試程式碼位於 src/test/java。
 
 ## Change boundaries
-- For bug fixes, do not edit tests or `pom.xml` unless the task explicitly allows it.
-- Ask before adding dependencies, deleting files, or changing public APIs.
+- 修 bug 時，除非任務明確允許，否則不要修改測試檔案或 pom.xml。
+- 新增相依套件、刪除檔案，或變更公開 API 之前，請先詢問。
 
 ## Verification
-- Run `mvn clean test` after changing Java code.
-- If the command cannot run, report the exact error and do not claim tests passed.
+- 修改 Java 程式碼後，執行 mvn clean test。
+- 若指令無法執行，請回報確切的錯誤訊息，不要宣稱測試已通過。
 
 ## Completion report
-- List changed files, commands run, test results, and remaining risks.
+- 列出已變更的檔案、執行過的指令、測試結果，以及尚存的風險。
 ```
 
 完整的 [Day 12 AGENTS.md](https://github.com/a26703248/ithome-2026-codex/blob/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY12/AGENTS.md) 是下載範本，不會套用到相鄰的 DAY11。第一輪先不複製；第二輪才把它放到 DAY11 的 `pom.xml` 同一層、重新啟動 Codex，再交付相同任務。規則都要能由命令、差異或回報驗證，不放口號、密碼、內部主機與付費文件。

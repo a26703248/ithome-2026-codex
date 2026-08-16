@@ -1,24 +1,19 @@
 # Repository instructions
 
 ## Scope
-
-- These instructions apply to every file under this directory.
+- 本規範適用於此目錄下的所有檔案。
 
 ## Project
-
-- Use Java 17 and Maven.
-- Production code is under `src/main/java`; tests are under `src/test/java`.
+- 使用 Java 17 與 Maven。
+- 正式程式碼位於 src/main/java；測試程式碼位於 src/test/java。
 
 ## Change boundaries
-
-- For bug fixes, do not edit tests or `pom.xml` unless the task explicitly allows it.
-- Ask before adding dependencies, deleting files, or changing public APIs.
+- 修 bug 時，除非任務明確允許，否則不要修改測試檔案或 pom.xml。
+- 新增相依套件、刪除檔案，或變更公開 API 之前，請先詢問。
 
 ## Verification
-
-- Run `mvn clean test` after changing Java code.
-- If the command cannot run, report the exact error and do not claim tests passed.
+- 修改 Java 程式碼後，執行 mvn clean test。
+- 若指令無法執行，請回報確切的錯誤訊息，不要宣稱測試已通過。
 
 ## Completion report
-
-- List changed files, commands run, test results, and remaining risks.
+- 列出已變更的檔案、執行過的指令、測試結果，以及尚存的風險。
