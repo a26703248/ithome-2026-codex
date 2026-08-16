@@ -1,8 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
   <title id="title">Day 01 基準線紀錄卡</title>
-  <desc id="desc">記錄任務時間、人工介入、測試與驗收條件，供 Day 28 比較</desc>
+  <desc id="desc">記錄任務時間、人工介入、測試與驗收條件，供 Day 29 比較</desc>
   <rect width="1200" height="675" fill="#0b1220"/>
-  <text x="70" y="85" fill="#f8fafc" font-size="46" font-family="Inter, Noto Sans TC, Microsoft JhengHei, sans-serif" font-weight="800">今天先留下基準線，Day 28 再比較</text>
+  <text x="70" y="85" fill="#f8fafc" font-size="46" font-family="Inter, Noto Sans TC, Microsoft JhengHei, sans-serif" font-weight="800">今天先留下基準線，Day 29 再比較</text>
   <g transform="translate(70 135)" font-family="Inter, Noto Sans TC, Microsoft JhengHei, sans-serif">
     <rect width="1060" height="460" rx="28" fill="#111827" stroke="#334155" stroke-width="3"/>
     <rect x="35" y="32" width="990" height="64" rx="15" fill="#172033"/>
