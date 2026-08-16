@@ -10,14 +10,14 @@ Day 12 把專案規則寫進 `AGENTS.md`，今天我將它放進一個 Java 17�
 
 我先在原始版本執行 `mvn clean test`，四項既有測試全數通過，表示測試還沒涵蓋客服操作。接著補上這次要交給 Codex 的確切條件：
 
-| 欄位 | 本次內容 |
-|---|---|
-| 呼叫 | `countInclusiveDays(2026-08-19, 2026-08-19)` |
-| 現況 | 拋出 `IllegalArgumentException` |
-| 正常結果 | 同日起訖算一天，回傳 `1` |
-| 可改檔案 | `ReportRangeService.java` 與新增的一項測試 |
+| 項目    | 本次內容 |
+|-------|---|
+| 呼叫    | `countInclusiveDays(2026-08-19, 2026-08-19)` |
+| 現況    | 拋出 `IllegalArgumentException` |
+| 正常結果  | 同日起訖算一天，回傳 `1` |
+| 可改檔案  | `ReportRangeService.java` 與新增的一項測試 |
 | 不可改內容 | `pom.xml`、既有測試、相依套件、公開方法簽章 |
-| 通過方式 | 指定測試先出現失敗，修正後再跑全部測試 |
+| 通過方式  | 指定測試先出現失敗，修正後再跑全部測試 |
 
 公開方法簽章指方法名稱、參數與回傳型別。這次要保留 `countInclusiveDays(LocalDate, LocalDate)`，避免呼叫端跟著改。
 
