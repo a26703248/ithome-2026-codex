@@ -6,7 +6,7 @@
 
 限制：
 1. 只能修改 src/main/java/com/ithome/day10/batch/CsvBatchPlanner.java。
-2. 不得修改測試或 pom.xml。
+2. 不得修改測試 pom.xml。
 3. 採最小修改，不做無關重構。
 4. 修改後執行 mvn clean test。
 5. 回報讀取的檔案、修改內容、測試摘要與尚未驗證的風險。
