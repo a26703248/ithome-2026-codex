@@ -24,7 +24,7 @@ ChatGPT 只能挑戰我的推理，不能替我宣告框架結果。如果我改
 
 Spring cron 使用六個以空白分隔的欄位，順序是秒、分、時、日、月、星期。`0 0 9 * * *` 的前三欄是零秒、零分、九時，所以表示每天上午九點。若直接貼上 Linux crontab 常見的五欄 `0 9 * * *`，`CronExpression.parse` 會拋出 `IllegalArgumentException`。
 
-我沒有只用眼睛數空白。第一項測試傳入五欄字串，確認解析器拒絕；這比把「Spring 多一個秒欄」抄進筆記更有用。未來若更換排程工具，測試也會提醒我不能直接套用同一種 cron 格式。
+第一項測試傳入五欄字串，確認解析器拒絕；這比把「Spring 多一個秒欄」抄進筆記更有用。未來若更換排程工具，測試也會提醒我不能直接套用同一種 cron 格式。
 
 ![Spring cron 六個欄位的順序](./%E5%9C%96%E6%AA%94/Day08/day08-03-cron-fields.png)
 
@@ -61,4 +61,4 @@ ChatGPT 適合幫我製造反例與改變題目條件，但格式與框架行為
 - [OpenAI：Learn a new concept](https://learn.chatgpt.com/use-cases/learn-a-new-concept)
 - [Spring Framework：Task Execution and Scheduling](https://docs.spring.io/spring-framework/reference/integration/scheduling.html)
 - [Spring Framework：CronExpression](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/scheduling/support/CronExpression.html)
-- [資料工作區空間——需求書（v0．初版待釐清）](./%E6%A1%88%E4%BE%8B/%E8%B3%87%E6%96%99%E5%B7%A5%E4%BD%9C%E5%8D%80%E9%96%93-%E9%9C%80%E6%B1%82%E6%9B%B8.md)
+- [資料工作區空間——需求書（v0．初版待釐清）](https://github.com/a26703248/ithome-2026-codex/blob/main/%E6%A1%88%E4%BE%8B/%E8%B3%87%E6%96%99%E5%B7%A5%E4%BD%9C%E5%8D%80%E7%A9%BA%E9%96%93-%E9%9C%80%E6%B1%82%E6%9B%B8.md)
