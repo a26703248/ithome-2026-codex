@@ -10,7 +10,7 @@ Day 05 第二輪加入兩個會影響架構的示範條件：每日約 `1 TB`，
 
 ![先把設計限制與未知資訊放進同一張圖](./%E5%9C%96%E6%AA%94/Day06/day06-02-constraints.png)
 
-我沒有問「請給我最佳架構」這樣直接得到答案的提示詞，而是要求它用相同維度比較三個候選方案。完整提示詞放在 [Day 06 架構比較提示詞](https://github.com/a26703248/ithome-2026-codex/blob/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY06/architecture-prompt.txt)，核心限制如下：
+我沒有用「請給我最佳架構」這樣直接得到答案的提示詞，而是要求它用相同維度比較三個候選方案。完整提示詞放在 [Day 06 架構比較提示詞](https://github.com/a26703248/ithome-2026-codex/blob/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY06/architecture-prompt.txt)，核心限制如下：
 
 ```text
 提出三個可逐步演進的候選架構，不要替團隊選定答案。
