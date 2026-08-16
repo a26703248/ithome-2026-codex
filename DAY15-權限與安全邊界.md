@@ -10,7 +10,7 @@ Day 14 重跑 Maven 測試時，Maven 下載建置外掛的連線被 `Permission
 
 ![沙箱與核准政策共同形成安全邊界](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E5%9C%96%E6%AA%94/Day15/day15-02-two-layers.png)
 
-依 2026 年 8 月 8 日的 OpenAI 官方文件，本機 Codex 採 `Auto` 組合（`workspace-write` 搭配 `on-request`）時，可在工作區內讀檔、修改與執行例行指令，命令預設不能連網；修改工作區外檔案或讓命令連網時會要求核准。非版本控制或尚未信任的資料夾可能從 `read-only` 開始。Codex cloud 在隔離容器執行，設定階段可連網安裝依賴，代理階段預設離線。
+依 OpenAI 官方文件，本機 Codex 採 `Auto` 組合（`workspace-write` 搭配 `on-request`）時，可在工作區內讀檔、修改與執行例行指令，命令預設不能連網；修改工作區外檔案或讓命令連網時會要求核准。非版本控制或尚未信任的資料夾可能從 `read-only` 開始。Codex cloud 在隔離容器執行，設定階段可連網安裝依賴，代理階段預設離線。
 
 ## 我先把權限拆成五個面向
 
