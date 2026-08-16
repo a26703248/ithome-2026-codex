@@ -36,7 +36,7 @@ return true;
 
 ## 把兩項建議寫成紅燈測試
 
-我補了四項 JUnit 5 測試。[修正前測試夾具](./%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY09/before-review) 只多一個讓測試能換入自訂集合的建構子，業務方法仍與待審 diff 相同。`CyclicBarrier` 會在測試用的 `BarrierSet.add` 攔住兩個呼叫，等到齊再放行到實際集合。修正前結果是 `Tests run: 4, Failures: 3`：null 例外錯誤、兩次啟動都回傳成功，還有模擬初篩刻意漏掉的第三項——`tryStart` 存入正規化鍵，`finish` 卻用原字串移除，工作完成後仍無法再次啟動。
+我補了四項 JUnit 5 測試。[修正前測試](./%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY09/before-review) 只多一個讓測試能換入自訂集合的建構子，業務方法仍與待審 diff 相同。`CyclicBarrier` 會在測試用的 `BarrierSet.add` 攔住兩個呼叫，等到齊再放行到實際集合。修正前結果是 `Tests run: 4, Failures: 3`：null 例外錯誤、兩次啟動都回傳成功，還有模擬初篩刻意漏掉的第三項——`tryStart` 存入正規化鍵，`finish` 卻用原字串移除，工作完成後仍無法再次啟動。
 
 最小修正沒有替整個方法加鎖，而是使用 `ConcurrentHashMap.newKeySet()` 所提供集合的單次 `add` 完成「檢查並登記」，再用回傳值判斷是否啟動；開始與完成也共用同一個 `normalize`：
 
@@ -56,7 +56,7 @@ public void finish(String workspaceId) {
 
 ## 模擬初篩也要放入誤報與漏報
 
-演練另外放入一項誤報：把 `ConcurrentHashMap.newKeySet()` 本身列成執行緒安全疑點。我查 Java 17 的應用程式介面（Application Programming Interface，API）文件後否決：容器操作安全，錯在檢查與登記被拆成兩個呼叫。`finish` 的鍵值不一致則留給人工補上。下表的 Java 開發套件（Java Development Kit，JDK）文件就是判斷來源。
+演練另外放入一項誤報：把 `ConcurrentHashMap.newKeySet()` 本身列成執行緒安全疑點。我查 Java 17 的API Doc文件後否決驗證錯誤項目：容器操作安全，錯在檢查與登記被拆成兩個呼叫。`finish` 的鍵值不一致則留給人工補上。下表的 Java 開發套件（Java Development Kit，JDK）文件就是判斷來源。
 
 | 問題 | 模擬初篩 | 測試／文件 | 最終結論 |
 |---|---|---|---|
@@ -67,11 +67,11 @@ public void finish(String workspaceId) {
 
 ![ChatGPT、自動化證據與人工審查的結果比較](./%E5%9C%96%E6%AA%94/Day09/day09-05-comparison.png)
 
-匯入閘門只保護一份 Java 服務；多份同時執行仍需資料庫等共用機制。原始碼也只能放進核准工作區。表格故意保留誤報與漏報，用來示範複核流程，不代表某次真實的 ChatGPT 對話。
+匯入入口只保護一份 Java 服務；多份同時執行仍需資料庫等共用機制。原始碼也只能放進核准工作區。表格故意保留誤報與漏報，用來示範複核流程，不代表某次真實的 ChatGPT 對話。
 
 ## 小結：建議要走到證據，才能進入決策
 
-這份模擬初篩先攤開可能的失敗條件，JUnit 5 與官方文件留下可重現證據，人工審查再補上遺漏脈絡。從 Day 05 到今天，同一份需求已由問題清單走到能執行的驗證；Day 10 會先講一個故事，定調接下來人類與 Codex 該怎麼合作，Day 11 再實際讓 Codex 進入工作目錄，觀察代理如何完成一輪任務。
+這份模擬初篩先攤開可能的失敗條件，JUnit 5 與官方文件留下可重現證據，人工審查再補上遺漏脈絡。從 Day 05 到今天，同一份需求已由問題清單走到能執行的驗證。接下來Day 10 會先講一個故事，定調接下來人類與 Codex 該怎麼合作，再實際讓 Codex 進入工作目錄，觀察代理如何完成一輪任務。
 
 ## 參考資料
 
