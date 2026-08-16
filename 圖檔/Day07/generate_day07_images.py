@@ -69,7 +69,7 @@ def cover():
 def contract_flow():
     image = Image.new("RGB", (WIDTH, HEIGHT), PALE)
     draw = ImageDraw.Draw(image)
-    text(draw, (64, 55), "從 Day 05 的 jobId 接續查詢契約", 47, NAVY, True)
+    text(draw, (64, 55), "從 Day 06 的 jobId 接續查詢契約", 47, NAVY, True)
     text(draw, (64, 108), "決策白名單先固定，ChatGPT 再整理格式", 27, MUTED)
     steps = [
         ("1", "決策清單", "路徑、狀態", TEAL),
