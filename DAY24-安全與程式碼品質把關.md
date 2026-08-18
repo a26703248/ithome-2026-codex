@@ -2,7 +2,7 @@
 
 ![Day 24 封面：安全檢查從清單、證據、判讀走到決策](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E5%9C%96%E6%AA%94/Day24/day24-01-cover.png)
 
-Day 23 留下一筆可攜式文件格式（Portable Document Format，PDF）套件通知。需求書還要新增 Microsoft Word 與 Microsoft Excel；縮小案例只把 `WORD`、`EXCEL` 列入格式清單，沒有實作兩種產出。現有測試通過，仍沒回答：請求者能否操作別的客戶？信箱會不會進入日誌？套件警示能否被觸發？
+Day 23 留下一筆PDF套件通知。需求書還要新增 Word 與 Excel；縮小案例只把 `WORD`、`EXCEL` 列入格式清單，沒有實作兩種產出。現有測試通過，仍沒回答：請求者能否操作別的客戶？信箱會不會進入日誌？套件警示能否被觸發？
 
 ## 我把檢查拆成六層
 
