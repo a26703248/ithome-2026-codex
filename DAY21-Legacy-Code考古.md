@@ -2,7 +2,7 @@
 
 ![Day 21 封面：每個理解都要能回到證據](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E5%9C%96%E6%AA%94/Day21/day21-01-cover.png)
 
-Day 20 用獨立縮小案例驗證新需求的 07:00 製作邊界。今天我回到尚未套用新需求的既有 08:00 路徑，追查哪段程式讀資料、呼叫可攜式文件格式（Portable Document Format，PDF）產生器，再觸發寄信。需求書已提醒產製與寄信耦合；只看 `DailyReportService` 這個名稱，很容易把猜測當答案。遺留程式碼（Legacy Code）最危險的不是看不懂，而是自以為看懂。
+Day 20 用獨立縮小案例驗證新需求的 07:00 製作邊界。今天我回到尚未套用新需求的既有 08:00 路徑，追查哪段程式讀資料、呼叫PDF產生器，再觸發寄信。需求書已提醒產製與寄信耦合；只看 `DailyReportService` 這個名稱，很容易把猜測當答案。遺留程式碼（Legacy Code）最危險的不是看不懂，而是自以為看懂。
 
 ## 不逐檔摘要，先沿著行為走
 
