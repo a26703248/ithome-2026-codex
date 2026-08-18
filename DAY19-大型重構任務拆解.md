@@ -2,7 +2,7 @@
 
 ![Day 19 封面：讓每次改動都能停、能測、能退](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E5%9C%96%E6%AA%94/Day19/day19-01-cover.png)
 
-Day 18 新增了可獨立測試的 `ReportProductionWindow`，依任務契約還沒有接回舊服務。我回到縮小案例查看 `DailyReportService.runIfScheduled()`：它先判斷時間，再讀取數值、組合內文，把內容交給PDF元件，最後將附件交給郵件元件。五個動作集中在同一個方法。若我只說「幫我重構」，Codex 可能一併調整呼叫順序與Word、Excel 格式；就算編譯通過，也看不出原有流程是否被改動。
+Day 18 新增了可獨立測試的 `ReportProductionWindow`，依任務契約還沒有接回舊服務。我回到縮小案例查看 `DailyReportService.runIfScheduled()`：它先判斷時間，再讀取數值、組合內文，把內容交給 PDF 元件，最後將附件交給郵件元件。五個動作集中在同一個方法。若我只說「幫我重構」，Codex 可能一併調整呼叫順序與 Word、Excel 格式；就算編譯通過，也看不出原有流程是否被改動。
 
 ![日報服務單一方法集中協調四段流程](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E5%9C%96%E6%AA%94/Day19/day19-02-coupling-scope.png)
 
