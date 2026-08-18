@@ -1,24 +1,24 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
-  <rect width="1600" height="900" fill="#f8fafc"/>
-  <text x="100" y="115" fill="#0f172a" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="54" font-weight="800">加入規則後，仍要用證據驗收</text>
-  <text x="100" y="170" fill="#64748b" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="28">同一個小任務跑兩輪，觀察動作是否真的改變</text>
+  <rect width="1600" height="900" fill="#0f172a"/>
+  <text x="100" y="115" fill="#f8fafc" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="54" font-weight="800">加入規則後，仍要用證據驗收</text>
+  <text x="100" y="170" fill="#94a3b8" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="28">同一個小任務跑兩輪，觀察動作是否真的改變</text>
   <g transform="translate(100 240)">
-    <rect width="1400" height="500" rx="34" fill="#ffffff" stroke="#cbd5e1" stroke-width="4"/>
-    <rect width="1400" height="86" rx="34" fill="#0f172a"/>
+    <rect width="1400" height="500" rx="34" fill="#1e293b" stroke="#334155" stroke-width="4"/>
+    <rect width="1400" height="86" rx="34" fill="#020617"/>
     <text x="65" y="57" fill="#f8fafc" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="31" font-weight="800">觀察項目</text>
     <text x="470" y="57" fill="#fca5a5" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="31" font-weight="800">沒有明確規則時的風險</text>
     <text x="1040" y="57" fill="#5eead4" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="31" font-weight="800">加入規則後的驗收證據</text>
     <g font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="27">
-      <line x1="40" y1="170" x2="1360" y2="170" stroke="#e2e8f0" stroke-width="2"/>
-      <text x="65" y="140" fill="#0f172a" font-weight="700">修改範圍</text><text x="470" y="140" fill="#7f1d1d">順手改測試或建置設定</text><text x="1040" y="140" fill="#115e59">diff 只含允許檔案</text>
-      <line x1="40" y1="260" x2="1360" y2="260" stroke="#e2e8f0" stroke-width="2"/>
-      <text x="65" y="230" fill="#0f172a" font-weight="700">讀檔範圍</text><text x="470" y="230" fill="#7f1d1d">搜尋整個儲存庫</text><text x="1040" y="230" fill="#115e59">先查相關模組</text>
-      <line x1="40" y1="350" x2="1360" y2="350" stroke="#e2e8f0" stroke-width="2"/>
-      <text x="65" y="320" fill="#0f172a" font-weight="700">測試結果</text><text x="470" y="320" fill="#7f1d1d">工具失敗也說已完成</text><text x="1040" y="320" fill="#115e59">命令、退出碼、原始錯誤</text>
-      <line x1="40" y1="440" x2="1360" y2="440" stroke="#e2e8f0" stroke-width="2"/>
-      <text x="65" y="410" fill="#0f172a" font-weight="700">完成回報</text><text x="470" y="410" fill="#7f1d1d">只留一句「完成」</text><text x="1040" y="410" fill="#115e59">檔案、命令、結果、風險</text>
+      <line x1="40" y1="170" x2="1360" y2="170" stroke="#334155" stroke-width="2"/>
+      <text x="65" y="140" fill="#f8fafc" font-weight="700">修改範圍</text><text x="470" y="140" fill="#fca5a5">順手改測試或建置設定</text><text x="1040" y="140" fill="#5eead4">diff 只含允許檔案</text>
+      <line x1="40" y1="260" x2="1360" y2="260" stroke="#334155" stroke-width="2"/>
+      <text x="65" y="230" fill="#f8fafc" font-weight="700">讀檔範圍</text><text x="470" y="230" fill="#fca5a5">搜尋整個儲存庫</text><text x="1040" y="230" fill="#5eead4">先查相關模組</text>
+      <line x1="40" y1="350" x2="1360" y2="350" stroke="#334155" stroke-width="2"/>
+      <text x="65" y="320" fill="#f8fafc" font-weight="700">測試結果</text><text x="470" y="320" fill="#fca5a5">工具失敗也說已完成</text><text x="1040" y="320" fill="#5eead4">命令、退出碼、原始錯誤</text>
+      <line x1="40" y1="440" x2="1360" y2="440" stroke="#334155" stroke-width="2"/>
+      <text x="65" y="410" fill="#f8fafc" font-weight="700">完成回報</text><text x="470" y="410" fill="#fca5a5">只留一句「完成」</text><text x="1040" y="410" fill="#5eead4">檔案、命令、結果、風險</text>
     </g>
   </g>
-  <rect x="100" y="790" width="1400" height="65" rx="20" fill="#0f172a"/>
+  <rect x="100" y="790" width="1400" height="65" rx="20" fill="#020617"/>
   <text x="800" y="834" text-anchor="middle" fill="#f8fafc" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="29" font-weight="700">回覆變短不是成果，錯誤假設減少才是</text>
 </svg>

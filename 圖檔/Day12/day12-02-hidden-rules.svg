@@ -1,32 +1,31 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
-  <rect width="1600" height="900" fill="#f8fafc"/>
-  <text x="100" y="115" fill="#0f172a" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="54" font-weight="800">能讀到檔案，不等於知道團隊規則</text>
-  <text x="100" y="170" fill="#64748b" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="28">程式碼描述現況；交付邊界常藏在人的記憶與臨時提示詞裡</text>
+  <rect width="1600" height="900" fill="#0f172a"/>
+  <text x="100" y="115" fill="#f8fafc" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="54" font-weight="800">能讀到檔案，不等於知道團隊規則</text>
+  <text x="100" y="170" fill="#94a3b8" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="28">程式碼描述現況；交付邊界常藏在人的記憶與臨時提示詞裡</text>
   <g transform="translate(100 240)">
-    <rect width="620" height="500" rx="32" fill="#fff7ed" stroke="#f97316" stroke-width="4"/>
-    <text x="45" y="75" fill="#9a3412" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="38" font-weight="800">只看專案檔案</text>
-    <rect x="45" y="120" width="220" height="80" rx="16" fill="#ffffff" stroke="#cbd5e1" stroke-width="3"/>
-    <text x="155" y="170" text-anchor="middle" fill="#334155" font-family="Consolas, monospace" font-size="28">pom.xml</text>
-    <rect x="355" y="120" width="220" height="80" rx="16" fill="#ffffff" stroke="#cbd5e1" stroke-width="3"/>
-    <text x="465" y="170" text-anchor="middle" fill="#334155" font-family="Consolas, monospace" font-size="28">src/</text>
-    <text x="55" y="275" fill="#7c2d12" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="31" font-weight="700">？可以改測試嗎</text>
-    <text x="55" y="340" fill="#7c2d12" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="31" font-weight="700">？新增依賴要先問嗎</text>
-    <text x="55" y="405" fill="#7c2d12" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="31" font-weight="700">？測試跑不起來算完成嗎</text>
-    <rect x="45" y="440" width="530" height="40" rx="20" fill="#fed7aa"/>
-    <text x="310" y="470" text-anchor="middle" fill="#9a3412" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="24" font-weight="700">缺口只能靠猜測或追問補齊</text>
+    <rect width="620" height="500" rx="32" fill="#2a1710" stroke="#f97316" stroke-width="4"/>
+    <text x="45" y="75" fill="#fdba74" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="38" font-weight="800">只看專案檔案</text>
+    <rect x="45" y="120" width="220" height="80" rx="16" fill="#1e293b" stroke="#475569" stroke-width="3"/>
+    <text x="155" y="170" text-anchor="middle" fill="#cbd5e1" font-family="Consolas, monospace" font-size="28">pom.xml</text>
+    <rect x="355" y="120" width="220" height="80" rx="16" fill="#1e293b" stroke="#475569" stroke-width="3"/>
+    <text x="465" y="170" text-anchor="middle" fill="#cbd5e1" font-family="Consolas, monospace" font-size="28">src/</text>
+    <text x="55" y="275" fill="#fed7aa" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="31" font-weight="700">？可以改測試嗎</text>
+    <text x="55" y="340" fill="#fed7aa" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="31" font-weight="700">？新增依賴要先問嗎</text>
+    <text x="55" y="405" fill="#fed7aa" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="31" font-weight="700">？測試跑不起來算完成嗎</text>
+    <rect x="45" y="440" width="530" height="40" rx="20" fill="#7c2d12"/>
+    <text x="310" y="470" text-anchor="middle" fill="#fed7aa" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="24" font-weight="700">缺口只能靠猜測或追問補齊</text>
   </g>
   <g transform="translate(880 240)">
-    <rect width="620" height="500" rx="32" fill="#ecfeff" stroke="#14b8a6" stroke-width="4"/>
-    <text x="45" y="75" fill="#134e4a" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="38" font-weight="800">加上 AGENTS.md</text>
+    <rect width="620" height="500" rx="32" fill="#0f2a28" stroke="#14b8a6" stroke-width="4"/>
+    <text x="45" y="75" fill="#5eead4" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="38" font-weight="800">加上 AGENTS.md</text>
     <rect x="45" y="120" width="530" height="95" rx="18" fill="#134e4a"/>
     <text x="310" y="180" text-anchor="middle" fill="#ccfbf1" font-family="Consolas, monospace" font-size="31" font-weight="700">AGENTS.md</text>
-    <text x="55" y="285" fill="#115e59" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="31" font-weight="700">✓ 不改測試與 pom.xml</text>
-    <text x="55" y="350" fill="#115e59" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="31" font-weight="700">✓ 新增依賴前先確認</text>
-    <text x="55" y="415" fill="#115e59" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="31" font-weight="700">✓ 失敗要回報原始錯誤</text>
-    <rect x="45" y="440" width="530" height="40" rx="20" fill="#99f6e4"/>
-    <text x="310" y="470" text-anchor="middle" fill="#134e4a" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="24" font-weight="700">規則可讀、動作可驗證</text>
+    <text x="55" y="285" fill="#99f6e4" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="31" font-weight="700">✓ 不改測試與 pom.xml</text>
+    <text x="55" y="350" fill="#99f6e4" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="31" font-weight="700">✓ 新增依賴前先確認</text>
+    <text x="55" y="415" fill="#99f6e4" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="31" font-weight="700">✓ 失敗要回報原始錯誤</text>
+    <rect x="45" y="440" width="530" height="40" rx="20" fill="#134e4a"/>
+    <text x="310" y="470" text-anchor="middle" fill="#99f6e4" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="24" font-weight="700">規則可讀、動作可驗證</text>
   </g>
-  <rect x="100" y="790" width="1400" height="65" rx="20" fill="#0f172a"/>
+  <rect x="100" y="790" width="1400" height="65" rx="20" fill="#020617"/>
   <text x="800" y="834" text-anchor="middle" fill="#f8fafc" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="29" font-weight="700">不要等 Codex 猜錯，才發現規則從未被寫下來</text>
 </svg>
-

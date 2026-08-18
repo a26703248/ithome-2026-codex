@@ -1,36 +1,35 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
-  <rect width="1600" height="900" fill="#f8fafc"/>
-  <text x="100" y="115" fill="#0f172a" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="54" font-weight="800">專案上下文的五個層次</text>
-  <text x="100" y="170" fill="#64748b" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="28">只保留會改變動作、驗證或回報的資訊</text>
+  <rect width="1600" height="900" fill="#0f172a"/>
+  <text x="100" y="115" fill="#f8fafc" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="54" font-weight="800">專案上下文的五個層次</text>
+  <text x="100" y="170" fill="#94a3b8" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="28">只保留會改變動作、驗證或回報的資訊</text>
   <g transform="translate(100 235)">
-    <rect width="1400" height="105" rx="24" fill="#dbeafe" stroke="#3b82f6" stroke-width="3"/>
+    <rect width="1400" height="105" rx="24" fill="#0f1f3d" stroke="#3b82f6" stroke-width="3"/>
     <circle cx="65" cy="52" r="34" fill="#3b82f6"/><text x="65" y="64" text-anchor="middle" fill="white" font-family="Consolas" font-size="30" font-weight="800">1</text>
-    <text x="125" y="48" fill="#1e3a8a" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="33" font-weight="800">任務目標</text><text x="125" y="82" fill="#334155" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="25">要解決什麼，以及哪些事情不在這次範圍</text>
-    <text x="1360" y="65" text-anchor="end" fill="#1e40af" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="27" font-weight="700">當次提示詞</text>
+    <text x="125" y="48" fill="#bfdbfe" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="33" font-weight="800">任務目標</text><text x="125" y="82" fill="#cbd5e1" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="25">要解決什麼，以及哪些事情不在這次範圍</text>
+    <text x="1360" y="65" text-anchor="end" fill="#93c5fd" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="27" font-weight="700">當次提示詞</text>
   </g>
   <g transform="translate(100 360)">
-    <rect width="1400" height="105" rx="24" fill="#e0f2fe" stroke="#0ea5e9" stroke-width="3"/>
+    <rect width="1400" height="105" rx="24" fill="#0c2233" stroke="#0ea5e9" stroke-width="3"/>
     <circle cx="65" cy="52" r="34" fill="#0ea5e9"/><text x="65" y="64" text-anchor="middle" fill="white" font-family="Consolas" font-size="30" font-weight="800">2</text>
-    <text x="125" y="48" fill="#0c4a6e" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="33" font-weight="800">目錄與模組</text><text x="125" y="82" fill="#334155" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="25">程式、測試、文件與責任邊界在哪裡</text>
-    <text x="1360" y="65" text-anchor="end" fill="#0369a1" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="27" font-weight="700">專案規則</text>
+    <text x="125" y="48" fill="#bae6fd" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="33" font-weight="800">目錄與模組</text><text x="125" y="82" fill="#cbd5e1" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="25">程式、測試、文件與責任邊界在哪裡</text>
+    <text x="1360" y="65" text-anchor="end" fill="#7dd3fc" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="27" font-weight="700">專案規則</text>
   </g>
   <g transform="translate(100 485)">
-    <rect width="1400" height="105" rx="24" fill="#ccfbf1" stroke="#14b8a6" stroke-width="3"/>
+    <rect width="1400" height="105" rx="24" fill="#0f2a28" stroke="#14b8a6" stroke-width="3"/>
     <circle cx="65" cy="52" r="34" fill="#14b8a6"/><text x="65" y="64" text-anchor="middle" fill="white" font-family="Consolas" font-size="30" font-weight="800">3</text>
-    <text x="125" y="48" fill="#134e4a" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="33" font-weight="800">建置與測試</text><text x="125" y="82" fill="#334155" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="25">可以重現的命令、工具版本與成功條件</text>
-    <text x="1360" y="65" text-anchor="end" fill="#0f766e" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="27" font-weight="700">可執行驗證</text>
+    <text x="125" y="48" fill="#5eead4" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="33" font-weight="800">建置與測試</text><text x="125" y="82" fill="#cbd5e1" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="25">可以重現的命令、工具版本與成功條件</text>
+    <text x="1360" y="65" text-anchor="end" fill="#2dd4bf" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="27" font-weight="700">可執行驗證</text>
   </g>
   <g transform="translate(100 610)">
-    <rect width="1400" height="105" rx="24" fill="#ede9fe" stroke="#8b5cf6" stroke-width="3"/>
+    <rect width="1400" height="105" rx="24" fill="#241a3b" stroke="#8b5cf6" stroke-width="3"/>
     <circle cx="65" cy="52" r="34" fill="#8b5cf6"/><text x="65" y="64" text-anchor="middle" fill="white" font-family="Consolas" font-size="30" font-weight="800">4</text>
-    <text x="125" y="48" fill="#4c1d95" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="33" font-weight="800">編碼與安全規則</text><text x="125" y="82" fill="#334155" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="25">禁止事項、核准點與停止條件</text>
-    <text x="1360" y="65" text-anchor="end" fill="#6d28d9" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="27" font-weight="700">行動邊界</text>
+    <text x="125" y="48" fill="#c4b5fd" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="33" font-weight="800">編碼與安全規則</text><text x="125" y="82" fill="#cbd5e1" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="25">禁止事項、核准點與停止條件</text>
+    <text x="1360" y="65" text-anchor="end" fill="#a78bfa" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="27" font-weight="700">行動邊界</text>
   </g>
   <g transform="translate(100 735)">
-    <rect width="1400" height="105" rx="24" fill="#fef3c7" stroke="#f59e0b" stroke-width="3"/>
+    <rect width="1400" height="105" rx="24" fill="#302014" stroke="#f59e0b" stroke-width="3"/>
     <circle cx="65" cy="52" r="34" fill="#f59e0b"/><text x="65" y="64" text-anchor="middle" fill="white" font-family="Consolas" font-size="30" font-weight="800">5</text>
-    <text x="125" y="48" fill="#78350f" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="33" font-weight="800">完成與回報</text><text x="125" y="82" fill="#334155" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="25">變更、命令、結果與未驗證風險</text>
-    <text x="1360" y="65" text-anchor="end" fill="#b45309" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="27" font-weight="700">交付證據</text>
+    <text x="125" y="48" fill="#fcd34d" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="33" font-weight="800">完成與回報</text><text x="125" y="82" fill="#cbd5e1" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="25">變更、命令、結果與未驗證風險</text>
+    <text x="1360" y="65" text-anchor="end" fill="#fbbf24" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="27" font-weight="700">交付證據</text>
   </g>
 </svg>
-

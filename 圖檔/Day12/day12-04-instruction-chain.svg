@@ -1,31 +1,30 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
-  <rect width="1600" height="900" fill="#f8fafc"/>
-  <text x="100" y="115" fill="#0f172a" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="54" font-weight="800">Codex 從根目錄走向目前工作目錄</text>
-  <text x="100" y="170" fill="#64748b" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="28">越靠近工作目錄的指令越晚加入，可覆蓋較早的通用規則</text>
-  <path d="M250 300v410" stroke="#94a3b8" stroke-width="12" stroke-linecap="round"/>
-  <path d="M250 710l-26-35h52z" fill="#94a3b8"/>
+  <rect width="1600" height="900" fill="#0f172a"/>
+  <text x="100" y="115" fill="#f8fafc" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="54" font-weight="800">Codex 從根目錄走向目前工作目錄</text>
+  <text x="100" y="170" fill="#94a3b8" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="28">越靠近工作目錄的指令越晚加入，可覆蓋較早的通用規則</text>
+  <path d="M250 300v410" stroke="#64748b" stroke-width="12" stroke-linecap="round"/>
+  <path d="M250 710l-26-35h52z" fill="#64748b"/>
   <g transform="translate(170 240)">
     <circle cx="80" cy="60" r="55" fill="#3b82f6"/>
     <text x="80" y="72" text-anchor="middle" fill="white" font-family="Consolas" font-size="34" font-weight="800">ROOT</text>
-    <rect x="190" width="1150" height="120" rx="24" fill="#dbeafe" stroke="#3b82f6" stroke-width="4"/>
-    <text x="235" y="52" fill="#1e3a8a" font-family="Consolas, monospace" font-size="31" font-weight="700">/AGENTS.md</text>
-    <text x="235" y="91" fill="#334155" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="26">Java 變更後跑測試 · 回報 diff 與剩餘風險</text>
+    <rect x="190" width="1150" height="120" rx="24" fill="#0f1f3d" stroke="#3b82f6" stroke-width="4"/>
+    <text x="235" y="52" fill="#bfdbfe" font-family="Consolas, monospace" font-size="31" font-weight="700">/AGENTS.md</text>
+    <text x="235" y="91" fill="#cbd5e1" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="26">Java 變更後跑測試 · 回報 diff 與剩餘風險</text>
   </g>
   <g transform="translate(170 430)">
     <circle cx="80" cy="60" r="55" fill="#14b8a6"/>
     <text x="80" y="72" text-anchor="middle" fill="white" font-family="Consolas" font-size="28" font-weight="800">SERVICE</text>
-    <rect x="190" width="1150" height="120" rx="24" fill="#ccfbf1" stroke="#14b8a6" stroke-width="4"/>
-    <text x="235" y="52" fill="#134e4a" font-family="Consolas, monospace" font-size="31" font-weight="700">/services/reporting/AGENTS.override.md</text>
-    <text x="235" y="91" fill="#334155" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="26">報表模組使用指定測試命令 · 不修改排程介面</text>
+    <rect x="190" width="1150" height="120" rx="24" fill="#0f2a28" stroke="#14b8a6" stroke-width="4"/>
+    <text x="235" y="52" fill="#5eead4" font-family="Consolas, monospace" font-size="31" font-weight="700">/services/reporting/AGENTS.override.md</text>
+    <text x="235" y="91" fill="#cbd5e1" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="26">報表模組使用指定測試命令 · 不修改排程介面</text>
   </g>
   <g transform="translate(170 620)">
     <circle cx="80" cy="60" r="55" fill="#8b5cf6"/>
     <text x="80" y="72" text-anchor="middle" fill="white" font-family="Consolas" font-size="27" font-weight="800">CWD</text>
-    <rect x="190" width="1150" height="120" rx="24" fill="#ede9fe" stroke="#8b5cf6" stroke-width="4"/>
-    <text x="235" y="52" fill="#4c1d95" font-family="Consolas, monospace" font-size="31" font-weight="700">/services/reporting/src/</text>
-    <text x="235" y="91" fill="#334155" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="26">目前工作目錄：套用根目錄與 reporting 的指令鏈</text>
+    <rect x="190" width="1150" height="120" rx="24" fill="#241a3b" stroke="#8b5cf6" stroke-width="4"/>
+    <text x="235" y="52" fill="#c4b5fd" font-family="Consolas, monospace" font-size="31" font-weight="700">/services/reporting/src/</text>
+    <text x="235" y="91" fill="#cbd5e1" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="26">目前工作目錄：套用根目錄與 reporting 的指令鏈</text>
   </g>
-  <rect x="360" y="795" width="1140" height="60" rx="18" fill="#0f172a"/>
+  <rect x="360" y="795" width="1140" height="60" rx="18" fill="#020617"/>
   <text x="930" y="836" text-anchor="middle" fill="#f8fafc" font-family="Noto Sans TC, Microsoft JhengHei, sans-serif" font-size="27" font-weight="700">同一目錄：AGENTS.override.md 優先於 AGENTS.md</text>
 </svg>
-
