@@ -218,7 +218,7 @@ def evidence_chain():
         x += 300
     box(draw, (80, 655, 1520, 770), fill=NAVY, radius=24)
     draw_text(draw, (800, 698), "通過測試 ≠ 可以直接上線", 30, WHITE, True, anchor="mm")
-    draw_text(draw, (800, 741), "正式授權、資料留存、併發衝突與復原仍需真實環境驗證", 23, "#C7D8DF", anchor="mm")
+    draw_text(draw, (800, 741), "正式授權、資料留存、版本衝突與復原仍需真實環境驗證", 23, "#C7D8DF", anchor="mm")
     footer(draw, 5)
     save(image, "day25-05-evidence-chain.png")
 
