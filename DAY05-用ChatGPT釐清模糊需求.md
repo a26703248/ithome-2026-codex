@@ -1,10 +1,10 @@
 # Day 05｜用 ChatGPT 釐清模糊需求
 
-![Day 05 封面：先把未知攤開，再開始設計](./%E5%9C%96%E6%AA%94/Day05/day05-01-cover.png)
+![Day 05 封面：先把未知攤開，再開始設計](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E5%9C%96%E6%AA%94/Day05/day05-01-cover.png)
 
 Day 04 我把「資料工作區空間」這份初版需求的未知攤開，圈出「資料」「選取」「定時匯入」與「編輯」四個名詞，卻找不到能估算工時或驗收的邊界。若直接拆成開發工作單，疑問只會延到串接時處理，今天我實際打開 ChatGPT，把這些問號一題一題丟過去。
 
-![一句需求裡藏著四類未決問題](./%E5%9C%96%E6%AA%94/Day05/day05-02-hidden-gaps.png)
+![一句需求裡藏著四類未決問題](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E5%9C%96%E6%AA%94/Day05/day05-02-hidden-gaps.png)
 
 ## ChatGPT 先當探照燈，不當決策者
 
@@ -17,7 +17,7 @@ Day 04 我把「資料工作區空間」這份初版需求的未知攤開，圈�
 | 待決策 | 編輯能力、排程、失敗通知與保存期限 | 由需求提出單位會同團隊確認 |
 | 版本範圍 | 第一版納入與排除項目尚未選定 | 先確認版本邊界 |
 
-![把事實、假設、決策與範圍分開](./%E5%9C%96%E6%AA%94/Day05/day05-03-four-buckets.png)
+![把事實、假設、決策與範圍分開](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E5%9C%96%E6%AA%94/Day05/day05-03-four-buckets.png)
 
 這也呼應 [OpenAI 官方提示建議](https://help.openai.com/en/articles/10032626-prompt-engineering-best-practices-for-chatgpt)：交代任務邊界與背景，檢查回覆後再補條件。我的做法是每輪只處理一種不確定性。
 
@@ -39,7 +39,7 @@ Day 04 我把「資料工作區空間」這份初版需求的未知攤開，圈�
 
 若 `12 MB/s` 是可持續的端到端有效速率，且資料串行傳送，以十進位換算，純傳輸也超過 23 小時，幾乎沒有重試空間。兩組建立、更新時間欄位也可能重複。我必須確認速率限制在哪一端，以及兩組時間代表來源或平台時間，不能讓 ChatGPT 自行刪欄位。
 
-![三輪對話：缺口、證據、驗收](./%E5%9C%96%E6%AA%94/Day05/day05-04-three-rounds.png)
+![三輪對話：缺口、證據、驗收](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E5%9C%96%E6%AA%94/Day05/day05-04-three-rounds.png)
 
 ## 第三輪：把候選規則改寫成驗收草案
 
@@ -55,7 +55,7 @@ And 原使用者可以重新開啟並編輯該筆資料
 
 我還會追問無權限時的回應、批次部分錯誤的處理，以及重送是否去重。答不出的項目保留「待決策」，不把猜測藏進驗收條件。
 
-![從模糊敘述到可確認的驗收草案](./%E5%9C%96%E6%AA%94/Day05/day05-05-acceptance.png)
+![從模糊敘述到可確認的驗收草案](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E5%9C%96%E6%AA%94/Day05/day05-05-acceptance.png)
 
 ## 小結：好的需求整理，是讓未知有名字
 

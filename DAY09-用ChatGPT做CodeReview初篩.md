@@ -1,6 +1,6 @@
 # Day 09｜用 ChatGPT 做程式碼審查（Code Review）初篩：找到問題，不等於可以合併
 
-![Day 09 封面：先找疑點，再決定能不能合併](./%E5%9C%96%E6%AA%94/Day09/day09-01-cover.png)
+![Day 09 封面：先找疑點，再決定能不能合併](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E5%9C%96%E6%AA%94/Day09/day09-01-cover.png)
 
 Day 08 已用測試保護「每天九點」的時區計算。這次我往排程外移一層，審查新增的匯入閘門。我讀這小段 Java 程式差異（diff）時，視線先停在 `strip` 與 `toLowerCase`；把集合操作排成時序後，才發現互斥判斷被拆成兩步。ChatGPT 可以擴大搜尋面，回覆仍不是合併依據。
 
@@ -14,7 +14,7 @@ OpenAI 目前把理解程式碼庫、執行測試與審查變更列為 Codex 工
 | 編譯與 JUnit 5 | 重現輸入、時序與實際結果 | 通過只代表已寫下的條件成立 |
 | 人工程式碼審查 | 對照需求、否決誤報、決定是否擋下 | 合併責任仍由團隊承擔 |
 
-![Code Review 的初篩、證據與決策三層責任](./%E5%9C%96%E6%AA%94/Day09/day09-02-three-layers.png)
+![Code Review 的初篩、證據與決策三層責任](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E5%9C%96%E6%AA%94/Day09/day09-02-three-layers.png)
 
 我只問每一點能否轉成失敗斷言；無法重現的先留問題單，不要求作者改碼。以上層次並無誰先誰後，而是涵蓋範圍不同，所以可依照個人習慣調整。
 
@@ -32,7 +32,7 @@ return true;
 
 因未保存作者本人的 ChatGPT 原始對話，以下標為模擬初篩：null（空值）會在 `isBlank()` 變成 `NullPointerException`，兩個執行緒也可能同時通過 `contains`。方向合理，證據仍是空的。
 
-![去識別化 Java diff 的三個失敗條件](./%E5%9C%96%E6%AA%94/Day09/day09-03-diff-findings.png)
+![去識別化 Java diff 的三個失敗條件](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E5%9C%96%E6%AA%94/Day09/day09-03-diff-findings.png)
 
 ## 把兩項建議寫成紅燈測試
 
@@ -52,7 +52,7 @@ public void finish(String workspaceId) {
 
 重跑 `mvn clean test` 後，四項測試全部通過。[完整程式、測試與驗證紀錄](./%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY09) 也保留了修正前後的結果。
 
-![JUnit 5 測試從三項失敗到四項通過](./%E5%9C%96%E6%AA%94/Day09/day09-04-red-green.png)
+![JUnit 5 測試從三項失敗到四項通過](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E5%9C%96%E6%AA%94/Day09/day09-04-red-green.png)
 
 ## 模擬初篩也要放入誤報與漏報
 
@@ -65,7 +65,7 @@ public void finish(String workspaceId) {
 | `newKeySet` 不安全 | 誤報 | JDK 文件 | 否決 |
 | `finish` 鍵不一致 | 漏報 | 人工補測試 | 修正 |
 
-![ChatGPT、自動化證據與人工審查的結果比較](./%E5%9C%96%E6%AA%94/Day09/day09-05-comparison.png)
+![ChatGPT、自動化證據與人工審查的結果比較](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E5%9C%96%E6%AA%94/Day09/day09-05-comparison.png)
 
 匯入閘門只保護一份 Java 服務；多份同時執行仍需資料庫等共用機制。原始碼也只能放進核准工作區。表格故意保留誤報與漏報，用來示範複核流程，不代表某次真實的 ChatGPT 對話。
 

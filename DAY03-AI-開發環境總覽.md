@@ -1,6 +1,6 @@
 # Day 03｜打造你的 AI 開發環境總覽
 
-![Day 03 封面：讓上下文留在工作現場](./%E5%9C%96%E6%AA%94/Day03/day03-01-cover.png)
+![Day 03 封面：讓上下文留在工作現場](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E5%9C%96%E6%AA%94/Day03/day03-01-cover.png)
 
 Day 02 談完 ChatGPT 與 Codex 的分工後，但「選對工具」只解決一半問題，操作介面選錯一樣會卡手。今天的案例是要修正 Java 購物車缺陷時，我先用 ChatGPT 確認預期行為，再到 Codex 開啟專案，最後用 Maven 跑測試。如果每一步都靠複製貼上銜接，不止會中斷心流，還得重複送出相同上下文，所以今天我們要來探討怎樣能讓我們的心流不會被中斷。
 
@@ -21,7 +21,7 @@ Day 02 談完 ChatGPT 與 Codex 的分工後，但「選對工具」只解決一
 介面可以依習慣切換，驗收標準不能跟著放寬。至少要看清楚改了哪些檔案、執行了哪些命令，以及測試到底有沒有開始。
 ## 我的最小可用環境
 
-![Day 03 最小可用開發環境](./%E5%9C%96%E6%AA%94/Day03/day03-04-minimum-environment.png)
+![Day 03 最小可用開發環境](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E5%9C%96%E6%AA%94/Day03/day03-04-minimum-environment.png)
 
 以上是我的程式測試執行版本，不代表大家都得裝同一套版本；只要專案可以重現問題、執行測試、查看差異並在需要時還原，就足以開始練習。產品介面與方案則要在發布當日再確認一次。
 
@@ -39,7 +39,7 @@ if (items.isEmpty()) {
 
 重跑時還碰到另一個狀況：Maven 因網路權限無法下載外掛。這時候 JUnit 其實還沒執行，不能看到紅字就認定修正失敗。我確認下載來源後，只核准這次測試需要的連線；再次執行，兩項測試全部通過。接著檢查 Codex 的變更畫面，確認沒有順手改測試，也沒有夾帶無關重構。
 
-![從失敗測試、最小修改到兩項測試通過](./%E5%9C%96%E6%AA%94/Day03/day03-05-environment-verification.png)
+![從失敗測試、最小修改到兩項測試通過](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E5%9C%96%E6%AA%94/Day03/day03-05-environment-verification.png)
 
 完整輸出放在 [Day 03 驗證紀錄](./%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY03/docs/verification-log.md)。這次需求、修改和驗證能留在同一條工作脈絡裡；不過上下文越完整，也越要控制機密資料、檔案範圍與網路權限。
 

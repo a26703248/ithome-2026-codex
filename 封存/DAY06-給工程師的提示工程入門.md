@@ -1,6 +1,6 @@
 # Day 06｜給工程師的提示工程（Prompt Engineering）入門：把提示詞當成工作說明
 
-![Day 06 封面：把提示詞當成可驗收的工作說明](./%E5%9C%96%E6%AA%94/Day06/day06-01-cover.png)
+![Day 06 封面：把提示詞當成可驗收的工作說明](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E5%9C%96%E6%AA%94/Day06/day06-01-cover.png)
 
 Day 05 我請 ChatGPT 比較架構時，沒有只丟一句「請給我最佳架構」。這句話沒說機器限制、資料來源、比較維度與完成條件。提示詞不是讓模型變聰明的咒語，而是一份工作說明；資訊缺口越多，回應越容易偏離現場。
 
@@ -17,7 +17,7 @@ OpenAI 對 ChatGPT 的提示建議，是把要求寫得清楚、具體，提供�
 | 輸出 | `DataNormalizer`、JUnit 5 測試與假設清單 |
 | 驗收 | 用 Maven 執行 `mvn test`，核對欄位、預設值及來源標籤後續變更不影響輸出 |
 
-![六個提示詞組成：任務、背景、輸入、限制、輸出與驗收](./%E5%9C%96%E6%AA%94/Day06/day06-02-six-parts.png)
+![六個提示詞組成：任務、背景、輸入、限制、輸出與驗收](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E5%9C%96%E6%AA%94/Day06/day06-02-six-parts.png)
 
 ## 同一個任務，我改了三版
 
@@ -33,7 +33,7 @@ OpenAI 對 ChatGPT 的提示建議，是把要求寫得清楚、具體，提供�
 完成後回報測試命令、結果與尚未驗證的假設。
 ```
 
-![三版提示詞從模糊指令演進到可驗收工作說明](./%E5%9C%96%E6%AA%94/Day06/day06-03-prompt-evolution.png)
+![三版提示詞從模糊指令演進到可驗收工作說明](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E5%9C%96%E6%AA%94/Day06/day06-03-prompt-evolution.png)
 
 | 版本 | 還要人工補什麼 | 可驗證程度 |
 |---|---|---|
@@ -60,13 +60,13 @@ return new WorkspaceDocument(
 
 六個 JUnit 5 測試涵蓋兩種來源、空值、清單複製、標籤內 `null` 與 `null` 來源。執行 `mvn test` 後六項全數通過；這只能證明程式符合本篇規則，不能替業務決定預設值是否合適。
 
-![回應品質不看篇幅，要看假設是否可見、結果是否可測](./%E5%9C%96%E6%AA%94/Day06/day06-04-quality-check.png)
+![回應品質不看篇幅，要看假設是否可見、結果是否可測](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E5%9C%96%E6%AA%94/Day06/day06-04-quality-check.png)
 
 ## 模板依風險增減
 
 查一個編譯錯誤，我通常貼錯誤訊息、相關程式與期望行為就開始；涉及資料轉換、公開介面或安全邊界，我才展開六欄。欄位版本改變時，提示詞也要一起更新。密碼、金鑰、客戶資料與未授權程式碼則不會因為模板需要輸入就放進去。
 
-![可複用提示詞卡片：先交代工作，再要求證據](./%E5%9C%96%E6%AA%94/Day06/day06-05-reusable-card.png)
+![可複用提示詞卡片：先交代工作，再要求證據](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E5%9C%96%E6%AA%94/Day06/day06-05-reusable-card.png)
 
 ## 小結：讓未知有明確的退回條件
 

@@ -1,6 +1,6 @@
 # Day 01｜系列前言：用 ChatGPT 和 Codex 打造開發輔助助手
 
-![Day 01 封面：從對話走進開發流程](./%E5%9C%96%E6%AA%94/Day01/day01-01-cover.png)
+![Day 01 封面：從對話走進開發流程](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E5%9C%96%E6%AA%94/Day01/day01-01-cover.png)
 
 在軟體開發時常聽到一個鬼故事「XXX 功能好像怪怪的，你可以幫我看一下嗎？」，這時候心裡 OS：「啥怪怪的我弄很正常啊？」接下來開始要使用第二技能「通靈」來確認怪是個怎樣的怪法，但這往往都需要花費大量的時間和精力。
 
@@ -16,13 +16,13 @@ ChatGPT 與 Codex 的功能可能持續改變，因此這 30 天並不是學習�
 2. 拆分責任：程式修改要交給 ChatGPT，還是 Codex？正確的工具能夠讓開發者有更好的開發體驗。
 3. 要求證據：ChatGPT 與 Codex 顯示已完成，是真的完成了嗎？如何證明 AI 工具說的完成是真的完成？
 
-![人工智慧協作開發的責任迴圈](./%E5%9C%96%E6%AA%94/Day01/day01-03-responsibility-loop.png)
+![人工智慧協作開發的責任迴圈](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E5%9C%96%E6%AA%94/Day01/day01-03-responsibility-loop.png)
 
 ## 這 30 天會走過哪些路線？
 
 這個系列寫給參與軟體開發流程的讀者。路線會從心智模型、需求與設計、Codex 實作、整合工作流一路走到團隊治理。程式碼範例統一使用 Java，並視情境搭配 Maven／Gradle、JUnit 5 與 Spring Boot。
 
-![30 天學習路線圖](./%E5%9C%96%E6%AA%94/Day01/day01-04-roadmap.png)
+![30 天學習路線圖](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E5%9C%96%E6%AA%94/Day01/day01-04-roadmap.png)
 
 ## 今天先做一件事：留下可驗證的紀錄
 
@@ -39,7 +39,7 @@ ChatGPT 與 Codex 的功能可能持續改變，因此這 30 天並不是學習�
 
 Day 29 會再用這份基準線比較時間、返工、測試與人工介入程度。沒有基準線，「效率提升」很容易只剩主觀感受。
 
-![Day 01 基準線紀錄卡](./%E5%9C%96%E6%AA%94/Day01/day01-05-baseline-card.png)
+![Day 01 基準線紀錄卡](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E5%9C%96%E6%AA%94/Day01/day01-05-baseline-card.png)
 
 ## 小結：先建立合作方法，再追求速度
 
