@@ -1,6 +1,6 @@
 # 原始回報（釐清前）— 商品查詢結果異常
 
-> 對照文件：[`issue-report.md`](issue-report.md) 為釐清後的版本，本文件保留釐清前的原始樣貌，供比較用。
+> 對照文件：[`issue-report.md`](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY02/docs/issue-report.md) 為釐清後的版本，本文件保留釐清前的原始樣貌，供比較用。
 
 ## 回報內容（全文）
 

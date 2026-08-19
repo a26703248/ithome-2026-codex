@@ -10,7 +10,7 @@ Day 05 第二輪加入兩個會影響架構的示範條件：每日約 `1 TB`，
 
 ![先把設計限制與未知資訊放進同一張圖](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E5%9C%96%E6%AA%94/Day06/day06-02-constraints.png)
 
-我沒有用「請給我最佳架構」這樣直接得到答案的提示詞，而是要求它用相同維度比較三個候選方案。完整提示詞放在 [Day 06 架構比較提示詞](https://github.com/a26703248/ithome-2026-codex/blob/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY06/architecture-prompt.txt)，核心限制如下：
+我沒有用「請給我最佳架構」這樣直接得到答案的提示詞，而是要求它用相同維度比較三個候選方案。完整提示詞放在 [Day 06 架構比較提示詞](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY06/architecture-prompt.txt)，核心限制如下：
 
 ```text
 提出三個可逐步演進的候選架構，不要替團隊選定答案。
@@ -69,4 +69,4 @@ ResponseEntity<ImportJobView> submit(@RequestBody ImportCommand command) {
 - [OpenAI：Projects in ChatGPT](https://help.openai.com/en/articles/10169521-using-projects-in-chatgpt)
 - [Spring Boot：Task Execution and Scheduling](https://docs.spring.io/spring-boot/reference/features/task-execution-and-scheduling.html)
 - [NIST：SI prefixes](https://www.nist.gov/pml/special-publication-811/nist-guide-si-chapter-4-two-classes-si-units-and-si-prefixes)
-- [資料工作區空間——需求書（v0．初版待釐清）](https://github.com/a26703248/ithome-2026-codex/blob/main/%E6%A1%88%E4%BE%8B/%E8%B3%87%E6%96%99%E5%B7%A5%E4%BD%9C%E5%8D%80%E7%A9%BA%E9%96%93-%E9%9C%80%E6%B1%82%E6%9B%B8.md)
+- [資料工作區空間——需求書（v0．初版待釐清）](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E6%A1%88%E4%BE%8B/%E8%B3%87%E6%96%99%E5%B7%A5%E4%BD%9C%E5%8D%80%E7%A9%BA%E9%96%93-%E9%9C%80%E6%B1%82%E6%9B%B8.md)

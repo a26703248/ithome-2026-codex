@@ -20,7 +20,7 @@ Day 20 用獨立縮小案例驗證新需求的 07:00 製作邊界。今天我回
 
 ## 先讓 Codex 唯讀追蹤
 
-[OpenAI 官方文件](https://learn.chatgpt.com/use-cases/codebase-onboarding)建議先限定功能區域，再要求 Codex 說明流程、模組責任、副作用與下一批檔案。我再要求找不到證據就標成未知，不得依類別名稱推測業務行為。完整版放在[唯讀追蹤任務](https://github.com/a26703248/ithome-2026-codex/blob/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY21/docs/trace-prompt.md)。
+[OpenAI 官方文件](https://learn.chatgpt.com/use-cases/codebase-onboarding)建議先限定功能區域，再要求 Codex 說明流程、模組責任、副作用與下一批檔案。我再要求找不到證據就標成未知，不得依類別名稱推測業務行為。完整版放在[唯讀追蹤任務](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY21/docs/trace-prompt.md)。
 
 ```text
 先不要修改檔案。從 DailyReportJob.runAt() 追蹤每日 08:00 的完整路徑。
@@ -35,7 +35,7 @@ Day 20 用獨立縮小案例驗證新需求的 07:00 製作邊界。今天我回
 
 ## 地圖要保留未知，不追求看起來完整
 
-我把靜態追蹤的結論記在[理解地圖](https://github.com/a26703248/ithome-2026-codex/blob/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY21/docs/codebase-map.md)，並保留未解問題，例如排程重跑、資料庫交易、PDF 暫存檔與郵件重試。介面只標出邊界，外部系統仍待確認。
+我把靜態追蹤的結論記在[理解地圖](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY21/docs/codebase-map.md)，並保留未解問題，例如排程重跑、資料庫交易、PDF 暫存檔與郵件重試。介面只標出邊界，外部系統仍待確認。
 
 ![已確認路徑與仍待正式環境確認的邊界](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E5%9C%96%E6%AA%94/Day21/day21-04-certainty-boundary.png)
 
@@ -51,9 +51,9 @@ assertEquals(1, fixture.mailGateway.callCount);
 assertEquals("daily-report.pdf", fixture.mailGateway.message.attachmentName());
 ```
 
-第二個測試在同一分鐘執行兩次，PDF 產生器與郵件閘道測試替身都被呼叫 2 次。測試通過不表示重複寄信正確，而是證明縮小案例沒有冪等性（idempotency，也就是重跑不會再次造成副作用）防線。完整內容可看 [DailyReportFlowCharacterizationTest.java](https://github.com/a26703248/ithome-2026-codex/blob/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY21/src/test/java/com/ithome/day20/report/DailyReportFlowCharacterizationTest.java)。
+第二個測試在同一分鐘執行兩次，PDF 產生器與郵件閘道測試替身都被呼叫 2 次。測試通過不表示重複寄信正確，而是證明縮小案例沒有冪等性（idempotency，也就是重跑不會再次造成副作用）防線。完整內容可看 [DailyReportFlowCharacterizationTest.java](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY21/src/test/java/com/ithome/day20/report/DailyReportFlowCharacterizationTest.java)。
 
-受限環境阻擋 Maven 下載外掛時，JUnit 尚未啟動；核准網路存取後重跑 `mvn clean test`，2 項測試全數通過，建置結果為 `BUILD SUCCESS`。命令與限制記在[驗證紀錄](https://github.com/a26703248/ithome-2026-codex/blob/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY21/docs/verification-log.md)。
+受限環境阻擋 Maven 下載外掛時，JUnit 尚未啟動；核准網路存取後重跑 `mvn clean test`，2 項測試全數通過，建置結果為 `BUILD SUCCESS`。命令與限制記在[驗證紀錄](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY21/docs/verification-log.md)。
 
 ![特徵測試固定現況並揭露重複呼叫風險](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E5%9C%96%E6%AA%94/Day21/day21-05-characterization-test.png)
 
@@ -65,4 +65,4 @@ Codex 把搜尋範圍縮成一條行為路徑，可信度仍來自檔案、方�
 
 - [OpenAI：Understand large codebases](https://learn.chatgpt.com/use-cases/codebase-onboarding)
 - [JUnit 5.13.4 User Guide](https://docs.junit.org/5.13.4/user-guide/)
-- [日報服務需求書](https://github.com/a26703248/ithome-2026-codex/blob/main/%E6%A1%88%E4%BE%8B/%E6%97%A5%E5%A0%B1%E6%9C%8D%E5%8B%99-%E9%9C%80%E6%B1%82%E6%9B%B8.md)
+- [日報服務需求書](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E6%A1%88%E4%BE%8B/%E6%97%A5%E5%A0%B1%E6%9C%8D%E5%8B%99-%E9%9C%80%E6%B1%82%E6%9B%B8.md)

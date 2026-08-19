@@ -1,6 +1,6 @@
 # Day 06｜給工程師的提示工程（Prompt Engineering）入門：把提示詞當成工作說明
 
-![Day 06 封面：把提示詞當成可驗收的工作說明](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E5%9C%96%E6%AA%94/Day06/day06-01-cover.png)
+![Day 06 封面：把提示詞當成可驗收的工作說明](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E5%B0%81%E5%AD%98/%E5%9C%96%E6%AA%94/Day06/day06-01-cover.png)
 
 Day 05 我請 ChatGPT 比較架構時，沒有只丟一句「請給我最佳架構」。這句話沒說機器限制、資料來源、比較維度與完成條件。提示詞不是讓模型變聰明的咒語，而是一份工作說明；資訊缺口越多，回應越容易偏離現場。
 
@@ -17,7 +17,7 @@ OpenAI 對 ChatGPT 的提示建議，是把要求寫得清楚、具體，提供�
 | 輸出 | `DataNormalizer`、JUnit 5 測試與假設清單 |
 | 驗收 | 用 Maven 執行 `mvn test`，核對欄位、預設值及來源標籤後續變更不影響輸出 |
 
-![六個提示詞組成：任務、背景、輸入、限制、輸出與驗收](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E5%9C%96%E6%AA%94/Day06/day06-02-six-parts.png)
+![六個提示詞組成：任務、背景、輸入、限制、輸出與驗收](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E5%B0%81%E5%AD%98/%E5%9C%96%E6%AA%94/Day06/day06-02-six-parts.png)
 
 ## 同一個任務，我改了三版
 
@@ -25,7 +25,7 @@ OpenAI 對 ChatGPT 的提示建議，是把要求寫得清楚、具體，提供�
 
 第二版補上 `title`、`description`、`tags` 與兩組時間欄位，並要求未知處標成「待確認」。這版已縮小可回答範圍，但「時間缺值怎麼辦」仍沒有團隊決定。
 
-第三版才把本篇示範規則寫死：字串缺值轉空字串、標籤缺值轉空清單、時間缺值轉 `Instant.EPOCH`（Unix 紀元起點）。這是可替換的測試規則，不是 v0 需求事實。完整版本放在 [Day 06 可驗證版提示詞](https://github.com/a26703248/ithome-2026-codex/blob/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY06/prompt-v3-verifiable.txt)。
+第三版才把本篇示範規則寫死：字串缺值轉空字串、標籤缺值轉空清單、時間缺值轉 `Instant.EPOCH`（Unix 紀元起點）。這是可替換的測試規則，不是 v0 需求事實。完整版本放在 [Day 06 可驗證版提示詞](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E5%B0%81%E5%AD%98/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY06/prompt-v3-verifiable.txt)。
 
 ```text
 先列出仍缺少的決策；若已能實作，再輸出最小差異。
@@ -33,7 +33,7 @@ OpenAI 對 ChatGPT 的提示建議，是把要求寫得清楚、具體，提供�
 完成後回報測試命令、結果與尚未驗證的假設。
 ```
 
-![三版提示詞從模糊指令演進到可驗收工作說明](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E5%9C%96%E6%AA%94/Day06/day06-03-prompt-evolution.png)
+![三版提示詞從模糊指令演進到可驗收工作說明](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E5%B0%81%E5%AD%98/%E5%9C%96%E6%AA%94/Day06/day06-03-prompt-evolution.png)
 
 | 版本 | 還要人工補什麼 | 可驗證程度 |
 |---|---|---|
@@ -60,13 +60,13 @@ return new WorkspaceDocument(
 
 六個 JUnit 5 測試涵蓋兩種來源、空值、清單複製、標籤內 `null` 與 `null` 來源。執行 `mvn test` 後六項全數通過；這只能證明程式符合本篇規則，不能替業務決定預設值是否合適。
 
-![回應品質不看篇幅，要看假設是否可見、結果是否可測](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E5%9C%96%E6%AA%94/Day06/day06-04-quality-check.png)
+![回應品質不看篇幅，要看假設是否可見、結果是否可測](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E5%B0%81%E5%AD%98/%E5%9C%96%E6%AA%94/Day06/day06-04-quality-check.png)
 
 ## 模板依風險增減
 
 查一個編譯錯誤，我通常貼錯誤訊息、相關程式與期望行為就開始；涉及資料轉換、公開介面或安全邊界，我才展開六欄。欄位版本改變時，提示詞也要一起更新。密碼、金鑰、客戶資料與未授權程式碼則不會因為模板需要輸入就放進去。
 
-![可複用提示詞卡片：先交代工作，再要求證據](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E5%9C%96%E6%AA%94/Day06/day06-05-reusable-card.png)
+![可複用提示詞卡片：先交代工作，再要求證據](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E5%B0%81%E5%AD%98/%E5%9C%96%E6%AA%94/Day06/day06-05-reusable-card.png)
 
 ## 小結：讓未知有明確的退回條件
 
@@ -79,4 +79,4 @@ return new WorkspaceDocument(
 - [JUnit 5 User Guide](https://docs.junit.org/5.10.2/user-guide/)
 - [Java 17：List](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html)
 - [Java 17：Instant.EPOCH](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/time/Instant.html#EPOCH)
-- [資料工作區空間——需求書（v0．初版待釐清）](https://github.com/a26703248/ithome-2026-codex/blob/main/%E6%A1%88%E4%BE%8B/%E8%B3%87%E6%96%99%E5%B7%A5%E4%BD%9C%E5%8D%80%E7%A9%BA%E9%96%93-%E9%9C%80%E6%B1%82%E6%9B%B8.md)
+- [資料工作區空間——需求書（v0．初版待釐清）](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E6%A1%88%E4%BE%8B/%E8%B3%87%E6%96%99%E5%B7%A5%E4%BD%9C%E5%8D%80%E7%A9%BA%E9%96%93-%E9%9C%80%E6%B1%82%E6%9B%B8.md)

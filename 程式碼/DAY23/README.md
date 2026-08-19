@@ -28,10 +28,10 @@ Tests run: 2, Failures: 0, Errors: 0, Skipped: 0
 BUILD SUCCESS
 ```
 
-完整的實測命令、版本與結果見 [`docs/verification-log.md`](docs/verification-log.md)。
+完整的實測命令、版本與結果見 [`docs/verification-log.md`](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY23/docs/verification-log.md)。
 
 ## 尚未確認，不應自行補寫
 
 這份公開縮小專案沒有正式服務的啟動參數、設定檔位置、環境變數、部署流程及實際排程設定。需求書雖記錄既有系統每天 08:00 產生報表，但本專案沒有相應的執行期設定證據，因此不提供正式啟動或部署指令。
 
-文件內容與證據的對應關係見 [`docs/source-map.md`](docs/source-map.md)。
+文件內容與證據的對應關係見 [`docs/source-map.md`](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY23/docs/source-map.md)。

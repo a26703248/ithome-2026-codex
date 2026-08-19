@@ -56,7 +56,7 @@ commit 訊息描述行為，不寫「Codex 修好了」。提交後我用 `git s
 
 ## PR 草稿要讓審查者不用猜
 
-我先寫 PR 說明，尚未推送分支，也沒有在 GitHub 建立 Draft PR。草稿列出問題、修改、測試、風險與未完成事項：`mvn clean test` 共 5 項通過，但網頁、資料庫與單日報表輸出尚未驗證。完整內容見 [DAY16 PR 草稿](https://github.com/a26703248/ithome-2026-codex/blob/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY16/pr-draft.md)。
+我先寫 PR 說明，尚未推送分支，也沒有在 GitHub 建立 Draft PR。草稿列出問題、修改、測試、風險與未完成事項：`mvn clean test` 共 5 項通過，但網頁、資料庫與單日報表輸出尚未驗證。完整內容見 [DAY16 PR 草稿](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY16/pr-draft.md)。
 
 每項驗收條件都要對到命令、結果或待辦；環境若阻擋測試，就寫「未執行」與原因，不把預期包裝成證據。
 

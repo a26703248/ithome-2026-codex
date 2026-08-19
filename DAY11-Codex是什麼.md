@@ -45,7 +45,7 @@ OpenAI 官方文件目前將檢查檔案、修改程式與執行本機工具列�
 +        return rowCount % batchSize == 0 ? fullBatches : fullBatches + 1;
 ```
 
-重跑同一命令後，0、200、1,000、1,001 筆與不合法批次大小五項測試全部通過。我再檢查 diff，確認測試與建置設定沒有被改寫。完整的[任務提示詞](https://github.com/a26703248/ithome-2026-codex/blob/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY11/task-prompt.txt)、[程式碼與修正前版本](https://github.com/a26703248/ithome-2026-codex/tree/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY11)及[驗證紀錄](https://github.com/a26703248/ithome-2026-codex/blob/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY11/docs/verification-log.md)都可重現。
+重跑同一命令後，0、200、1,000、1,001 筆與不合法批次大小五項測試全部通過。我再檢查 diff，確認測試與建置設定沒有被改寫。完整的[任務提示詞](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY11/task-prompt.txt)、[程式碼與修正前版本](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY11/README.md)及[驗證紀錄](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY11/docs/verification-log.md)都可重現。
 
 ![修改、測試與人工審查三份交付證據](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E5%9C%96%E6%AA%94/Day11/day11-05-evidence.png)
 

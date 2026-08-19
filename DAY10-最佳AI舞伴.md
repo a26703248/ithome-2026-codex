@@ -32,4 +32,4 @@ Day 09 用 ChatGPT 對一段 Java diff 做完初篩，證據留在測試與人�
 
 ## 參考資料
 
-- [資料匯入貼標程式——需求書（技術規格・v1）](./%E6%A1%88%E4%BE%8B/%E8%B3%87%E6%96%99%E5%8C%AF%E5%85%A5%E8%B2%BC%E6%A8%99%E7%A8%8B%E5%BC%8F-%E9%9C%80%E6%B1%82%E6%9B%B8.md)
+- [資料匯入貼標程式——需求書（技術規格・v1）](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E6%A1%88%E4%BE%8B/%E8%B3%87%E6%96%99%E5%8C%AF%E5%85%A5%E8%B2%BC%E6%A8%99%E7%A8%8B%E5%BC%8F-%E9%9C%80%E6%B1%82%E6%9B%B8.md)

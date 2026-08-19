@@ -34,7 +34,7 @@ Day 24 檢查權限、相依套件與測試；換到「AI 輔助生成系統」�
 
 ## 規格確認後，才讓 Codex 實作契約
 
-確認後，我把條件、可改目錄與測試要求交給 Codex。[Java 最小案例](https://github.com/a26703248/ithome-2026-codex/blob/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY25/src/main/java/com/ithome/day24/review/ReviewWorkflow.java)只驗證複核決策，不含資料庫或正式授權。複核原因不可空白；每次決策新增事件，不覆蓋原稿。
+確認後，我把條件、可改目錄與測試要求交給 Codex。[Java 最小案例](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY25/src/main/java/com/ithome/day24/review/ReviewWorkflow.java)只驗證複核決策，不含資料庫或正式授權。複核原因不可空白；每次決策新增事件，不覆蓋原稿。
 
 ```java
 String normalizedReason = reason == null ? "" : reason.strip();
@@ -46,11 +46,11 @@ events.add(new ReviewEvent(decision, normalizedReason, reviewer));
 
 ![從 PM 決議到 Codex 實作、QA 驗收與維運接手的跨角色流程](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E5%9C%96%E6%AA%94/Day25/day25-04-handoff-flow.png)
 
-我執行 `mvn clean test`，[4 項測試全部通過](https://github.com/a26703248/ithome-2026-codex/blob/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY25/docs/verification-log.md)：採用、修改後保留版本、複核原因必填，以及否決後保留原稿。結果只涵蓋程式契約；畫面、正式授權、資料留存與版本衝突仍待真實環境驗證。
+我執行 `mvn clean test`，[4 項測試全部通過](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY25/docs/verification-log.md)：採用、修改後保留版本、複核原因必填，以及否決後保留原稿。結果只涵蓋程式契約；畫面、正式授權、資料留存與版本衝突仍待真實環境驗證。
 
 ## 上線判斷還要回到各角色
 
-[交付包](https://github.com/a26703248/ithome-2026-codex/blob/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY25/docs/handoff-record.md)把未完成項目連到建議責任角色與所需證據。法遵／資安要核定遮蔽與留存規則，QA 要決定風險覆蓋，維運要檢查權限、監控與復原步驟。共用欄位是否真的縮短等待時間，仍要放進真實流程量測。
+[交付包](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY25/docs/handoff-record.md)把未完成項目連到建議責任角色與所需證據。法遵／資安要核定遮蔽與留存規則，QA 要決定風險覆蓋，維運要檢查權限、監控與復原步驟。共用欄位是否真的縮短等待時間，仍要放進真實流程量測。
 
 ![需求、介面、程式、測試與部署證據串成可追溯交付鏈](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E5%9C%96%E6%AA%94/Day25/day25-05-evidence-chain.png)
 
@@ -64,4 +64,4 @@ events.add(new ReviewEvent(decision, normalizedReason, reviewer));
 - [OpenAI：Draft PRDs from internal context](https://learn.chatgpt.com/use-cases/draft-prds-from-sources)
 - [OpenAI：Turn user stories into UI mocks](https://learn.chatgpt.com/use-cases/user-stories-to-ui-mocks)
 - [OpenAI：QA your app with Computer Use](https://learn.chatgpt.com/use-cases/qa-your-app-with-computer-use)
-- [AI 輔助生成系統需求書](https://github.com/a26703248/ithome-2026-codex/blob/main/%E6%A1%88%E4%BE%8B/AI%E8%BC%94%E5%8A%A9%E7%94%9F%E6%88%90%E7%B3%BB%E7%B5%B1-%E9%9C%80%E6%B1%82%E6%9B%B8.md)
+- [AI 輔助生成系統需求書](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E6%A1%88%E4%BE%8B/AI%E8%BC%94%E5%8A%A9%E7%94%9F%E6%88%90%E7%B3%BB%E7%B5%B1-%E9%9C%80%E6%B1%82%E6%9B%B8.md)

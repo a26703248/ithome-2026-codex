@@ -34,4 +34,4 @@ mvn clean test
 即使本機執行通過，結果也只涵蓋 `AccessGovernanceGuard` 的記憶體內單元測試：角色與分級的核准
 判斷、稽核紀錄留存。未驗證真正的檔案系統存取、單一登入、正式稽核儲存、事故通報流程、供應商
 條款變更偵測，或跨部門實際核定的資料分級標準。這些項目仍列在
-[`governance-inventory.md`](governance-inventory.md) 的待角色確認清單。
+[`governance-inventory.md`](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY27/docs/governance-inventory.md) 的待角色確認清單。

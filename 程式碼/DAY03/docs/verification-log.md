@@ -1,6 +1,6 @@
 # Day03 驗證紀錄
 
-> 本紀錄對應 [`task-brief.md`](task-brief.md) 的實際操作結果。
+> 本紀錄對應 [`task-brief.md`](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY03/docs/task-brief.md) 的實際操作結果。
 > 文章與圖 5 只採用以下已確認資訊；發布當日仍須重新查證產品介面與版本。
 
 ## 操作日期與環境

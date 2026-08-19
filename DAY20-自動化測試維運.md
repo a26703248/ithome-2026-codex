@@ -31,7 +31,7 @@ Day 19 的 08:00 與 07:59 測試鎖住舊發送規則；今天驗證「發送�
 
 這個邊界讓 Codex 先比對時間值。失敗版本雖然收到了 `reportZone`，卻只呼叫 `ZonedDateTime.now(clock)`；測試注入 UTC 的固定 `Clock` 時，程式直接拿 23:00 與預期的臺北 07:00 比較。根因是產品程式忽略訂閱時區，誤用注入時鐘的 UTC 本地時間，不是 JUnit 5 判錯。
 
-排除順序留在[診斷任務](https://github.com/a26703248/ithome-2026-codex/blob/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY20/docs/diagnosis-prompt.md)：Surefire 報告已有測試名稱與堆疊，表示建置與 JUnit 都已啟動；固定瞬間排除等待造成的不穩；逐項比對 `Clock` 時區、訂閱時區與預期時間後，才定位到未使用的參數。
+排除順序留在[診斷任務](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY20/docs/diagnosis-prompt.md)：Surefire 報告已有測試名稱與堆疊，表示建置與 JUnit 都已啟動；固定瞬間排除等待造成的不穩；逐項比對 `Clock` 時區、訂閱時區與預期時間後，才定位到未使用的參數。
 
 ![從失敗訊息、假設到最小重現的診斷順序](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E5%9C%96%E6%AA%94/Day20/day20-03-diagnosis-sequence.png)
 
@@ -48,13 +48,13 @@ assertTrue(window.shouldStart(
         LocalTime.of(8, 0), ZoneId.of("Asia/Taipei")));
 ```
 
-我用同一個測試類別放入三個固定瞬間：23:00Z 轉成臺北 07:00 時必須啟動；22:59Z 與 23:01Z 轉成 06:59 與 07:01 時都必須保持關閉。`withZoneSameInstant(reportZone)` 加入前，第一條斷言固定出現 `false`；加入後三條一起通過。前後各一分鐘的測試也能攔住「07 點整個小時都啟動」的錯誤實作。完整內容可看 [ReportProductionWindowTest.java](https://github.com/a26703248/ithome-2026-codex/blob/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY20/src/test/java/com/ithome/day19/report/ReportProductionWindowTest.java)。
+我用同一個測試類別放入三個固定瞬間：23:00Z 轉成臺北 07:00 時必須啟動；22:59Z 與 23:01Z 轉成 06:59 與 07:01 時都必須保持關閉。`withZoneSameInstant(reportZone)` 加入前，第一條斷言固定出現 `false`；加入後三條一起通過。前後各一分鐘的測試也能攔住「07 點整個小時都啟動」的錯誤實作。完整內容可看 [ReportProductionWindowTest.java](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY20/src/test/java/com/ithome/day19/report/ReportProductionWindowTest.java)。
 
 ![時區缺陷修正前後與三條邊界測試](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E5%9C%96%E6%AA%94/Day20/day20-04-timezone-regression.png)
 
 ## 綠燈要附上可重跑的證據
 
-修正前，指定類別是 3 項測試、1 項失敗；修正後重跑指定類別與 `mvn clean test`，兩次都是 3 項通過、`BUILD SUCCESS`。這只證明注入 UTC 時鐘、以臺北為業務時區的縮小案例正確，尚未證明真正的 CI、正式排程器、產製耗時與郵件送達。命令與限制記在[驗證紀錄](https://github.com/a26703248/ithome-2026-codex/blob/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY20/docs/verification-log.md)。日後若使用 CI log，我會先移除儲存庫名稱、內部路徑、Token 與服務網址。
+修正前，指定類別是 3 項測試、1 項失敗；修正後重跑指定類別與 `mvn clean test`，兩次都是 3 項通過、`BUILD SUCCESS`。這只證明注入 UTC 時鐘、以臺北為業務時區的縮小案例正確，尚未證明真正的 CI、正式排程器、產製耗時與郵件送達。命令與限制記在[驗證紀錄](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY20/docs/verification-log.md)。日後若使用 CI log，我會先移除儲存庫名稱、內部路徑、Token 與服務網址。
 
 ![修正前失敗、局部測試與乾淨建置三段證據](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E5%9C%96%E6%AA%94/Day20/day20-05-ci-verification.png)
 
@@ -68,4 +68,4 @@ assertTrue(window.shouldStart(
 - [JUnit 5.13.4 User Guide](https://docs.junit.org/5.13.4/user-guide/)
 - [Oracle Java 17：Clock](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/time/Clock.html)
 - [Oracle Java 17：ZonedDateTime](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/time/ZonedDateTime.html)
-- [日報服務需求書](https://github.com/a26703248/ithome-2026-codex/blob/main/%E6%A1%88%E4%BE%8B/%E6%97%A5%E5%A0%B1%E6%9C%8D%E5%8B%99-%E9%9C%80%E6%B1%82%E6%9B%B8.md)
+- [日報服務需求書](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E6%A1%88%E4%BE%8B/%E6%97%A5%E5%A0%B1%E6%9C%8D%E5%8B%99-%E9%9C%80%E6%B1%82%E6%9B%B8.md)

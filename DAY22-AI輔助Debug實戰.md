@@ -22,7 +22,7 @@ customer-002 prepare startedAt=950ms
 
 ## 讓 Codex 排假設，不准先改程式
 
-[OpenAI 官方文件](https://learn.chatgpt.com/docs/prompting)建議 Codex 除錯任務要交代可重現行為、相關程式、限制與驗證方式。我把任務寫成：「先重現後面客戶較晚開始的現象，分段記錄 `read`、`pdf`、`mail`；每次只替換一個測試替身；證據足夠前不要修改正式流程。」完整內容放在[除錯任務](https://github.com/a26703248/ithome-2026-codex/blob/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY22/docs/debug-prompt.md)。
+[OpenAI 官方文件](https://learn.chatgpt.com/docs/prompting)建議 Codex 除錯任務要交代可重現行為、相關程式、限制與驗證方式。我把任務寫成：「先重現後面客戶較晚開始的現象，分段記錄 `read`、`pdf`、`mail`；每次只替換一個測試替身；證據足夠前不要修改正式流程。」完整內容放在[除錯任務](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY22/docs/debug-prompt.md)。
 
 交付資料包時，我只放能重現問題的程式、測試與去識別化紀錄。正式日誌留在原管控範圍，不把整包客戶資料與憑證貼進對話。
 
@@ -44,7 +44,7 @@ for (Customer customer : customers) {
 preparedReports.forEach(this::send);
 ```
 
-保留 900 毫秒郵件等待後，第二份仍在 50 毫秒開始；但舊流程與兩階段流程的第二封信都在 1900 毫秒完成。這證明準備與寄信互相阻塞，沒有證明信件延遲已解決。`mvn clean test` 的 3 項測試全部通過，結果為 `BUILD SUCCESS`；程式與數字記在[回歸測試](https://github.com/a26703248/ithome-2026-codex/blob/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY22/src/test/java/com/ithome/day21/report/DailyReportBatchDebugTest.java)及[驗證紀錄](https://github.com/a26703248/ithome-2026-codex/blob/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY22/docs/verification-log.md)。
+保留 900 毫秒郵件等待後，第二份仍在 50 毫秒開始；但舊流程與兩階段流程的第二封信都在 1900 毫秒完成。這證明準備與寄信互相阻塞，沒有證明信件延遲已解決。`mvn clean test` 的 3 項測試全部通過，結果為 `BUILD SUCCESS`；程式與數字記在[回歸測試](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY22/src/test/java/com/ithome/day21/report/DailyReportBatchDebugTest.java)及[驗證紀錄](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY22/docs/verification-log.md)。
 
 ![兩階段實驗先準備全部報表，三項回歸測試通過](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E5%9C%96%E6%AA%94/Day22/day22-05-fix-and-regression.png)
 
@@ -58,4 +58,4 @@ ChatGPT 與 Codex 可以加速展開假設、搜尋呼叫點與執行實驗，�
 
 - [OpenAI：Prompting](https://learn.chatgpt.com/docs/prompting)
 - [JUnit 5.13.4 User Guide](https://docs.junit.org/5.13.4/user-guide/)
-- [日報服務需求書](https://github.com/a26703248/ithome-2026-codex/blob/main/%E6%A1%88%E4%BE%8B/%E6%97%A5%E5%A0%B1%E6%9C%8D%E5%8B%99-%E9%9C%80%E6%B1%82%E6%9B%B8.md)
+- [日報服務需求書](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E6%A1%88%E4%BE%8B/%E6%97%A5%E5%A0%B1%E6%9C%8D%E5%8B%99-%E9%9C%80%E6%B1%82%E6%9B%B8.md)

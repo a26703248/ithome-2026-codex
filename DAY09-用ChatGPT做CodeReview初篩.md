@@ -20,7 +20,7 @@ OpenAI 目前把理解程式碼庫、執行測試與審查變更列為 Codex 工
 
 ## 先給規則，再貼最小 diff
 
-[完整提示詞](https://github.com/a26703248/ithome-2026-codex/blob/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY09/review-prompt.txt) 先交代兩條本文演練假設：同一個 `workspaceId` 同時間只能有一批匯入，前後空白與英文大小寫不影響識別。兩者尚未寫入 v0 需求，正式開發前仍須確認。模擬輸入只包含 [待審 diff](https://github.com/a26703248/ithome-2026-codex/blob/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY09/review-input.diff)，不要求重寫整個類別。
+[完整提示詞](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY09/review-prompt.txt) 先交代兩條本文演練假設：同一個 `workspaceId` 同時間只能有一批匯入，前後空白與英文大小寫不影響識別。兩者尚未寫入 v0 需求，正式開發前仍須確認。模擬輸入只包含 [待審 diff](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY09/review-input.diff)，不要求重寫整個類別。
 
 ```java
 if (runningWorkspaces.contains(key)) {
@@ -36,7 +36,7 @@ return true;
 
 ## 把兩項建議寫成紅燈測試
 
-我補了四項 JUnit 5 測試。[修正前測試](./%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY09/before-review) 只多一個讓測試能換入自訂集合的建構子，業務方法仍與待審 diff 相同。`CyclicBarrier` 會在測試用的 `BarrierSet.add` 攔住兩個呼叫，等到齊再放行到實際集合。修正前結果是 `Tests run: 4, Failures: 3`：null 例外錯誤、兩次啟動都回傳成功，還有模擬初篩刻意漏掉的第三項——`tryStart` 存入正規化鍵，`finish` 卻用原字串移除，工作完成後仍無法再次啟動。
+我補了四項 JUnit 5 測試。[修正前測試](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY09/before-review/README.md) 只多一個讓測試能換入自訂集合的建構子，業務方法仍與待審 diff 相同。`CyclicBarrier` 會在測試用的 `BarrierSet.add` 攔住兩個呼叫，等到齊再放行到實際集合。修正前結果是 `Tests run: 4, Failures: 3`：null 例外錯誤、兩次啟動都回傳成功，還有模擬初篩刻意漏掉的第三項——`tryStart` 存入正規化鍵，`finish` 卻用原字串移除，工作完成後仍無法再次啟動。
 
 最小修正沒有替整個方法加鎖，而是使用 `ConcurrentHashMap.newKeySet()` 所提供集合的單次 `add` 完成「檢查並登記」，再用回傳值判斷是否啟動；開始與完成也共用同一個 `normalize`：
 
@@ -50,7 +50,7 @@ public void finish(String workspaceId) {
 }
 ```
 
-重跑 `mvn clean test` 後，四項測試全部通過。[完整程式、測試與驗證紀錄](./%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY09) 也保留了修正前後的結果。
+重跑 `mvn clean test` 後，四項測試全部通過。[完整程式、測試與驗證紀錄](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY09/README.md) 也保留了修正前後的結果。
 
 ![JUnit 5 測試從三項失敗到四項通過](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E5%9C%96%E6%AA%94/Day09/day09-04-red-green.png)
 
@@ -80,4 +80,4 @@ public void finish(String workspaceId) {
 - [Oracle Java 17：Set.add 與 KeySetView.add](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/concurrent/ConcurrentHashMap.KeySetView.html)
 - [JUnit 5.13.4 User Guide](https://docs.junit.org/5.13.4/user-guide/index.html)
 - [Apache Maven Surefire Plugin 3.5.3](https://maven.apache.org/surefire-archives/surefire-3.5.3/maven-surefire-plugin/plugin-info.html)
-- [資料工作區空間——需求書（v0．初版待釐清）](https://github.com/a26703248/ithome-2026-codex/blob/main/%E6%A1%88%E4%BE%8B/%E8%B3%87%E6%96%99%E5%B7%A5%E4%BD%9C%E5%8D%80%E7%A9%BA%E9%96%93-%E9%9C%80%E6%B1%82%E6%9B%B8.md)
+- [資料工作區空間——需求書（v0．初版待釐清）](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E6%A1%88%E4%BE%8B/%E8%B3%87%E6%96%99%E5%B7%A5%E4%BD%9C%E5%8D%80%E7%A9%BA%E9%96%93-%E9%9C%80%E6%B1%82%E6%9B%B8.md)

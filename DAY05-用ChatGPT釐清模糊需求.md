@@ -23,7 +23,7 @@ Day 04 我把「資料工作區空間」這份初版需求的未知攤開，圈�
 
 ## 第一輪：只找缺口，不急著想解法
 
-我先上傳 v0（初版）需求書，限定 ChatGPT 只能依文件內容判讀。[Day 05 需求分析提示詞](https://github.com/a26703248/ithome-2026-codex/blob/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY05/ti-prompt.txt) 是三輪完成後使用的完整範本；第一輪只取限制段，不要求決策選項與驗收格式：
+我先上傳 v0（初版）需求書，限定 ChatGPT 只能依文件內容判讀。[Day 05 需求分析提示詞](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY05/ti-prompt.txt) 是三輪完成後使用的完整範本；第一輪只取限制段，不要求決策選項與驗收格式：
 
 ```text
 找出模糊、缺漏、矛盾及無法估算工時或驗收之處。
@@ -64,4 +64,4 @@ ChatGPT 整理問題，人確認商業規則。資料量、欄位語意與權限
 ## 參考資料
 
 - [OpenAI：Prompt engineering best practices for ChatGPT](https://help.openai.com/en/articles/10032626-prompt-engineering-best-practices-for-chatgpt)
-- [資料工作區空間——需求書（v0．初版待釐清）](https://github.com/a26703248/ithome-2026-codex/blob/main/%E6%A1%88%E4%BE%8B/%E8%B3%87%E6%96%99%E5%B7%A5%E4%BD%9C%E5%8D%80%E7%A9%BA%E9%96%93-%E9%9C%80%E6%B1%82%E6%9B%B8.md)
+- [資料工作區空間——需求書（v0．初版待釐清）](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E6%A1%88%E4%BE%8B/%E8%B3%87%E6%96%99%E5%B7%A5%E4%BD%9C%E5%8D%80%E7%A9%BA%E9%96%93-%E9%9C%80%E6%B1%82%E6%9B%B8.md)

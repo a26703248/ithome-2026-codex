@@ -55,4 +55,4 @@ Day 03 將進一步比較 ChatGPT 應用程式／網頁版、OpenAI 應用程式
 - [OpenAI：Codex CLI](https://learn.chatgpt.com/docs/codex/cli)
 - [OpenAI：Codex IDE extension](https://learn.chatgpt.com/docs/codex/ide)
 - [OpenAI：Codex sandboxing](https://learn.chatgpt.com/docs/sandboxing)
-- [Day 02 Java 案例與驗證紀錄](./%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY02/docs/task2-verification.md)
+- [Day 02 Java 案例與驗證紀錄](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY02/docs/task2-verification.md)

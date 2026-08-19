@@ -68,4 +68,4 @@ if (!approved) {
 - [ISO：Copyright](https://www.iso.org/privacy-and-copyright.html)
 - [數位發展部：立法院三讀通過《人工智慧基本法》](https://moda.gov.tw/press/press-releases/18316)
 - [iThome：數發部正式公布人工智慧風險分類框架](https://www.ithome.com.tw/news/177184)
-- [AI 輔助生成系統需求書](https://github.com/a26703248/ithome-2026-codex/blob/main/%E6%A1%88%E4%BE%8B/AI%E8%BC%94%E5%8A%A9%E7%94%9F%E6%88%90%E7%B3%BB%E7%B5%B1-%E9%9C%80%E6%B1%82%E6%9B%B8.md)
+- [AI 輔助生成系統需求書](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E6%A1%88%E4%BE%8B/AI%E8%BC%94%E5%8A%A9%E7%94%9F%E6%88%90%E7%B3%BB%E7%B5%B1-%E9%9C%80%E6%B1%82%E6%9B%B8.md)

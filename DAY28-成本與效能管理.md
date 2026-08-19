@@ -84,5 +84,5 @@ public OcrOutcome evaluate(String extractedText, double confidenceScore, int ret
 ## 參考資料
 
 - `案例/AI輔助生成系統-需求書.md`
-- [`程式碼/DAY28/docs/cost-log.md`](./%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY28/docs/cost-log.md)：本文計時原始紀錄
-- [`程式碼/DAY28/docs/verification-log.md`](./%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY28/docs/verification-log.md)：測試設計與待補的實際執行結果
+- [`程式碼/DAY28/docs/cost-log.md`](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY28/docs/cost-log.md)：本文計時原始紀錄
+- [`程式碼/DAY28/docs/verification-log.md`](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY28/docs/verification-log.md)：測試設計與待補的實際執行結果

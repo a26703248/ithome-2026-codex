@@ -44,4 +44,4 @@
 
 `AccessGovernanceGuard` 只驗證「角色是否能存取某一分級資料」的判斷邏輯與稽核紀錄留存，
 不含真正的檔案系統存取、單一登入、正式稽核儲存或告警通知。完整測試見
-[`AccessGovernanceGuardTest`](../src/test/java/com/ithome/day26/governance/AccessGovernanceGuardTest.java)。
+[`AccessGovernanceGuardTest`](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY27/src/test/java/com/ithome/day26/governance/AccessGovernanceGuardTest.java)。

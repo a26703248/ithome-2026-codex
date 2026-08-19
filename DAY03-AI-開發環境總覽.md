@@ -41,7 +41,7 @@ if (items.isEmpty()) {
 
 ![從失敗測試、最小修改到兩項測試通過](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E5%9C%96%E6%AA%94/Day03/day03-05-environment-verification.png)
 
-完整輸出放在 [Day 03 驗證紀錄](./%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY03/docs/verification-log.md)。這次需求、修改和驗證能留在同一條工作脈絡裡；不過上下文越完整，也越要控制機密資料、檔案範圍與網路權限。
+完整輸出放在 [Day 03 驗證紀錄](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY03/docs/verification-log.md)。這次需求、修改和驗證能留在同一條工作脈絡裡；不過上下文越完整，也越要控制機密資料、檔案範圍與網路權限。
 
 ## 小結：先讓一條流程跑得順
 

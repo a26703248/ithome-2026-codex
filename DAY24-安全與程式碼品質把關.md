@@ -27,7 +27,7 @@ if (!accessPolicy.canCreate(principal.getName(), customerId)) {
 
 在縮小端點裡，401 表示沒有 `Principal`；403 表示已有身分物件，但授權政策拒絕操作。這只驗證控制器分支，不能取代正式驗證中介軟體的整合測試。
 
-縮小案例的[修改前方法片段](https://github.com/a26703248/ithome-2026-codex/blob/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY24/docs/ReportController-before.java.txt)與[修正版控制器](https://github.com/a26703248/ithome-2026-codex/blob/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY24/src/main/java/com/ithome/day23/report/ReportController.java)都保留在專案裡。
+縮小案例的[修改前方法片段](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY24/docs/ReportController-before.java.txt)與[修正版控制器](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY24/src/main/java/com/ithome/day23/report/ReportController.java)都保留在專案裡。
 
 ![Java 修改前後：將身分識別、客戶授權、輸入限制與日誌資料分開檢查](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E5%9C%96%E6%AA%94/Day24/day24-03-code-review.png)
 
@@ -41,13 +41,13 @@ if (!accessPolicy.canCreate(principal.getName(), customerId)) {
 
 ## Codex 初篩後，我再用清單找漏網之魚
 
-參考 [OpenAI 官方安全變更審查案例](https://learn.chatgpt.com/use-cases/scan-code-changes-for-security)後，我在[審查提示](https://github.com/a26703248/ithome-2026-codex/blob/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY24/docs/review-prompt.md)鎖定修改前控制器與工作樹，要求 Codex 為每個發現附上程式位置、觸發條件、既有證據與缺少的驗證；第一輪只產生報告，不修改程式。
+參考 [OpenAI 官方安全變更審查案例](https://learn.chatgpt.com/use-cases/scan-code-changes-for-security)後，我在[審查提示](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY24/docs/review-prompt.md)鎖定修改前控制器與工作樹，要求 Codex 為每個發現附上程式位置、觸發條件、既有證據與缺少的驗證；第一輪只產生報告，不修改程式。
 
 在我的初篩紀錄裡，Codex 先列出跨客戶授權缺口；套件警示加上呼叫路徑後，才沒有把「命中版本」寫成「已能攻擊」。人工六層複核又找到完整信箱進入日誌，修正版只記請求代號、客戶代號與格式；缺少的正式限流與佇列設定則列為未知。
 
 ![Codex 初篩、套件通知加呼叫路徑與人工六層複核的發現比較](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E5%9C%96%E6%AA%94/Day24/day24-05-review-comparison.png)
 
-最後執行 `mvn clean test`：6 項測試、0 項失敗、0 項錯誤，結果為 `BUILD SUCCESS`。範圍涵蓋身分、授權、客戶代號、格式、受理流程與 PDF 檔頭；[驗證紀錄](https://github.com/a26703248/ithome-2026-codex/blob/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY24/docs/verification-log.md)也整理未成功嘗試的原因。
+最後執行 `mvn clean test`：6 項測試、0 項失敗、0 項錯誤，結果為 `BUILD SUCCESS`。範圍涵蓋身分、授權、客戶代號、格式、受理流程與 PDF 檔頭；[驗證紀錄](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY24/docs/verification-log.md)也整理未成功嘗試的原因。
 
 ## 小結：生成程式碼也要走完品質護欄
 
@@ -58,4 +58,4 @@ if (!accessPolicy.canCreate(principal.getName(), customerId)) {
 - [OpenAI：Scan code changes for security](https://learn.chatgpt.com/use-cases/scan-code-changes-for-security)
 - [Apache PDFBox：Security](https://pdfbox.apache.org/security.html)
 - [OWASP Top 10:2025：A03 Software Supply Chain Failures](https://owasp.org/Top10/2025/A03_2025-Software_Supply_Chain_Failures/)
-- [日報服務需求書](https://github.com/a26703248/ithome-2026-codex/blob/main/%E6%A1%88%E4%BE%8B/%E6%97%A5%E5%A0%B1%E6%9C%8D%E5%8B%99-%E9%9C%80%E6%B1%82%E6%9B%B8.md)
+- [日報服務需求書](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E6%A1%88%E4%BE%8B/%E6%97%A5%E5%A0%B1%E6%9C%8D%E5%8B%99-%E9%9C%80%E6%B1%82%E6%9B%B8.md)

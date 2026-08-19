@@ -23,7 +23,7 @@ Day 18 新增了可獨立測試的 `ReportProductionWindow`，依任務契約還
 
 ![從特徵測試到格式介面的重構任務地圖](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E5%9C%96%E6%AA%94/Day19/day19-03-task-map.png)
 
-完整依賴、修改範圍與驗收條件放在 [task-map.md](https://github.com/a26703248/ithome-2026-codex/blob/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY19/task-map.md)。我只把 [T1 任務契約](https://github.com/a26703248/ithome-2026-codex/blob/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY19/first-step-task.md)交給 Codex，並把禁止事項直接寫進任務：
+完整依賴、修改範圍與驗收條件放在 [task-map.md](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY19/task-map.md)。我只把 [T1 任務契約](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY19/first-step-task.md)交給 Codex，並把禁止事項直接寫進任務：
 
 ```text
 只新增 DailyReportServiceCharacterizationTest 與驗證紀錄。
@@ -45,9 +45,9 @@ assertEquals("daily-report.pdf", mailGateway.message.attachmentName());
 assertEquals("前一日筆數：1280\n成長率：12.5%", mailGateway.message.body());
 ```
 
-完整測試在 [DailyReportServiceCharacterizationTest.java](https://github.com/a26703248/ithome-2026-codex/blob/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY19/src/test/java/com/ithome/day18/report/DailyReportServiceCharacterizationTest.java)。
+完整測試在 [DailyReportServiceCharacterizationTest.java](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY19/src/test/java/com/ithome/day18/report/DailyReportServiceCharacterizationTest.java)。
 
-第一次執行時，Maven 在受限環境解析建置相依項目時遭到阻擋，JUnit 尚未開始；我確認來源後才核准連線。接著先執行 `mvn -Dtest=DailyReportServiceCharacterizationTest test`，再執行 `mvn clean test`，兩次都是兩項通過並出現 `BUILD SUCCESS`。我再用 SHA-256 比對正式程式，執行前後雜湊值相同。這些證據只涵蓋縮小案例，尚未驗證正式 PDF、郵件伺服器或延遲寄出問題。完整命令與限制記在[驗證紀錄](https://github.com/a26703248/ithome-2026-codex/blob/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY19/docs/verification-log.md)。
+第一次執行時，Maven 在受限環境解析建置相依項目時遭到阻擋，JUnit 尚未開始；我確認來源後才核准連線。接著先執行 `mvn -Dtest=DailyReportServiceCharacterizationTest test`，再執行 `mvn clean test`，兩次都是兩項通過並出現 `BUILD SUCCESS`。我再用 SHA-256 比對正式程式，執行前後雜湊值相同。這些證據只涵蓋縮小案例，尚未驗證正式 PDF、郵件伺服器或延遲寄出問題。完整命令與限制記在[驗證紀錄](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY19/docs/verification-log.md)。
 
 ![從行為基準、測試到正式程式雜湊的驗證節點](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E5%9C%96%E6%AA%94/Day19/day19-05-verification-nodes.png)
 
@@ -60,4 +60,4 @@ assertEquals("前一日筆數：1280\n成長率：12.5%", mailGateway.message.bo
 - [OpenAI：Prompting](https://learn.chatgpt.com/docs/prompting)
 - [OpenAI：Sandbox](https://learn.chatgpt.com/docs/sandboxing)
 - [JUnit 5.13.4 User Guide](https://docs.junit.org/5.13.4/user-guide/)
-- [日報服務需求書](https://github.com/a26703248/ithome-2026-codex/blob/main/%E6%A1%88%E4%BE%8B/%E6%97%A5%E5%A0%B1%E6%9C%8D%E5%8B%99-%E9%9C%80%E6%B1%82%E6%9B%B8.md)
+- [日報服務需求書](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E6%A1%88%E4%BE%8B/%E6%97%A5%E5%A0%B1%E6%9C%8D%E5%8B%99-%E9%9C%80%E6%B1%82%E6%9B%B8.md)

@@ -54,7 +54,7 @@ Day 12 把專案規則寫進 `AGENTS.md`，今天我將它放進一個 Java 17�
 
 這次沒有另外做純人工修正的計時對照，因此我只能證明流程留下了可核對的檔案、命令與結果，不能宣稱省下幾分鐘。若要比較效率，我會替人工與 Codex 分別記錄整理問題、定位、修改、測試及審查時間，並使用相同環境與通過條件。
 
-完整的[原始 issue](https://github.com/a26703248/ithome-2026-codex/blob/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY13/issue.md)、[任務提示詞](https://github.com/a26703248/ithome-2026-codex/blob/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY13/task-prompt.txt)、[三階段程式碼](https://github.com/a26703248/ithome-2026-codex/tree/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY13)與[工作及驗證紀錄](https://github.com/a26703248/ithome-2026-codex/blob/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY13/docs/verification-log.md)都能重新檢查。
+完整的[原始 issue](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY13/issue.md)、[任務提示詞](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY13/task-prompt.txt)、[三階段程式碼](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY13/README.md)與[工作及驗證紀錄](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY13/docs/verification-log.md)都能重新檢查。
 
 ## 小結：先準備紅燈與邊界
 

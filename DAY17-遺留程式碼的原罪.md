@@ -32,4 +32,4 @@ Day 16 我還在替一個乾淨的新專案整理分支、commit 與 PR 草稿�
 
 ## 參考資料
 
-- [日報服務——需求書（現況＋新增需求）](./%E6%A1%88%E4%BE%8B/%E6%97%A5%E5%A0%B1%E6%9C%8D%E5%8B%99-%E9%9C%80%E6%B1%82%E6%9B%B8.md)
+- [日報服務——需求書（現況＋新增需求）](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E6%A1%88%E4%BE%8B/%E6%97%A5%E5%A0%B1%E6%9C%8D%E5%8B%99-%E9%9C%80%E6%B1%82%E6%9B%B8.md)

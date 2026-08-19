@@ -29,11 +29,11 @@ BUILD SUCCESS
 ```
 
 本次草擬是在沒有 Maven／完整 JDK（僅有 JRE，缺 `javac`）的環境完成，尚未實際執行
-上述指令，詳見 [`docs/verification-log.md`](docs/verification-log.md)。作者發布前務必在
+上述指令，詳見 [`docs/verification-log.md`](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY28/docs/verification-log.md)。作者發布前務必在
 本機重新執行並更新結果。
 
 ## 相關文件
 
-- [`docs/cost-log.md`](docs/cost-log.md)：撰寫本測試檔過程中，兩種任務策略的實際計時
+- [`docs/cost-log.md`](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY28/docs/cost-log.md)：撰寫本測試檔過程中，兩種任務策略的實際計時
   紀錄，是文章成本表格的原始資料。
-- [`docs/verification-log.md`](docs/verification-log.md)：測試設計與待補的實際執行結果。
+- [`docs/verification-log.md`](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY28/docs/verification-log.md)：測試設計與待補的實際執行結果。

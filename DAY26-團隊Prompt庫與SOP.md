@@ -19,7 +19,7 @@ Day 25 把跨角色交接整理成可驗證紀錄後，我收到一句交辦：�
 | 通過方式 | 人工核對來源與敏感資料，另用一致算法重算比例 |
 | 維護角色 | 產品經理與品質保證代表共同核准版本 |
 
-Codex 執行工作前會讀取 `AGENTS.md`，適合保存跨任務規則。本篇的[提示詞檔案](https://github.com/a26703248/ithome-2026-codex/blob/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY26/prompt/draft-from-sources.md)可交給 ChatGPT 討論草稿，或讓 Codex 處理專案檔案；產出都走同一套複核。流程穩定後，我會把固定做法寫進技能（skill）的指示檔，另附執行時需要查閱的材料；只有步驟確實需要自動化時，才加入腳本。
+Codex 執行工作前會讀取 `AGENTS.md`，適合保存跨任務規則。本篇的[提示詞檔案](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY26/prompt/draft-from-sources.md)可交給 ChatGPT 討論草稿，或讓 Codex 處理專案檔案；產出都走同一套複核。流程穩定後，我會把固定做法寫進技能（skill）的指示檔，另附執行時需要查閱的材料；只有步驟確實需要自動化時，才加入腳本。
 
 ![AI 草稿生成提示詞的必要欄位與固定輸出](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E5%9C%96%E6%AA%94/Day26/day26-03-prompt-contract.png)
 
@@ -35,15 +35,15 @@ Codex 執行工作前會讀取 `AGENTS.md`，適合保存跨任務規則。本�
 
 ## 用合成資料做人工走查
 
-我沒有呼叫正式模型，只用不含客戶內容的[四組合成案例](https://github.com/a26703248/ithome-2026-codex/blob/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY26/docs/test-cases.md)人工走查。P-01 檢查主張與來源；P-02 依本案例規則判斷通用術語。P-03 缺少沿用規則就停止。P-04 另附示範分級表；正式分級仍待核定，沒有規則也要停止。
+我沒有呼叫正式模型，只用不含客戶內容的[四組合成案例](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY26/docs/test-cases.md)人工走查。P-01 檢查主張與來源；P-02 依本案例規則判斷通用術語。P-03 缺少沿用規則就停止。P-04 另附示範分級表；正式分級仍待核定，沒有規則也要停止。
 
 ![四組合成案例人工走查正常輸出、引用判斷與停止條件](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E5%9C%96%E6%AA%94/Day26/day26-04-test-matrix.png)
 
-[走查紀錄](https://github.com/a26703248/ithome-2026-codex/blob/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY26/docs/verification-log.md)顯示四組判斷分支符合預期，不代表模型測試通過。模型自報比例仍可能算錯，正式流程必須重算；模型、來源格式或提示詞一變，也要重跑案例。
+[走查紀錄](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY26/docs/verification-log.md)顯示四組判斷分支符合預期，不代表模型測試通過。模型自報比例仍可能算錯，正式流程必須重算；模型、來源格式或提示詞一變，也要重跑案例。
 
 ## 人工走查後，Prompt 還要接進 SOP
 
-我的 [SOP](https://github.com/a26703248/ithome-2026-codex/blob/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY26/docs/sop.md) 指定申請人準備來源、執行人鎖定版本、複核人檢查來源與敏感資料。任一項失敗就保留原因並否決；提示詞改版後必須重跑案例。
+我的 [SOP](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY26/docs/sop.md) 指定申請人準備來源、執行人鎖定版本、複核人檢查來源與敏感資料。任一項失敗就保留原因並否決；提示詞改版後必須重跑案例。
 
 ![提示詞接入申請、執行、人工複核與版本維護流程](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E5%9C%96%E6%AA%94/Day26/day26-05-sop-flow.png)
 
@@ -57,4 +57,4 @@ Codex 執行工作前會讀取 `AGENTS.md`，適合保存跨任務規則。本�
 
 - [OpenAI：Custom instructions with AGENTS.md](https://learn.chatgpt.com/docs/agent-configuration/agents-md)
 - [OpenAI：Build skills](https://learn.chatgpt.com/docs/build-skills)
-- [AI 輔助生成系統需求書](https://github.com/a26703248/ithome-2026-codex/blob/main/%E6%A1%88%E4%BE%8B/AI%E8%BC%94%E5%8A%A9%E7%94%9F%E6%88%90%E7%B3%BB%E7%B5%B1-%E9%9C%80%E6%B1%82%E6%9B%B8.md)
+- [AI 輔助生成系統需求書](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E6%A1%88%E4%BE%8B/AI%E8%BC%94%E5%8A%A9%E7%94%9F%E6%88%90%E7%B3%BB%E7%B5%B1-%E9%9C%80%E6%B1%82%E6%9B%B8.md)

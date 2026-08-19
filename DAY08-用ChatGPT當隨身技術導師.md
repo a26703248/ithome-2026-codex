@@ -16,7 +16,7 @@ OpenAI 官方的「Learn a new concept」範例強調縮小學習目標，並留
 | `0 0 9 * * *` 代表什麼？ | 更換時區與基準時間 | 比對下一個 `Instant` |
 | 程式會用哪個時區？ | 追問系統預設值的風險 | 檢查 `zone` 設定 |
 
-[完整提示詞](./%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY08/learning-prompt.txt) 禁止 ChatGPT 在我預測前公布答案，也要求它分開框架事實、工程假設與未確認的需求。「上午九點」只是演練值，不會被回填成需求書事實。
+[完整提示詞](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY08/learning-prompt.txt) 禁止 ChatGPT 在我預測前公布答案，也要求它分開框架事實、工程假設與未確認的需求。「上午九點」只是演練值，不會被回填成需求書事實。
 
 ChatGPT 只能挑戰我的推理，不能替我宣告框架結果。如果我改了時區就跟著改答案，它要追問「哪一步換算造成差異」，而不是只回「正確」。我要留下的不是對話截圖，而是可以重算的輸入與預期輸出。
 
@@ -36,7 +36,7 @@ ZonedDateTime localNext = expression.next(localNow);
 return localNext.toInstant();
 ```
 
-`expression` 與 `zone` 分別由 `CronExpression.parse`、`ZoneId.of` 建立。程式先把 `Instant` 轉成排程時區下的時間，交給 Spring 計算下一次命中，再轉回絕對時刻。[完整程式與測試](https://github.com/a26703248/ithome-2026-codex/tree/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY08) 可用 `mvn clean test` 重現。
+`expression` 與 `zone` 分別由 `CronExpression.parse`、`ZoneId.of` 建立。程式先把 `Instant` 轉成排程時區下的時間，交給 Spring 計算下一次命中，再轉回絕對時刻。[完整程式與測試](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY08/README.md) 可用 `mvn clean test` 重現。
 
 我不用 `LocalDateTime` 當斷言值，因為它只有日期與鐘點，沒有時區資訊；兩個地區都可以出現「09:00」，卻可能不是同一個時刻。轉回 `Instant` 後，測試才能不依賴執行機器的本地時區，直接比較兩個絕對時間。
 
@@ -46,7 +46,7 @@ return localNext.toInstant();
 
 ![台北與東京的下一次九點](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E5%9C%96%E6%AA%94/Day08/day08-04-timezones.png)
 
-[排程入口](./%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY08/src/main/java/com/ithome/day08/tutor/DailyReportScheduler.java) 以 placeholder 宣告 cron 與 `zone` 可由外部設定，預設值只用於範例。四項 JUnit 5 測試已通過：一項拒絕五欄格式，兩項核對台北與東京的下一次時刻，一項用 Java 反射讀取註解，檢查 `@EnableScheduling`、cron 與 `zone` 字串。最後一項沒有啟動 Spring 上下文，也沒有真正等到排程觸發，這是本篇證據的邊界。
+[排程入口](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY08/src/main/java/com/ithome/day08/tutor/DailyReportScheduler.java) 以 placeholder 宣告 cron 與 `zone` 可由外部設定，預設值只用於範例。四項 JUnit 5 測試已通過：一項拒絕五欄格式，兩項核對台北與東京的下一次時刻，一項用 Java 反射讀取註解，檢查 `@EnableScheduling`、cron 與 `zone` 字串。最後一項沒有啟動 Spring 上下文，也沒有真正等到排程觸發，這是本篇證據的邊界。
 
 `Asia/Taipei` 這種區域型識別字比單寫 `UTC+8` 更能表達業務語意。不過時區能否由客戶設定、如何儲存，仍是待確認項目。保留 `zone` 設定位置，不代表產品決策已完成。
 
@@ -61,4 +61,4 @@ ChatGPT 適合幫我製造反例與改變題目條件，但格式與框架行為
 - [OpenAI：Learn a new concept](https://learn.chatgpt.com/use-cases/learn-a-new-concept)
 - [Spring Framework：Task Execution and Scheduling](https://docs.spring.io/spring-framework/reference/integration/scheduling.html)
 - [Spring Framework：CronExpression](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/scheduling/support/CronExpression.html)
-- [資料工作區空間——需求書（v0．初版待釐清）](https://github.com/a26703248/ithome-2026-codex/blob/main/%E6%A1%88%E4%BE%8B/%E8%B3%87%E6%96%99%E5%B7%A5%E4%BD%9C%E5%8D%80%E7%A9%BA%E9%96%93-%E9%9C%80%E6%B1%82%E6%9B%B8.md)
+- [資料工作區空間——需求書（v0．初版待釐清）](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E6%A1%88%E4%BE%8B/%E8%B3%87%E6%96%99%E5%B7%A5%E4%BD%9C%E5%8D%80%E7%A9%BA%E9%96%93-%E9%9C%80%E6%B1%82%E6%9B%B8.md)

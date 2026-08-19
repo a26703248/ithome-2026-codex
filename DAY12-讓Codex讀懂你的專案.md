@@ -56,7 +56,7 @@ Day 11 的批次任務明確指定要讀 `pom.xml`、查看 `src`、附上路徑
 - 列出已變更的檔案、執行過的指令、測試結果，以及尚存的風險。
 ```
 
-完整的 [Day 12 AGENTS.md](https://github.com/a26703248/ithome-2026-codex/blob/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY12/AGENTS.md) 是下載範本，不會套用到相鄰的 DAY11。第一輪先不複製；第二輪才把它放到 DAY11 的 `pom.xml` 同一層、重新啟動 Codex，再交付相同任務。規則都要能由命令、差異或回報驗證，不放口號、密碼、內部主機與付費文件。
+完整的 [Day 12 AGENTS.md](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY12/AGENTS.md) 是下載範本，不會套用到相鄰的 DAY11。第一輪先不複製；第二輪才把它放到 DAY11 的 `pom.xml` 同一層、重新啟動 Codex，再交付相同任務。規則都要能由命令、差異或回報驗證，不放口號、密碼、內部主機與付費文件。
 
 ## 加入規則後，我怎麼驗收？
 

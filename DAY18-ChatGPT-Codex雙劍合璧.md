@@ -18,7 +18,7 @@ Day 17 我先誠實列出這套日報服務的現況與新需求之間的落差�
 
 ## 先讓 ChatGPT 把資訊缺口攤開
 
-我先附上[日報服務需求書](https://github.com/a26703248/ithome-2026-codex/blob/main/%E6%A1%88%E4%BE%8B/%E6%97%A5%E5%A0%B1%E6%9C%8D%E5%8B%99-%E9%9C%80%E6%B1%82%E6%9B%B8.md)，請 ChatGPT 區分「已知事實、推測、待確認問題」，再找出能獨立驗收的最小切片。這一步沒有請它寫程式：
+我先附上[日報服務需求書](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E6%A1%88%E4%BE%8B/%E6%97%A5%E5%A0%B1%E6%9C%8D%E5%8B%99-%E9%9C%80%E6%B1%82%E6%9B%B8.md)，請 ChatGPT 區分「已知事實、推測、待確認問題」，再找出能獨立驗收的最小切片。這一步沒有請它寫程式：
 
 ```text
 閱讀需求書後，先整理已知事實、技術推測與待確認問題。
@@ -29,7 +29,7 @@ Day 17 我先誠實列出這套日報服務的現況與新需求之間的落差�
 
 ![原始需求拆成事實、推測與待確認問題](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E5%9C%96%E6%AA%94/Day18/day18-03-requirement-gaps.png)
 
-我沒有按功能名稱直接切工作，而是先比較相依性，最後只留下以含時區時間為輸入與輸出的運算。它不用載入舊 PDF 套件，也不會啟動寄信流程；其他需求等規則確認後再另開任務。完整提問保存在 [planning-prompt.txt](https://github.com/a26703248/ithome-2026-codex/blob/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY18/planning-prompt.txt)。
+我沒有按功能名稱直接切工作，而是先比較相依性，最後只留下以含時區時間為輸入與輸出的運算。它不用載入舊 PDF 套件，也不會啟動寄信流程；其他需求等規則確認後再另開任務。完整提問保存在 [planning-prompt.txt](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY18/planning-prompt.txt)。
 
 ## 把決定寫成可執行的任務契約
 
@@ -46,7 +46,7 @@ Day 17 我先誠實列出這套日報服務的現況與新需求之間的落差�
 
 ![任務契約把範圍、驗收與未知事項寫清楚](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E5%9C%96%E6%AA%94/Day18/day18-04-task-contract.png)
 
-全文見 [task-contract.md](https://github.com/a26703248/ithome-2026-codex/blob/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY18/task-contract.md)。契約的重點不是格式漂亮，而是讓「沒做什麼」跟「做了什麼」同樣清楚。
+全文見 [task-contract.md](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY18/task-contract.md)。契約的重點不是格式漂亮，而是讓「沒做什麼」跟「做了什麼」同樣清楚。
 
 ## Codex 執行，再由我對照證據
 
@@ -64,7 +64,7 @@ public ZonedDateTime productionStartsAt(ZonedDateTime deliveryAt) {
 
 ![規劃、修改、測試與殘留風險的對映](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E5%9C%96%E6%AA%94/Day18/day18-05-verification-map.png)
 
-實際命令見 [DAY18 驗證紀錄](https://github.com/a26703248/ithome-2026-codex/blob/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY18/docs/verification-log.md)。本次沒有替六項未決問題實作答案；單次案例也不足以宣稱固定效率提升。
+實際命令見 [DAY18 驗證紀錄](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY18/docs/verification-log.md)。本次沒有替六項未決問題實作答案；單次案例也不足以宣稱固定效率提升。
 
 ## 小結：先核准契約，再讓工具接力
 
