@@ -16,7 +16,7 @@ OpenAI 目前把理解程式碼庫、執行測試與審查變更列為 Codex 工
 
 ![Code Review 的初篩、證據與決策三層責任](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E5%9C%96%E6%AA%94/Day09/day09-02-three-layers.png)
 
-我只問每一點能否轉成失敗斷言；無法重現的先留問題單，不要求作者改碼。以上層次並無誰先誰後，而是涵蓋範圍不同，所以可依照個人習慣調整。
+我只問每一點能否轉成失敗斷言；無法重現的先留問題單。三層涵蓋範圍不同，順序可依習慣調整。
 
 ## 先給規則，再貼最小 diff
 
@@ -30,7 +30,7 @@ runningWorkspaces.add(key);
 return true;
 ```
 
-因未保存作者本人的 ChatGPT 原始對話，以下標為模擬初篩：null（空值）會在 `isBlank()` 變成 `NullPointerException`，兩個執行緒也可能同時通過 `contains`。方向合理，證據仍是空的。
+原始對話未保存，我依提示詞與 diff 建立[完整對話紀錄](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY09/chatgpt-review-record.md)，而非逐字復原。回覆列出 null 的 `NullPointerException` 與 `contains`／`add` 競爭條件；我再追問測試名稱、斷言與假陰性風險。兩項標為 `BLOCK`，在 JUnit 5 重現前仍待驗證。
 
 ![去識別化 Java diff 的三個失敗條件](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E5%9C%96%E6%AA%94/Day09/day09-03-diff-findings.png)
 
@@ -54,20 +54,20 @@ public void finish(String workspaceId) {
 
 ![JUnit 5 測試從三項失敗到四項通過](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E5%9C%96%E6%AA%94/Day09/day09-04-red-green.png)
 
-## 模擬初篩也要放入誤報與漏報
+## 模擬初篩也要保留待查與漏報
 
-演練另外放入一項誤報：把 `ConcurrentHashMap.newKeySet()` 本身列成執行緒安全疑點。我查 Java 17 的API文件後否決這項疑慮：容器操作安全，錯在檢查與登記被拆成兩個呼叫。`finish` 的鍵值不一致則留給人工補上。下表的 Java 開發套件（Java Development Kit，JDK）文件就是判斷來源。
+補作回覆另列一項 `VERIFY`：`ConcurrentHashMap.newKeySet()` 的並行保證須查文件。我查 Java 17 的應用程式介面（Application Programming Interface，API）後排除此疑點：單次容器操作安全，錯在檢查與登記分成兩次。`finish` 鍵值不一致仍由人工補上。
 
 | 問題 | 模擬初篩 | 測試／文件 | 最終結論 |
 |---|---|---|---|
 | null 例外型別 | 找到 | JUnit 5 紅燈 | 修正 |
 | `contains`＋`add` | 找到 | 並行測試紅燈 | 改用單次 `add` |
-| `newKeySet` 不安全 | 誤報 | JDK 文件 | 否決 |
+| `newKeySet` 並行保證 | 待查 | Java API 文件 | 排除 |
 | `finish` 鍵不一致 | 漏報 | 人工補測試 | 修正 |
 
 ![ChatGPT、自動化證據與人工審查的結果比較](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E5%9C%96%E6%AA%94/Day09/day09-05-comparison.png)
 
-匯入閘門只保護一份 Java 服務；多份同時執行仍需資料庫等共用機制。原始碼也只能放進核准工作區。表格故意保留誤報與漏報，用來示範複核流程，不代表某次真實的 ChatGPT 對話。
+匯入閘門只保護一份 Java 服務；多份同時執行仍需資料庫等共用機制。原始碼也只能放進核准工作區。表格故意保留待查與漏報，用來示範複核流程。
 
 ## 小結：建議要走到證據，才能進入決策
 

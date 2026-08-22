@@ -151,7 +151,7 @@ def comparison():
     rows = [
         ("null 例外", "找到", "紅燈", "修正", GREEN),
         ("contains + add", "找到", "並行紅燈", "單次 add", GREEN),
-        ("newKeySet 不安全", "誤報", "JDK 文件", "否決", RED),
+        ("newKeySet 並行保證", "待查", "Java API 文件", "排除", RED),
         ("finish 鍵不一致", "漏報", "人工補測試", "修正", PURPLE),
     ]
     y = 210
