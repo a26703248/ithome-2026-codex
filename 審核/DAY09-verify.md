@@ -20,6 +20,13 @@
 | 事實正確性 | 第二個 `Set.add` 的回傳值敘述不精確；正文把 `VERIFY` 待查項目稱為誤報 | 明寫 A 的 `add` 回傳 `true`、B 的 `add` 回傳 `false`，但兩個 `tryStart` 都回傳 `true`；全文統一為「待查後排除」 | 通過，無剩餘阻擋 |
 | 讀者清晰度與規範 | `newKeySet` 分類與補作回覆矛盾；API 首次出現未展開全名 | 同步正文、附件、筆記與第五張圖；補上應用程式介面（Application Programming Interface，API）全名 | 通過，無剩餘硬傷 |
 
+### 2026-08-22 封面標題同步複審
+
+- [x] 著作權合規：通過。封面只使用本篇標題、原創摘要與幾何圖形，沒有外部圖片、Logo、嵌入字型或第三方素材。
+- [x] 事實正確性：通過。正文主標、Markdown 圖片替代文字，以及產圖腳本內兩行標題逐字一致。
+- [x] 讀者清晰度與規範：通過。完整標題分成兩行後沒有截切、碰撞或遮擋，仍保留清楚的主標、副標與卡片層級。
+- [x] 可重現性：`day09-01-cover.png` 為 1280×720；只執行 `cover()` 重生圖片後雜湊值不變。
+
 ## 著作權與引用檢查
 
 - 本篇未使用 ISO／CNS、法律條文或 CC 授權素材，不需讀取或比對 `條文/` 正本。
@@ -31,7 +38,7 @@
 ## 事實與程式核對
 
 - OpenAI 官方目前將對話探索與 Codex 的程式碼庫理解、測試及審查工作分開描述；正文只做概括轉述。
-- `ConcurrentHashMap.newKeySet()` 產生由 `ConcurrentHashMap` 支援的集合；把容器本身標成不安全是模擬誤報。
+- `ConcurrentHashMap.newKeySet()` 產生由 `ConcurrentHashMap` 支援的集合；補作回覆將並行保證列為 `VERIFY` 待查，之後由 Java 17 API 文件排除疑點。
 - `contains` 與 `add` 分成兩次呼叫時，兩個執行緒可能都先看到鍵不存在；修正版直接使用該集合單次 `add` 的回傳值判斷。
 - 缺陷版對 null 呼叫 `isBlank()`，實際會先拋出 `NullPointerException`。
 - `tryStart` 與 `finish` 共用 `normalize` 後，前後空白與英文字母大小寫的識別規則一致。
@@ -65,6 +72,7 @@ mvn clean test
 - 標題首次使用「程式碼審查（Code Review）」；API、JDK 也在首次出現時提供中英文全名。
 - 標題層級為一個 `#` 主標題，後續使用 `##`，沒有跳級。
 - 五張圖片皆為 1280 × 720 px、16:9；文章使用 `raw.githubusercontent.com` 網址，且每張圖片獨立成行。
+- 第一張封面的兩行主標串接後，與文章標題「用 ChatGPT 做程式碼審查（Code Review）初篩：找到問題，不等於可以合併」逐字一致。
 - 第三張圖的程式行號 13、16、17、20、25 與 `review-input.diff` 一致，第 16 行完整呈現 `toLowerCase(Locale.ROOT)`。
 - 正文、補作稿、比較表、`review-notes.md` 與第五張圖均標明模擬性質，不冒充作者遺失的 ChatGPT 原始對話紀錄。
 - Day 08 的時區計算已有測試，本篇明確把審查範圍移到排程外新增的匯入閘門；小結再銜接 Day 10 的 Codex 代理任務。

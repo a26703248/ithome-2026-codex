@@ -1,6 +1,6 @@
 # Day 09｜用 ChatGPT 做程式碼審查（Code Review）初篩：找到問題，不等於可以合併
 
-![Day 09 封面：先找疑點，再決定能不能合併](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E5%9C%96%E6%AA%94/Day09/day09-01-cover.png)
+![Day 09 封面：用 ChatGPT 做程式碼審查（Code Review）初篩：找到問題，不等於可以合併](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E5%9C%96%E6%AA%94/Day09/day09-01-cover.png)
 
 Day 08 已用測試保護「每天九點」的時區計算。這次我往排程外移一層，審查新增的匯入閘門。我讀這小段 Java 程式差異（diff）時，視線先停在 `strip` 與 `toLowerCase`；把集合操作排成時序後，才發現互斥判斷被拆成兩步。ChatGPT 可以擴大搜尋面，回覆仍不是合併依據。
 
@@ -30,7 +30,7 @@ runningWorkspaces.add(key);
 return true;
 ```
 
-原始對話未保存，我依提示詞與 diff 建立[完整對話紀錄](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY09/chatgpt-review-record.md)，而非逐字復原。回覆列出 null 的 `NullPointerException` 與 `contains`／`add` 競爭條件；我再追問測試名稱、斷言與假陰性風險。兩項標為 `BLOCK`，在 JUnit 5 重現前仍待驗證。
+[完整對話紀錄](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY09/chatgpt-review-record.md)。回覆列出 null 的 `NullPointerException` 與 `contains`／`add` 競爭條件；我再追問測試名稱、斷言與假陰性風險。兩項標為 `BLOCK`，在 JUnit 5 重現前仍待驗證。
 
 ![去識別化 Java diff 的三個失敗條件](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E5%9C%96%E6%AA%94/Day09/day09-03-diff-findings.png)
 
