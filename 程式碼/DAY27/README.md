@@ -27,9 +27,9 @@ BUILD SUCCESS
 ```
 
 本次草擬是在沒有 Maven／JDK 編譯工具的環境完成，尚未實際執行上述指令，詳見
-[`docs/verification-log.md`](docs/verification-log.md)。作者發布前務必在本機重新執行並更新結果。
+[`docs/verification-log.md`](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY27/docs/verification-log.md)。作者發布前務必在本機重新執行並更新結果。
 
 ## 相關文件
 
-- [`docs/governance-inventory.md`](docs/governance-inventory.md)：使用案例盤點、六個治理面向與待角色確認清單。
-- [`docs/verification-log.md`](docs/verification-log.md)：測試設計與待補的實際執行結果。
+- [`docs/governance-inventory.md`](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY27/docs/governance-inventory.md)：使用案例盤點、六個治理面向與待角色確認清單。
+- [`docs/verification-log.md`](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY27/docs/verification-log.md)：測試設計與待補的實際執行結果。

@@ -49,9 +49,9 @@ def cover():
     draw.ellipse((1000, -170, 1400, 230), fill="#0C4A6E")
     draw.ellipse((-170, 520, 190, 880), fill="#312E81")
     text(draw, (70, 70), "DAY 09 · CODE REVIEW", 34, CYAN, True)
-    text(draw, (70, 165), "先找疑點，", 66, WHITE, True)
-    text(draw, (70, 250), "再決定能不能合併", 66, WHITE, True)
-    text(draw, (70, 342), "ChatGPT 初篩 × JUnit 證據 × 人工決策", 31, "#CBD5E1")
+    text(draw, (70, 155), "用 ChatGPT 做程式碼審查（Code Review）", 50, WHITE, True)
+    text(draw, (70, 222), "初篩：找到問題，不等於可以合併", 50, WHITE, True)
+    text(draw, (70, 315), "ChatGPT 初篩 × JUnit 證據 × 人工決策", 31, "#CBD5E1")
 
     cards = [("疑", "指出觸發條件", BLUE), ("驗", "寫測試重現", ORANGE), ("決", "人工判斷", GREEN)]
     x = 70
@@ -151,7 +151,7 @@ def comparison():
     rows = [
         ("null 例外", "找到", "紅燈", "修正", GREEN),
         ("contains + add", "找到", "並行紅燈", "單次 add", GREEN),
-        ("newKeySet 不安全", "誤報", "JDK 文件", "否決", RED),
+        ("newKeySet 並行保證", "待查", "Java API 文件", "排除", RED),
         ("finish 鍵不一致", "漏報", "人工補測試", "修正", PURPLE),
     ]
     y = 210

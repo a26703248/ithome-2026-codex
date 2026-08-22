@@ -5,8 +5,8 @@
 ## 情境
 
 PM 轉述「站台的查詢結果好像怪怪的」，經 ChatGPT 協助釐清後整理成
-[`docs/issue-report.md`](docs/issue-report.md)，對照
-[`docs/product-spec.md`](docs/product-spec.md) 規格，
+[`docs/issue-report.md`](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY02/docs/issue-report.md)，對照
+[`docs/product-spec.md`](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY02/docs/product-spec.md) 規格，
 定位出 `ProductSearchService` 兩個可重現的缺陷，交由 Codex 讀取三份素材後修正：
 
 1. 關鍵字查詢大小寫敏感，導致查不到本該符合的商品。

@@ -1,6 +1,6 @@
 # Day 29｜踩雷經驗談：把事故翻譯成護欄
 
-![Day 29 封面：事故要翻譯成護欄，不是翻譯成一句下次小心](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E5%9C%96%E6%AA%94/Day29/day29-01-cover.png)
+![Day 29 封面：事故要翻譯成護欄，不是翻譯成一句下次小心](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E5%B0%81%E5%AD%98/%E5%9C%96%E6%AA%94/Day29/day29-01-cover.png)
 
 Day 28 那句「Day 29 會回看系列裡沒有成功的案例」，我最先想到的不是哪一次程式碼寫錯，而是 Day 26 那位同事拿真實客戶掃描檔案補 OCR 測試的事。當時我把它寫進治理盤點表，處理的是「該不該用這份資料」；今天要問的是另一題：為什麼會走到這一步、下次怎麼提早擋下來。這篇不是要列一串「Codex 又出包」的清單——工具沒有主動去抓客戶檔案，是任務交辦時沒人劃出「哪些資料能給它碰」的線。真正該檢討的是任務範圍、上下文、驗收條件這些我們自己能改的條件。
 
@@ -8,7 +8,7 @@ Day 28 那句「Day 29 會回看系列裡沒有成功的案例」，我最先想
 
 回看 Day 01 到 Day 28，真正讓我停下來的事故都落在三個階段：交辦當下資訊不夠、執行時改動範圍比預期廣、驗收時把「看起來完成」當成「真的完成」。三者常常連在一起——上下文不足讓 Codex 自己補假設，補錯的假設讓修改範圍跟著跑偏，範圍跑偏又更容易被一句「已完成」蓋過去。
 
-![三類失敗模式與對應案例：Day 26、Day 27、Day 24](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E5%9C%96%E6%AA%94/Day29/day29-02-three-failure-modes.png)
+![三類失敗模式與對應案例：Day 26、Day 27、Day 24](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E5%B0%81%E5%AD%98/%E5%9C%96%E6%AA%94/Day29/day29-02-three-failure-modes.png)
 
 ## 失敗一：需求與上下文不足——Day 26 那次事故重新拆解
 
@@ -30,7 +30,7 @@ if (!touchedFiles.isEmpty()) {
 
 若沒核對檔案數就合併，那兩處報表原本比對 `MANUAL_REVIEW` 字樣的邏輯會跟新列舉對不上，退回原因的統計直接壞掉。我退回這次變更，只留下時間戳記那段，列舉改名另外拆成一個要跨模組討論的獨立任務。檔案數量不能取代逐行審查，但確實是最快抓出範圍跑掉的訊號。
 
-![允許改動的檔案清單，對上實際 diff 變更的 5 個檔案](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E5%9C%96%E6%AA%94/Day29/day29-03-diff-scope.png)
+![允許改動的檔案清單，對上實際 diff 變更的 5 個檔案](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E5%B0%81%E5%AD%98/%E5%9C%96%E6%AA%94/Day29/day29-03-diff-scope.png)
 
 ## 失敗三：把完成摘要當成驗收——Day 24 交付包被誤讀
 
@@ -48,13 +48,13 @@ Day 24 結尾寫得清楚：「Java 程式已能拒絕未填複核原因的提�
 | 修改過廣（列舉改名） | 交辦寫明允許改動的檔案清單 | 核對 diff 變更檔案數是否超出預期 | 只合併允許清單內的變更 | 退回多餘變更、拆成獨立任務 |
 | 摘要誤導（交付包被誤讀） | 標題直接寫「完成／待確認」項目數 | 展示或上線前重讀待確認清單 | 縮小展示或發布範圍 | 標成部分完成、列出負責人 |
 
-![事故回推護欄矩陣：失敗模式對應預防、偵測、限制影響、復原](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E5%9C%96%E6%AA%94/Day29/day29-04-guardrail-matrix.png)
+![事故回推護欄矩陣：失敗模式對應預防、偵測、限制影響、復原](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E5%B0%81%E5%AD%98/%E5%9C%96%E6%AA%94/Day29/day29-04-guardrail-matrix.png)
 
 ## 效益與注意事項
 
 攤開這三次事故後，我更新的不是心情，是三個具體東西：交辦模板多一欄「允許改動範圍」、diff 檢查多一道「變更檔案數」門檻、交付包標題不能只寫「完成」。公開分享失敗案例仍要顧到分寸：客戶檔名、同事身分、專案代號都拿掉，只留任務範圍、觸發條件與程式層級的證據；也不能拿這三次事故說「Codex 不可靠」，根因其實都在交辦與驗收這端。
 
-![更新後的交辦與驗收流程：三個新增檢查點](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E5%9C%96%E6%AA%94/Day29/day29-05-updated-workflow.png)
+![更新後的交辦與驗收流程：三個新增檢查點](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E5%B0%81%E5%AD%98/%E5%9C%96%E6%AA%94/Day29/day29-05-updated-workflow.png)
 
 ## 小結與 Day 30 預告
 

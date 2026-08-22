@@ -33,13 +33,13 @@ BUILD SUCCESS
 ```
 
 本次草擬是在沒有 Maven／完整 JDK（僅有 JRE，缺 `javac`）的環境完成，尚未
-實際執行上述指令，詳見 [`docs/verification-log.md`](docs/verification-log.md)。
+實際執行上述指令，詳見 [`docs/verification-log.md`](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY29/docs/verification-log.md)。
 作者發布前務必在本機重新執行並更新結果。
 
 ## 相關文件
 
-- [`docs/baseline-log.md`](docs/baseline-log.md)：撰寫本工具的配對前後測
+- [`docs/baseline-log.md`](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY29/docs/baseline-log.md)：撰寫本工具的配對前後測
   計時紀錄，以及套用本工具計算出的基準線／AI 協作批次比較數字，是文章兩個
   表格的原始資料。
-- [`docs/verification-log.md`](docs/verification-log.md)：測試設計與待補的
+- [`docs/verification-log.md`](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY29/docs/verification-log.md)：測試設計與待補的
   實際執行結果。

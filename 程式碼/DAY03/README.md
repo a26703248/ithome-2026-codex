@@ -6,7 +6,7 @@
 
 一個刻意保留缺陷的最小 Java／Maven 專案：購物車在有商品時能正確計算總額並套用
 滿額折扣，但空購物車呼叫 `calculateTotal()` 會因為除以 0 丟出
-`ArithmeticException`。任務與驗收條件見 [`docs/task-brief.md`](docs/task-brief.md)。
+`ArithmeticException`。任務與驗收條件見 [`docs/task-brief.md`](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY03/docs/task-brief.md)。
 
 這個案例的目的不是示範複雜的修復，而是讓讀者（或作者本人）走完一輪
 「提出任務 → Codex 讀取並修改 → 跑測試 → 看差異 → 人工審查」的最短回饋迴圈，
@@ -38,5 +38,5 @@ mvn test
 `calculateTotal_withTwoItems_appliesBulkDiscount` 應該通過。修正
 `ShoppingCart.calculateTotal()` 讓空清單時直接回傳 0 之後，兩個測試都應該通過。
 
-實際指令與輸出請記錄在 [`docs/verification-log.md`](docs/verification-log.md)，
+實際指令與輸出請記錄在 [`docs/verification-log.md`](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY03/docs/verification-log.md)，
 不要用臆測的畫面或文字取代。

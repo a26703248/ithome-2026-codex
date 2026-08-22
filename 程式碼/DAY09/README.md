@@ -6,6 +6,7 @@
 
 - `review-input.diff`：刻意保留 null、先檢查再執行及正規化不一致問題的待審 diff。
 - `review-prompt.txt`：要求 ChatGPT 把觀察整理成可由另一位審查者重做的驗證卡。
+- `chatgpt-review-record.md`：依同一提示詞與 diff 建立的補作模擬輸入、輸出及追問稿。
 - `review-notes.md`：將初篩項目轉為人工複核與證據紀錄。
 - `before-review/`：可獨立執行的修正前測試夾具，預期出現三項失敗。
 - `src/main`：複核後的最小修正版。

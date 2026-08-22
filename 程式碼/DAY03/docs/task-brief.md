@@ -2,7 +2,7 @@
 
 > 用途：這是 Day03「用一個小任務驗證環境真的可用」的任務說明，
 > 供作者實際操作 ChatGPT／Codex 一輪，並把過程記錄進
-> [`verification-log.md`](verification-log.md)，而不是直接當發布內容照抄。
+> [`verification-log.md`](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY03/docs/verification-log.md)，而不是直接當發布內容照抄。
 
 ## 任務描述
 
@@ -32,7 +32,7 @@
 3. 執行 `mvn test`，確認兩個測試都通過。
 4. 用 `git diff` 或編輯器內建比對工具，人工檢查改動範圍是否符合驗收條件。
 5. 把實際操作入口、指令、測試輸出與人工審查結論記錄進
-   [`verification-log.md`](verification-log.md)。
+   [`verification-log.md`](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY03/docs/verification-log.md)。
 
 ## 安全與資料範圍
 

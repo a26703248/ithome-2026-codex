@@ -24,4 +24,4 @@ Tests run: 4, Failures: 0, Errors: 0, Skipped: 0
 BUILD SUCCESS
 ```
 
-完整實測結果見 [`docs/verification-log.md`](docs/verification-log.md)。
+完整實測結果見 [`docs/verification-log.md`](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY25/docs/verification-log.md)。

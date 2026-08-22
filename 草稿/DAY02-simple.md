@@ -88,7 +88,7 @@
 
 ### 作者驗證案例
 
-缺陷可由測試或固定步驟穩定重現（見[驗證紀錄](../程式碼/DAY02/docs/task2-verification.md)）。
+缺陷可由測試或固定步驟穩定重現（見[驗證紀錄](https://raw.githubusercontent.com/a26703248/ithome-2026-codex/main/%E7%A8%8B%E5%BC%8F%E7%A2%BC/DAY02/docs/task2-verification.md)）。
 
 ### 圖片規劃
 
